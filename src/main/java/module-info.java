@@ -42,7 +42,7 @@
  * users free to combine the components in any manner they wish. 
  */
 @SuppressWarnings("module")
-module annot8.core {
+module io.annot8.core {
   exports io.annot8.core.annotations;
   exports io.annot8.core.bounds;
   exports io.annot8.core.components;
