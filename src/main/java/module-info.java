@@ -41,7 +41,7 @@
  * processing on it. However, the pipeline concept is not defined in this module so as to leave
  * users free to combine the components in any manner they wish. 
  */
-module io.annot8.core {
+module io_annot8_core {
   exports io.annot8.core.annotations;
   exports io.annot8.core.bounds;
   exports io.annot8.core.components;
