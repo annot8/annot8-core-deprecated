@@ -9,21 +9,19 @@ import io.annot8.core.exceptions.IncompleteException;
 
 /**
  * Base groups interface from which all other group stores extend.
- * 
- * @param <A>
- * 		The group supported by this store
+ *
  */
-public interface GroupStore<A extends Group> {
+public interface GroupStore {
 
   /**
    * Return a builder object for the supported group
    */
-  A.Builder getBuilder();
+  Group.Builder getBuilder();
 
   /**
    * Save a group to the store from a group builder
    */
-  A save(final A.Builder groupBuilder) throws IncompleteException;
+  Group save(final Group.Builder groupBuilder) throws IncompleteException;
 
   /**
    * Delete a group from the store
@@ -59,6 +57,6 @@ public interface GroupStore<A extends Group> {
   /**
    * Get the group with the given ID, if it is currently held in this store
    */
-  Optional<A> getById(final String groupId);
+  Optional<Group> getById(final String groupId);
 
 }
