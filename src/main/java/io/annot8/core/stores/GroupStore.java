@@ -18,12 +18,12 @@ public interface GroupStore<A extends Group> {
   /**
    * Return a builder object for the supported group
    */
-  A.Builder<A> getBuilder();
+  A.Builder getBuilder();
 
   /**
    * Save a group to the store from a group builder
    */
-  A save(final A.Builder<A> groupBuilder) throws IncompleteException;
+  A save(final A.Builder groupBuilder) throws IncompleteException;
 
   /**
    * Delete a group from the store
