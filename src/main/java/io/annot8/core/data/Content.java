@@ -47,9 +47,5 @@ public interface Content<D> extends WithTags, WithProperties {
      */
     Content.Builder<A, D> withData(final D content);
 
-    /**
-     * Set the annotation store for this content object
-     */
-    Content.Builder<A, D> withAnnotations(final AnnotationStore annotations);
   }
 }

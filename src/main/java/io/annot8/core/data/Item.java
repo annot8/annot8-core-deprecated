@@ -51,9 +51,14 @@ public interface Item extends WithMutableProperties, WithGroups {
   <T extends Content<?>> Stream<T> getContents(final Class<T> clazz);
 
   /**
-   * Create a new content object from the given content builder (the name should be taken from the builder object)
+   * Create a new content builder to generate content.
    */
-  <C extends Content<?>> C create(final C.Builder builder) throws AlreadyExistsException, UnsupportedContentException;
+  <C extends Content<D>, D> Content.Builder<C, D> create(Class<C> clazz) throws UnsupportedContentException;
+
+  /**
+   * Save content from the given content builder (the name should be taken from the builder object)
+   */
+  <C extends Content<D>, D> C save(Content.Builder<C, D> builder) throws AlreadyExistsException;
 
   /**
    * Remove the specified content object from this item
