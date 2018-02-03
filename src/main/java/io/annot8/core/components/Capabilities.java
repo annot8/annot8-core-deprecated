@@ -1,5 +1,6 @@
 package io.annot8.core.components;
 
+import io.annot8.core.bounds.Bounds;
 import io.annot8.core.data.Content;
 import java.util.stream.Stream;
 
@@ -41,4 +42,9 @@ public interface Capabilities {
    * Return the resource classes required by this component
    */
   Stream<Class<? extends Resource>> getRequiredResources();
+
+  /**
+   * Return the bounds classes output by this component
+   */
+  Stream<Class<? extends Bounds>> getOutputBounds();
 }
