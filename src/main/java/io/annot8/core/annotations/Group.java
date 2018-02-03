@@ -55,16 +55,16 @@ public interface Group extends WithId, WithType, WithProperties {
   /**
    * Builder interface to create (immutable) Group classes
    */
-  interface Builder<A extends Group> extends
-  WithTypeBuilder<Builder<A>>,
-  WithPropertiesBuilder<Builder<A>>,
-  WithNewIdBuilder<Builder<A>>,
-  WithFrom<Builder<A>, A>,
-  WithBuild<A>
+  interface Builder extends
+  WithTypeBuilder<Builder>,
+  WithPropertiesBuilder<Builder>,
+  WithNewIdBuilder<Builder>,
+  WithFrom<Builder, Group>,
+  WithBuild<Group>
   {
     /**
      * Add an annotation to this group with the specified role
      */
-    Builder<A> withAnnotation(final String role, final Annotation annotation);
+    Builder withAnnotation(final String role, final Annotation annotation);
   }
 }
