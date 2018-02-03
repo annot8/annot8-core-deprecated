@@ -19,6 +19,29 @@ public interface AnnotationStore {
   Annotation.Builder getBuilder();
 
   /**
+   * Return a builder to create a new annotation
+   */
+  default Annotation.Builder create() {
+    return getBuilder();
+  }
+
+  /**
+   * Return a builder to based on the an existing  annotation, but don't overwrite that annotation on save.
+   */
+  default Annotation.Builder copy(Annotation existing) {
+    return getBuilder().newId().from(existing);
+  }
+
+
+  /**
+   * Return a builder to edit an existing annotation
+   */
+  default Annotation.Builder update(Annotation existing) {
+    return getBuilder().newId().from(existing);
+  }
+
+
+  /**
    * Save an annotation to the store from an annotation builder
    */
   Annotation save(final Annotation.Builder annotationBuilder) throws IncompleteException;
