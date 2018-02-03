@@ -84,6 +84,6 @@ public interface Properties {
    */
   default <T> Map<String, T> getAll(final Class<T> clazz) {
     return getAll().entrySet().stream().filter(e -> clazz.isInstance(e.getValue()))
-        .collect(Collectors.toMap(Entry<String, Object>::getKey, e -> clazz.cast(e.getValue())));
+        .collect(Collectors.toMap(Entry::getKey, e -> clazz.cast(e.getValue())));
   }
 }
