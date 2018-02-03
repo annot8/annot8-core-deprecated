@@ -4,7 +4,6 @@ import io.annot8.core.exceptions.AlreadyExistsException;
 import io.annot8.core.exceptions.UnsupportedContentException;
 import io.annot8.core.helpers.WithGroups;
 import io.annot8.core.helpers.WithMutableProperties;
-
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -14,14 +13,14 @@ import java.util.stream.Stream;
 public interface Item extends WithMutableProperties, WithGroups {
 
   /**
-   * Set the default content object for this item
-   */
-  void setDefaultContent(final String name);
-
-  /**
    * Return the default content object for this item
    */
   Content<?> getDefaultContent();
+
+  /**
+   * Set the default content object for this item
+   */
+  void setDefaultContent(final String name);
 
   /**
    * Return true if this item has a content object with the specified name
@@ -51,9 +50,15 @@ public interface Item extends WithMutableProperties, WithGroups {
   <T extends Content<?>> Stream<T> getContents(final Class<T> clazz);
 
   /**
-   * Create a new content object from the given content builder (the name should be taken from the builder object)
+   * Create a new content builder to generate content.
    */
-  <C extends Content<?>> C create(final C.Builder builder) throws AlreadyExistsException, UnsupportedContentException;
+  <C extends Content<D>, D> Content.Builder<C, D> create(Class<C> clazz)
+      throws UnsupportedContentException;
+
+  /**
+   * Save content from the given content builder (the name should be taken from the builder object)
+   */
+  <C extends Content<D>, D> C save(Content.Builder<C, D> builder) throws AlreadyExistsException;
 
   /**
    * Remove the specified content object from this item

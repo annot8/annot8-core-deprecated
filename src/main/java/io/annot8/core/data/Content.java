@@ -14,14 +14,14 @@ import io.annot8.core.stores.AnnotationStore;
 public interface Content<D> extends WithTags, WithProperties {
 
   /**
-   *  Return the data associated with this content object
+   * Return the data associated with this content object
    */
   D getData();
 
   /**
    * Return the annotation store for this content
    */
-  AnnotationStore<?, ?> getAnnotations();
+  AnnotationStore getAnnotations();
 
   /**
    * Return the name of this content
@@ -32,11 +32,11 @@ public interface Content<D> extends WithTags, WithProperties {
    * Builder interface to create (immutable) Content classes
    */
   interface Builder<A extends Content<D>, D> extends
-  WithPropertiesBuilder<Builder<A, D>>,
-  WithTagsBuilder<Builder<A, D>>,
-  WithFrom<Builder<A, D>, A>,
-  WithBuild<A>
-  {
+      WithPropertiesBuilder<Builder<A, D>>,
+      WithTagsBuilder<Builder<A, D>>,
+      WithFrom<Builder<A, D>, A>,
+      WithBuild<A> {
+
     /**
      * Set the name of this content object
      */
@@ -47,9 +47,5 @@ public interface Content<D> extends WithTags, WithProperties {
      */
     Content.Builder<A, D> withData(final D content);
 
-    /**
-     * Set the annotation store for this content object
-     */
-    Content.Builder<A, D> withAnnotations(final AnnotationStore<?, ?> annotations);
   }
 }

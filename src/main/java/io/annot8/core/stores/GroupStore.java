@@ -1,29 +1,49 @@
 package io.annot8.core.stores;
 
+import io.annot8.core.annotations.Group;
+import io.annot8.core.exceptions.IncompleteException;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import io.annot8.core.annotations.Group;
-import io.annot8.core.exceptions.IncompleteException;
 
 /**
  * Base groups interface from which all other group stores extend.
- * 
- * @param <A>
- * 		The group supported by this store
  */
-public interface GroupStore<A extends Group> {
+public interface GroupStore {
 
   /**
    * Return a builder object for the supported group
    */
-  A.Builder<A> getBuilder();
+  Group.Builder getBuilder();
+
+  /**
+   * Return a builder to create a new annotation
+   */
+  default Group.Builder create() {
+    return getBuilder();
+  }
+
+  /**
+   * Return a builder to based on the an existing group, but don't overwrite that group on save.
+   */
+  default Group.Builder copy(Group existing) {
+    return getBuilder().newId().from(existing);
+  }
+
+
+  /**
+   * Return a builder to edit an existing group
+   */
+  default Group.Builder edit(Group existing) {
+    return getBuilder().from(existing);
+  }
+
 
   /**
    * Save a group to the store from a group builder
    */
-  A save(final A.Builder<A> groupBuilder) throws IncompleteException;
+  Group save(final Group.Builder groupBuilder) throws IncompleteException;
 
   /**
    * Delete a group from the store
@@ -59,6 +79,6 @@ public interface GroupStore<A extends Group> {
   /**
    * Get the group with the given ID, if it is currently held in this store
    */
-  Optional<A> getById(final String groupId);
+  Optional<Group> getById(final String groupId);
 
 }

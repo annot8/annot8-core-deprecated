@@ -40,7 +40,8 @@ public interface Properties {
   }
 
   /**
-   * Return the property value as an Object for the specified key, or a default value if the key doesn't exist
+   * Return the property value as an Object for the specified key, or a default value if the key
+   * doesn't exist
    */
   default Object getObjectOrDefault(final String key, final Object defaultValue) {
     return get(key).orElse(defaultValue);
@@ -84,6 +85,6 @@ public interface Properties {
    */
   default <T> Map<String, T> getAll(final Class<T> clazz) {
     return getAll().entrySet().stream().filter(e -> clazz.isInstance(e.getValue()))
-        .collect(Collectors.toMap(Entry<String, Object>::getKey, e -> clazz.cast(e.getValue())));
+        .collect(Collectors.toMap(Entry::getKey, e -> clazz.cast(e.getValue())));
   }
 }

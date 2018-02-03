@@ -1,14 +1,15 @@
 package io.annot8.core.data;
 
-import java.util.Collection;
-import java.util.stream.Stream;
 import io.annot8.core.helpers.builders.WithBuild;
 import io.annot8.core.helpers.builders.WithFrom;
+import java.util.Collection;
+import java.util.stream.Stream;
 
 /**
  * Base tags interface from which all tags implementations extend.
  */
 public interface Tags {
+
   /**
    * Return true if this object contains the specified tag
    */
@@ -24,10 +25,9 @@ public interface Tags {
   /**
    * Builder interface to create (immutable) Tags classes
    */
-  interface Builder extends 
-  WithFrom<Builder, Tags>, 
-  WithBuild<Tags>
-  {
+  interface Builder extends
+      WithFrom<Builder, Tags>,
+      WithBuild<Tags> {
 
     /**
      * Add a tag to this tags object

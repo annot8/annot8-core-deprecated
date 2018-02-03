@@ -13,10 +13,9 @@ public interface ImmutableProperties extends Properties {
    * Builder interface to create (immutable) properties classes
    */
   interface Builder extends
-  WithFrom<Builder, Properties>,
-  WithPropertiesBuilder<Builder>,
-  WithBuild<ImmutableProperties>
-  {
+      WithFrom<Builder, Properties>,
+      WithPropertiesBuilder<Builder>,
+      WithBuild<ImmutableProperties> {
 
   }
 
