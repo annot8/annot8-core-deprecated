@@ -1,5 +1,6 @@
 package io.annot8.core.stores;
 
+import io.annot8.core.bounds.Bounds;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -75,6 +76,14 @@ public interface AnnotationStore {
    */
   default Stream<Annotation> getByType(final String type) {
     return getAll().filter(a -> type.equals(a.getType()));
+  }
+
+  /**
+   * Get all annotations of a given bounds currently held in this store
+   */
+  default <B extends Bounds> Stream<Annotation> getByBounds(final Class<B> boundsClass) {
+    return getAll()
+        .filter(a -> a.getBounds() != null && boundsClass.isInstance(a.getBounds()));
   }
 
   /**
