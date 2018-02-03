@@ -41,6 +41,23 @@ public interface Group extends WithId, WithType, WithProperties {
   Optional<String> getRole(final Annotation annotation);
 
   /**
+   * Return all the annotations in this group for the specified content.
+   **/
+  default Stream<Annotation> getAnnotationsForContent(String contentName) {
+    return getAnnotations().values().stream()
+        .flatMap(s -> s)
+        .filter(a -> contentName.equals(a.getContentName()));
+  }
+
+  /**
+   * Return all the annotations in this group for the specified content and role.
+   **/
+  default Stream<Annotation> getAnnotationsForContentAndRole(String contentName, String role) {
+    return getAnnotations(role)
+        .filter(a -> contentName.equals(a.getContentName()));
+  }
+
+  /**
    * Returns true if this group contains the specified annotation
    */
   boolean containsAnnotation(final Annotation annotation);
