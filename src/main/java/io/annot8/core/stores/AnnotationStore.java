@@ -30,17 +30,15 @@ public interface AnnotationStore {
    * on save.
    */
   default Annotation.Builder copy(Annotation existing) {
-    return getBuilder().newId().from(existing);
+    return getBuilder().from(existing).newId();
   }
-
 
   /**
    * Return a builder to edit an existing annotation
    */
-  default Annotation.Builder update(Annotation existing) {
-    return getBuilder().newId().from(existing);
+  default Annotation.Builder edit(Annotation existing) {
+    return getBuilder().from(existing);
   }
-
 
   /**
    * Save an annotation to the store from an annotation builder

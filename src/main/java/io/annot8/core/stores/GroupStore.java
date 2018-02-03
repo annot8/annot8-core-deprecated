@@ -18,6 +18,29 @@ public interface GroupStore {
   Group.Builder getBuilder();
 
   /**
+   * Return a builder to create a new annotation
+   */
+  default Group.Builder create() {
+    return getBuilder();
+  }
+
+  /**
+   * Return a builder to based on the an existing group, but don't overwrite that group on save.
+   */
+  default Group.Builder copy(Group existing) {
+    return getBuilder().newId().from(existing);
+  }
+
+
+  /**
+   * Return a builder to edit an existing group
+   */
+  default Group.Builder edit(Group existing) {
+    return getBuilder().from(existing);
+  }
+
+
+  /**
    * Save a group to the store from a group builder
    */
   Group save(final Group.Builder groupBuilder) throws IncompleteException;
