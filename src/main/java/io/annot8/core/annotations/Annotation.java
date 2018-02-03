@@ -14,6 +14,7 @@ import io.annot8.core.helpers.builders.WithTypeBuilder;
  * Base annotation interface from which all other annotations extend.
  */
 public interface Annotation extends WithId, WithType, WithProperties {
+
   /**
    * Get the {@link Bounds} associated with this annotation
    */
@@ -28,12 +29,12 @@ public interface Annotation extends WithId, WithType, WithProperties {
    * Builder interface to create (immutable) Annotation classes
    */
   interface Builder extends
-  WithTypeBuilder<Annotation.Builder>,
-  WithPropertiesBuilder<Annotation.Builder>,
-  WithNewIdBuilder<Annotation.Builder>,
-  WithFrom<Annotation.Builder, Annotation>,
-  WithBuild<Annotation>
-  {
+      WithTypeBuilder<Annotation.Builder>,
+      WithPropertiesBuilder<Annotation.Builder>,
+      WithNewIdBuilder<Annotation.Builder>,
+      WithFrom<Annotation.Builder, Annotation>,
+      WithBuild<Annotation> {
+
     /**
      * Set the name of the Content to which this annotation refers
      */

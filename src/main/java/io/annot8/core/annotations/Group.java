@@ -1,8 +1,5 @@
 package io.annot8.core.annotations;
 
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Stream;
 import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.WithType;
@@ -11,11 +8,15 @@ import io.annot8.core.helpers.builders.WithFrom;
 import io.annot8.core.helpers.builders.WithNewIdBuilder;
 import io.annot8.core.helpers.builders.WithPropertiesBuilder;
 import io.annot8.core.helpers.builders.WithTypeBuilder;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * Base annotation interface from which all other annotations extend.
  */
 public interface Group extends WithId, WithType, WithProperties {
+
   /**
    * Return a map of all roles with the associated annotations in this group
    */
@@ -24,14 +25,14 @@ public interface Group extends WithId, WithType, WithProperties {
   /**
    * Return all the annotations in this group with the specified role
    */
-  default Stream<Annotation> getAnnotations(final String role){
+  default Stream<Annotation> getAnnotations(final String role) {
     return getAnnotations().get(role);
   }
 
   /**
    * Return all the roles currently associated with annotations in this group
    */
-  default Stream<String> getRoles(){
+  default Stream<String> getRoles() {
     return getAnnotations().keySet().stream();
   }
 
@@ -73,12 +74,12 @@ public interface Group extends WithId, WithType, WithProperties {
    * Builder interface to create (immutable) Group classes
    */
   interface Builder extends
-  WithTypeBuilder<Builder>,
-  WithPropertiesBuilder<Builder>,
-  WithNewIdBuilder<Builder>,
-  WithFrom<Builder, Group>,
-  WithBuild<Group>
-  {
+      WithTypeBuilder<Builder>,
+      WithPropertiesBuilder<Builder>,
+      WithNewIdBuilder<Builder>,
+      WithFrom<Builder, Group>,
+      WithBuild<Group> {
+
     /**
      * Add an annotation to this group with the specified role
      */

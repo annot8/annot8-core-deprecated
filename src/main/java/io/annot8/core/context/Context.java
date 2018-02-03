@@ -1,9 +1,9 @@
 package io.annot8.core.context;
 
-import java.util.Optional;
-import java.util.stream.Stream;
 import io.annot8.core.components.Resource;
 import io.annot8.core.settings.Settings;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * Base context interface from which all context implementations extend.
@@ -16,8 +16,8 @@ public interface Context {
   Optional<Settings> getSettings();
 
   /**
-   * Return a settings object as the given class, attempting to create a new settings
-   * object of that class if the currently given settings are not of this class.
+   * Return a settings object as the given class, attempting to create a new settings object of that
+   * class if the currently given settings are not of this class.
    */
   default <T extends Settings> T getSettings(final Class<T> clazz) {
     final Optional<Settings> o = getSettings();
@@ -48,7 +48,7 @@ public interface Context {
   /**
    * List all the resource keys contained within this context that are of the specified type
    */
-  default Stream<String> getResourceKeys(final Class<? extends Resource> clazz){
+  default Stream<String> getResourceKeys(final Class<? extends Resource> clazz) {
     return getResourceKeys().filter(s -> getResource(s, clazz).isPresent());
   }
 

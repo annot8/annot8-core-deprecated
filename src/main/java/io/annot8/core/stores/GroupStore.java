@@ -1,15 +1,14 @@
 package io.annot8.core.stores;
 
+import io.annot8.core.annotations.Group;
+import io.annot8.core.exceptions.IncompleteException;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import io.annot8.core.annotations.Group;
-import io.annot8.core.exceptions.IncompleteException;
 
 /**
  * Base groups interface from which all other group stores extend.
- *
  */
 public interface GroupStore {
 

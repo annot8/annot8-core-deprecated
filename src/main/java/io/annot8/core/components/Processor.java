@@ -6,9 +6,8 @@ import io.annot8.core.exceptions.ProcessingException;
 
 /**
  * Base processor interface from which all processors extend.
- * 
- * Processors do work on an item, such as adding new annotations, or
- * creating new content.
+ *
+ * Processors do work on an item, such as adding new annotations, or creating new content.
  */
 public interface Processor extends Annot8Component {
 

@@ -40,7 +40,8 @@ public interface Properties {
   }
 
   /**
-   * Return the property value as an Object for the specified key, or a default value if the key doesn't exist
+   * Return the property value as an Object for the specified key, or a default value if the key
+   * doesn't exist
    */
   default Object getObjectOrDefault(final String key, final Object defaultValue) {
     return get(key).orElse(defaultValue);

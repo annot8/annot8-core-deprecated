@@ -1,16 +1,15 @@
 package io.annot8.core.stores;
 
+import io.annot8.core.annotations.Annotation;
 import io.annot8.core.bounds.Bounds;
+import io.annot8.core.exceptions.IncompleteException;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import io.annot8.core.annotations.Annotation;
-import io.annot8.core.exceptions.IncompleteException;
 
 /**
  * Base annotations interface from which all other annotation stores extend.
- *
  */
 public interface AnnotationStore {
 
@@ -27,7 +26,8 @@ public interface AnnotationStore {
   }
 
   /**
-   * Return a builder to based on the an existing  annotation, but don't overwrite that annotation on save.
+   * Return a builder to based on the an existing  annotation, but don't overwrite that annotation
+   * on save.
    */
   default Annotation.Builder copy(Annotation existing) {
     return getBuilder().newId().from(existing);

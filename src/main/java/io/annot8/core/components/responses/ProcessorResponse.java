@@ -1,47 +1,18 @@
 package io.annot8.core.components.responses;
 
+import io.annot8.core.data.Item;
 import java.util.Collection;
 import java.util.stream.Stream;
-import io.annot8.core.data.Item;
 
 /**
  * Class to hold the response from a processor.
- * 
- * The response consists of a status, and optionally any new items
- * which should be processed by the pipeline.
+ *
+ * The response consists of a status, and optionally any new items which should be processed by the
+ * pipeline.
  */
 public final class ProcessorResponse {
 
-  /**
-   * Response status returned by the processor
-   */
-  public enum Status {
-    /**
-     * Indicates that the processor has worked successfully
-     */
-    OK,
-
-    /**
-     * Indicates that the processor has worked successfully,
-     * but that the current item should not be processed further
-     */
-    ITEM_STOP,
-
-    /**
-     * Indicates that an error happened whilst processing this
-     * item, but that it should be possible to process other items.
-     */
-    ITEM_ERROR,
-
-    /**
-     * Indicates that an error happened whilst processing this
-     * item, and that it will prevent other items from being processed.
-     */
-    PIPELINE_ERROR
-  }
-
   private final Status status;
-
   private final Stream<Item> items;
 
   private ProcessorResponse(final Status status) {
@@ -52,20 +23,6 @@ public final class ProcessorResponse {
     this.status = status;
     this.items = items;
 
-  }
-
-  /**
-   * Return the status associated with this response
-   */
-  public Status getStatus() {
-    return status;
-  }
-
-  /**
-   * Return any new items to be processed
-   */
-  public Stream<Item> getItems() {
-    return items;
   }
 
   /**
@@ -136,5 +93,47 @@ public final class ProcessorResponse {
    */
   public static ProcessorResponse pipelineError() {
     return new ProcessorResponse(Status.PIPELINE_ERROR);
+  }
+
+  /**
+   * Return the status associated with this response
+   */
+  public Status getStatus() {
+    return status;
+  }
+
+  /**
+   * Return any new items to be processed
+   */
+  public Stream<Item> getItems() {
+    return items;
+  }
+
+  /**
+   * Response status returned by the processor
+   */
+  public enum Status {
+    /**
+     * Indicates that the processor has worked successfully
+     */
+    OK,
+
+    /**
+     * Indicates that the processor has worked successfully, but that the current item should not be
+     * processed further
+     */
+    ITEM_STOP,
+
+    /**
+     * Indicates that an error happened whilst processing this item, but that it should be possible
+     * to process other items.
+     */
+    ITEM_ERROR,
+
+    /**
+     * Indicates that an error happened whilst processing this item, and that it will prevent other
+     * items from being processed.
+     */
+    PIPELINE_ERROR
   }
 }
