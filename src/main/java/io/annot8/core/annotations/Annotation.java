@@ -36,11 +36,6 @@ public interface Annotation extends WithId, WithType, WithProperties {
       WithBuild<Annotation> {
 
     /**
-     * Set the name of the Content to which this annotation refers
-     */
-    Annotation.Builder withContent(final String contentName);
-
-    /**
      * Set the {@link Bounds} associated with this annotation
      */
     Annotation.Builder withBounds(final Bounds bounds);
