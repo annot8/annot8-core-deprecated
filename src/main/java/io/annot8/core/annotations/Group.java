@@ -8,8 +8,11 @@ import io.annot8.core.helpers.builders.WithNewIdBuilder;
 import io.annot8.core.helpers.builders.WithPropertiesBuilder;
 import io.annot8.core.helpers.builders.WithSave;
 import io.annot8.core.helpers.builders.WithTypeBuilder;
+import io.annot8.core.references.AnnotationReference;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -20,7 +23,18 @@ public interface Group extends WithId, WithType, WithProperties {
   /**
    * Return a map of all roles with the associated annotations in this group
    */
-  Map<String, Stream<Annotation>> getAnnotations();
+  default Map<String, Stream<Annotation>> getAnnotations() {
+    return getReferences().entrySet().stream().collect(Collectors.toMap(
+        Entry::getKey,
+        e -> AnnotationReference.toAnnotations(e.getValue())
+    ));
+
+  }
+
+  /**
+   * Return a map of all roles with the associated annotations in this group
+   */
+  Map<String, Stream<AnnotationReference>> getReferences();
 
   /**
    * Return all the annotations in this group with the specified role
