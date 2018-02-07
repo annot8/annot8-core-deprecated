@@ -12,16 +12,6 @@ import java.util.stream.Stream;
 public interface Item extends WithMutableProperties, WithGroups {
 
   /**
-   * Return the default content object for this item
-   */
-  Content<?> getDefaultContent();
-
-  /**
-   * Set the default content object for this item
-   */
-  void setDefaultContent(final String name);
-
-  /**
    * Return true if this item has a content object with the specified name
    */
   default boolean hasContent(final String name) {
