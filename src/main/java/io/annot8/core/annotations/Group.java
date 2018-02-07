@@ -11,6 +11,7 @@ import io.annot8.core.helpers.builders.WithTypeBuilder;
 import io.annot8.core.references.AnnotationReference;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -82,6 +83,31 @@ public interface Group extends WithId, WithType, WithProperties {
    */
   default boolean containsRole(final String role) {
     return getRoles().anyMatch(role::equals);
+  }
+
+  default boolean sameGroup(Group other) {
+    return other != null && getId().equals(other.getId());
+  }
+
+  default boolean equalsGroup(Object other) {
+    if (this == other) {
+      return true;
+    }
+
+    if (other == null) {
+      return false;
+    }
+
+    if (!(other instanceof Group)) {
+      return false;
+    }
+
+    Group g = (Group) other;
+
+    return Objects.equals(getId(), g.getId())
+        && Objects.equals(getType(), g.getType())
+        && Objects.equals(getProperties(), g.getProperties())
+        && Objects.equals(getReferences(), g.getReferences());
   }
 
   /**

@@ -9,6 +9,7 @@ import io.annot8.core.helpers.builders.WithNewIdBuilder;
 import io.annot8.core.helpers.builders.WithPropertiesBuilder;
 import io.annot8.core.helpers.builders.WithSave;
 import io.annot8.core.helpers.builders.WithTypeBuilder;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -39,6 +40,32 @@ public interface Annotation extends WithId, WithType, WithProperties {
    * Get the name of the Content to which this annotation refers
    */
   String getContentName();
+
+  default boolean sameAnnotation(Annotation other) {
+    return other != null && getId().equals(other.getId());
+  }
+
+  default boolean equalsAnnotation(Object o) {
+    if (this == o) {
+      return true;
+    }
+
+    if (o == null) {
+      return false;
+    }
+
+    if (!(o instanceof Annotation)) {
+      return false;
+    }
+
+    Annotation a = (Annotation) o;
+
+    return Objects.equals(getId(), a.getId())
+        && Objects.equals(getType(), a.getType())
+        && Objects.equals(getProperties(), a.getProperties())
+        && Objects.equals(getBounds(), a.getBounds())
+        && Objects.equals(getContentName(), a.getContentName());
+  }
 
   /**
    * Builder interface to create (immutable) Annotation classes
