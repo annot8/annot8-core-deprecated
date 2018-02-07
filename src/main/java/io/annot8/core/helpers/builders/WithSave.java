@@ -7,7 +7,7 @@ import io.annot8.core.exceptions.IncompleteException;
  *
  * @param <A> The object being built by this builder
  */
-public interface WithBuild<A> {
+public interface WithSave<A> {
 
   /**
    * Return the object being built by this builder

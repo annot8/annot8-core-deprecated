@@ -1,7 +1,7 @@
 package io.annot8.core.data;
 
-import io.annot8.core.helpers.builders.WithBuild;
 import io.annot8.core.helpers.builders.WithFrom;
+import io.annot8.core.helpers.builders.WithSave;
 import java.util.Collection;
 import java.util.stream.Stream;
 
@@ -27,7 +27,7 @@ public interface Tags {
    */
   interface Builder extends
       WithFrom<Builder, Tags>,
-      WithBuild<Tags> {
+      WithSave<Tags> {
 
     /**
      * Add a tag to this tags object

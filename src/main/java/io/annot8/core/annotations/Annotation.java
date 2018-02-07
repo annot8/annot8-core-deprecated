@@ -4,10 +4,10 @@ import io.annot8.core.bounds.Bounds;
 import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.WithType;
-import io.annot8.core.helpers.builders.WithBuild;
 import io.annot8.core.helpers.builders.WithFrom;
 import io.annot8.core.helpers.builders.WithNewIdBuilder;
 import io.annot8.core.helpers.builders.WithPropertiesBuilder;
+import io.annot8.core.helpers.builders.WithSave;
 import io.annot8.core.helpers.builders.WithTypeBuilder;
 import java.util.Optional;
 
@@ -48,7 +48,7 @@ public interface Annotation extends WithId, WithType, WithProperties {
       WithPropertiesBuilder<Annotation.Builder>,
       WithNewIdBuilder<Annotation.Builder>,
       WithFrom<Annotation.Builder, Annotation>,
-      WithBuild<Annotation> {
+      WithSave<Annotation> {
 
     /**
      * Set the {@link Bounds} associated with this annotation

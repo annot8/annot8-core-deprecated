@@ -3,10 +3,10 @@ package io.annot8.core.annotations;
 import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.WithType;
-import io.annot8.core.helpers.builders.WithBuild;
 import io.annot8.core.helpers.builders.WithFrom;
 import io.annot8.core.helpers.builders.WithNewIdBuilder;
 import io.annot8.core.helpers.builders.WithPropertiesBuilder;
+import io.annot8.core.helpers.builders.WithSave;
 import io.annot8.core.helpers.builders.WithTypeBuilder;
 import java.util.Map;
 import java.util.Optional;
@@ -78,7 +78,7 @@ public interface Group extends WithId, WithType, WithProperties {
       WithPropertiesBuilder<Builder>,
       WithNewIdBuilder<Builder>,
       WithFrom<Builder, Group>,
-      WithBuild<Group> {
+      WithSave<Group> {
 
     /**
      * Add an annotation to this group with the specified role
