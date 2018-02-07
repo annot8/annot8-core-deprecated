@@ -1,6 +1,7 @@
 package io.annot8.core.context;
 
 import io.annot8.core.components.Resource;
+import io.annot8.core.data.Item;
 import io.annot8.core.settings.Settings;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -9,6 +10,13 @@ import java.util.stream.Stream;
  * Base context interface from which all context implementations extend.
  */
 public interface Context {
+
+  /**
+   * Create an new item
+   *
+   * @return an item
+   */
+  Item createItem();
 
   /**
    * Return the settings object for the component that this context is being passed to.
