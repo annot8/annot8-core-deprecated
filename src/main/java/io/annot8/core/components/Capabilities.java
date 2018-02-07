@@ -39,8 +39,14 @@ public interface Capabilities {
   Stream<Class<? extends Content<?>>> getCreatedContent();
 
   /**
-   * Return the resource classes required by this component
+   * Return the type of any required content (i.e. content that must be present before
+   * a component can work)
    */
+  Stream<Class<? extends Content<?>>> getRequiredContent();
+
+    /**
+     * Return the resource classes required by this component
+     */
   Stream<Class<? extends Resource>> getRequiredResources();
 
   /**
