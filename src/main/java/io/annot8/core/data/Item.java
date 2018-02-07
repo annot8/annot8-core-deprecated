@@ -1,6 +1,5 @@
 package io.annot8.core.data;
 
-import io.annot8.core.exceptions.AlreadyExistsException;
 import io.annot8.core.exceptions.UnsupportedContentException;
 import io.annot8.core.helpers.WithGroups;
 import io.annot8.core.helpers.WithMutableProperties;
@@ -54,11 +53,6 @@ public interface Item extends WithMutableProperties, WithGroups {
    */
   <C extends Content<D>, D> Content.Builder<C, D> create(Class<C> clazz)
       throws UnsupportedContentException;
-
-  /**
-   * Save content from the given content builder (the name should be taken from the builder object)
-   */
-  <C extends Content<D>, D> C save(Content.Builder<C, D> builder) throws AlreadyExistsException;
 
   /**
    * Remove the specified content object from this item
