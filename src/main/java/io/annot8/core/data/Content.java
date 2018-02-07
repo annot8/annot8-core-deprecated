@@ -45,7 +45,7 @@ public interface Content<D> extends WithTags, WithProperties {
     /**
      * Set the data for this content object
      */
-    Content.Builder<A, D> withData(final D content);
+    Content.Builder<A, D> withData(final D data);
 
   }
 }
