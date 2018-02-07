@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -104,10 +105,16 @@ public interface Group extends WithId, WithType, WithProperties {
 
     Group g = (Group) other;
 
+    // TODO: This is a lot of work... we can't compare the streams directly
+    Map<String, Set<AnnotationReference>> ourReferences = getReferences().entrySet().stream()
+        .collect(Collectors.toMap(Entry::getKey, e -> e.getValue().collect(Collectors.toSet())));
+    Map<String, Set<AnnotationReference>> otherReferences = getReferences().entrySet().stream()
+        .collect(Collectors.toMap(Entry::getKey, e -> e.getValue().collect(Collectors.toSet())));
+
     return Objects.equals(getId(), g.getId())
         && Objects.equals(getType(), g.getType())
         && Objects.equals(getProperties(), g.getProperties())
-        && Objects.equals(getReferences(), g.getReferences());
+        && Objects.equals(ourReferences, otherReferences);
   }
 
   /**
