@@ -2,7 +2,7 @@ package io.annot8.core.components;
 
 import io.annot8.core.components.responses.ProcessorResponse;
 import io.annot8.core.data.Item;
-import io.annot8.core.exceptions.ProcessingException;
+import io.annot8.core.exceptions.Annot8Exception;
 
 /**
  * Base processor interface from which all processors extend.
@@ -14,5 +14,5 @@ public interface Processor extends Annot8Component {
   /**
    * Process the given item
    */
-  ProcessorResponse process(final Item item) throws ProcessingException;
+  ProcessorResponse process(final Item item) throws Annot8Exception;
 }
