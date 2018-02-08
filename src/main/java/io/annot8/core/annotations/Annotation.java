@@ -41,10 +41,19 @@ public interface Annotation extends WithId, WithType, WithProperties {
    */
   String getContentName();
 
+  /**
+   * Do two instances represent the same underlying annotations?
+   *
+   * That is do they have the same id, even if the rest of the data is different.
+   */
   default boolean sameAnnotation(Annotation other) {
     return other != null && getId().equals(other.getId());
   }
 
+  /**
+   * Are the two annotations exactly the same - in effect a deep check of id, type, bounds,
+   * content.
+   */
   default boolean equalsAnnotation(Object o) {
     if (this == o) {
       return true;

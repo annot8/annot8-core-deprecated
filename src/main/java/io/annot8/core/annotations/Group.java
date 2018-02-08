@@ -86,10 +86,18 @@ public interface Group extends WithId, WithType, WithProperties {
     return getRoles().anyMatch(role::equals);
   }
 
+  /**
+   * Do two instances represent the same underlying group?
+   *
+   * That is do they have the same id, even if they are different revisions.
+   */
   default boolean sameGroup(Group other) {
     return other != null && getId().equals(other.getId());
   }
 
+  /**
+   * Are the two groups exactly the same - in effect a deep check of id, type, bounds, content.
+   */
   default boolean equalsGroup(Object other) {
     if (this == other) {
       return true;

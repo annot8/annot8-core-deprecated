@@ -17,18 +17,38 @@ import java.util.stream.Stream;
  */
 public interface AnnotationReference {
 
+
+  /**
+   * Convert a stream of annotation references to annotations
+   */
   static Stream<Annotation> toAnnotations(Stream<AnnotationReference> references) {
     return references.map(AnnotationReference::toAnnotation)
         .filter(Optional::isPresent)
         .map(Optional::get);
   }
 
+  /**
+   * The name of the content to which this annotation belongs.
+   */
   String getContent();
 
+  /**
+   * The annotation's id
+   */
   String getAnnotationId();
 
+  /**
+   * Convert the reference to an annotations.
+   *
+   * Since the underlying content or annotation may have been deleted this returns an optional.
+   *
+   */
   Optional<Annotation> toAnnotation();
 
+  /**
+   * Are the two objects references to the same annotation?
+   *
+   */
   default boolean sameReference(Object other) {
     if (this == other) {
       return true;
