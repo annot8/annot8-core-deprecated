@@ -1,5 +1,6 @@
 package io.annot8.core.bounds;
 
+import io.annot8.core.data.Content;
 import java.util.Optional;
 
 /**
@@ -15,5 +16,18 @@ public interface Bounds {
    *
    * Return optional empty if their is nothing covered, or if the combinations are not supported.
    */
-  <D, R> Optional<R> getData(D data, Class<R> requiredClass);
+  <D, C extends Content<D>, R> Optional<R> getData(C content, Class<R> requiredClass);
+
+
+  /**
+   * Are these bounds valid for the provided content?
+   *
+   * This means that for example the type of bounds are applicable for the data (ie bounds designed
+   * for text are not applicable to image data) and that specifically this bounds is within the
+   * content. (ie in the of text the bounds don't lie outside the range of the text).
+   *
+   * Note that returning true here does not imply that getData will not be empty. The bounds may
+   * apply to the content but they may still cover no data.
+   */
+  <D, C extends Content<D>> boolean isValid(C content);
 }
