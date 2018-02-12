@@ -15,6 +15,11 @@ public interface WithPropertiesBuilder<A> {
   A withProperty(final String key, final Object value);
 
   /**
+   * Return a builder with the key-value property pair removed from it
+   */
+  A withoutProperty(final String key, final Object value);
+
+  /**
    * Return a builder with the specified properties
    */
   A withProperties(final Properties properties);
