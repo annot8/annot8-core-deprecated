@@ -1,10 +1,10 @@
 package io.annot8.core.data;
 
+import java.util.Optional;
+import java.util.stream.Stream;
 import io.annot8.core.exceptions.UnsupportedContentException;
 import io.annot8.core.helpers.WithGroups;
 import io.annot8.core.helpers.WithMutableProperties;
-import java.util.Optional;
-import java.util.stream.Stream;
 
 /**
  * Base item interface from which all item implementations extend.
@@ -48,5 +48,10 @@ public interface Item extends WithMutableProperties, WithGroups {
    * Remove the specified content object from this item
    */
   void removeContent(final String name);
+  
+  /**
+   * Creates a new item, with the current item set as the parent.
+   */
+  Item createChildItem();
 
 }
