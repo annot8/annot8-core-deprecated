@@ -23,4 +23,9 @@ public interface WithTagsBuilder<A> {
    * Return a builder with the specified tags
    */
   A withTags(final Tags tags);
+
+  /**
+   * Return a builder without the specified tags
+   */
+  A withoutTags(final Tags tags);
 }

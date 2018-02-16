@@ -37,7 +37,23 @@ public interface Tags {
     /**
      * Add a collection of tags to this tags object
      */
-    Builder addTags(final Collection<String> tags);
+    default Builder addTags(final Collection<String> tags){
+      tags.forEach(this::addTag);
+      return this;
+    }
+
+    /**
+     * Remove a tag to this tags object
+     */
+    Builder removeTag(final String tag);
+
+    /**
+     * Remove a collection of tags to this tags object
+     */
+    default Builder removeTags(final Collection<String> tags){
+      tags.forEach(this::removeTag);
+      return this;
+    }
 
   }
 }
