@@ -8,13 +8,26 @@ import java.util.Optional;
  */
 public interface Bounds {
 
+  /**
+   * Get the subset of data which is covered by these bounds,
+   * returning the data in the native format of the Content.
+   *
+   * Return optional empty if there is nothing covered.
+   */
+  default <D, C extends Content<D>> Optional<D> getData(C content){
+    try {
+      return (Optional<D>) getData(content, content.getDataClass());
+    }catch (ClassCastException cce){
+      return Optional.empty();
+    }
+  }
 
   /**
    * Get the subset of data which is covered by these bounds.
    *
    * Most bounds will likely support only one (or very few) required class and data class.
    *
-   * Return optional empty if their is nothing covered, or if the combinations are not supported.
+   * Return optional empty if there is nothing covered, or if the combinations are not supported.
    */
   <D, C extends Content<D>, R> Optional<R> getData(C content, Class<R> requiredClass);
 

@@ -19,6 +19,11 @@ public interface Content<D> extends WithTags, WithProperties {
   D getData();
 
   /**
+   * Return the class of the data stored in this Content object
+   */
+  Class getDataClass();
+
+  /**
    * Return the annotation store for this content
    */
   AnnotationStore getAnnotations();
