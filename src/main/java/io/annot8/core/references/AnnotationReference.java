@@ -1,7 +1,6 @@
 package io.annot8.core.references;
 
 import io.annot8.core.annotations.Annotation;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -30,7 +29,7 @@ public interface AnnotationReference {
   /**
    * The name of the content to which this annotation belongs.
    */
-  String getContent();
+  String getContentName();
 
   /**
    * The annotation's id
@@ -44,27 +43,5 @@ public interface AnnotationReference {
    *
    */
   Optional<Annotation> toAnnotation();
-
-  /**
-   * Are the two objects references to the same annotation?
-   *
-   */
-  default boolean sameReference(Object other) {
-    if (this == other) {
-      return true;
-    }
-
-    if (other == null) {
-      return false;
-    }
-
-    if (!AnnotationReference.class.isAssignableFrom(other.getClass())) {
-      return false;
-    }
-
-    AnnotationReference that = (AnnotationReference) other;
-    return Objects.equals(getAnnotationId(), that.getAnnotationId()) && Objects
-        .equals(getContent(), that.getContent());
-  }
 
 }
