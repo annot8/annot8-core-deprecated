@@ -96,36 +96,6 @@ public interface Group extends WithId, WithType, WithProperties {
   }
 
   /**
-   * Are the two groups exactly the same - in effect a deep check of id, type, bounds, content.
-   */
-  default boolean equalsGroup(Object other) {
-    if (this == other) {
-      return true;
-    }
-
-    if (other == null) {
-      return false;
-    }
-
-    if (!(other instanceof Group)) {
-      return false;
-    }
-
-    Group g = (Group) other;
-
-    // TODO: This is a lot of work... we can't compare the streams directly
-    Map<String, Set<AnnotationReference>> ourReferences = getReferences().entrySet().stream()
-        .collect(Collectors.toMap(Entry::getKey, e -> e.getValue().collect(Collectors.toSet())));
-    Map<String, Set<AnnotationReference>> otherReferences = getReferences().entrySet().stream()
-        .collect(Collectors.toMap(Entry::getKey, e -> e.getValue().collect(Collectors.toSet())));
-
-    return Objects.equals(getId(), g.getId())
-        && Objects.equals(getType(), g.getType())
-        && Objects.equals(getProperties(), g.getProperties())
-        && Objects.equals(ourReferences, otherReferences);
-  }
-
-  /**
    * Builder interface to create (immutable) Group classes
    */
   interface Builder extends

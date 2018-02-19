@@ -51,32 +51,6 @@ public interface Annotation extends WithId, WithType, WithProperties {
   }
 
   /**
-   * Are the two annotations exactly the same - in effect a deep check of id, type, bounds,
-   * content.
-   */
-  default boolean equalsAnnotation(Object o) {
-    if (this == o) {
-      return true;
-    }
-
-    if (o == null) {
-      return false;
-    }
-
-    if (!(o instanceof Annotation)) {
-      return false;
-    }
-
-    Annotation a = (Annotation) o;
-
-    return Objects.equals(getId(), a.getId())
-        && Objects.equals(getType(), a.getType())
-        && Objects.equals(getProperties(), a.getProperties())
-        && Objects.equals(getBounds(), a.getBounds())
-        && Objects.equals(getContentName(), a.getContentName());
-  }
-
-  /**
    * Builder interface to create (immutable) Annotation classes
    */
   interface Builder extends
