@@ -1,7 +1,7 @@
 package io.annot8.core.data;
 
-import io.annot8.core.helpers.builders.WithBuild;
 import io.annot8.core.helpers.builders.WithFrom;
+import io.annot8.core.helpers.builders.WithSave;
 import java.util.Collection;
 import java.util.stream.Stream;
 
@@ -27,7 +27,7 @@ public interface Tags {
    */
   interface Builder extends
       WithFrom<Builder, Tags>,
-      WithBuild<Tags> {
+      WithSave<Tags> {
 
     /**
      * Add a tag to this tags object
@@ -37,7 +37,23 @@ public interface Tags {
     /**
      * Add a collection of tags to this tags object
      */
-    Builder addTags(final Collection<String> tags);
+    default Builder addTags(final Collection<String> tags){
+      tags.forEach(this::addTag);
+      return this;
+    }
+
+    /**
+     * Remove a tag to this tags object
+     */
+    Builder removeTag(final String tag);
+
+    /**
+     * Remove a collection of tags to this tags object
+     */
+    default Builder removeTags(final Collection<String> tags){
+      tags.forEach(this::removeTag);
+      return this;
+    }
 
   }
 }

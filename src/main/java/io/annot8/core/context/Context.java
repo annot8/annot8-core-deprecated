@@ -1,9 +1,9 @@
 package io.annot8.core.context;
 
-import io.annot8.core.components.Resource;
-import io.annot8.core.settings.Settings;
 import java.util.Optional;
 import java.util.stream.Stream;
+import io.annot8.core.components.Resource;
+import io.annot8.core.settings.Settings;
 
 /**
  * Base context interface from which all context implementations extend.

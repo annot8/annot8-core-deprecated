@@ -15,7 +15,17 @@ public interface WithTagsBuilder<A> {
   A withTag(final String tag);
 
   /**
+   * Return a builder with the tag removed from it
+   */
+  A withoutTag(final String tag);
+
+  /**
    * Return a builder with the specified tags
    */
   A withTags(final Tags tags);
+
+  /**
+   * Return a builder without the specified tags
+   */
+  A withoutTags(final Tags tags);
 }

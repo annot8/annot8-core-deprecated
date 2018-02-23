@@ -2,7 +2,6 @@ package io.annot8.core.stores;
 
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.bounds.Bounds;
-import io.annot8.core.exceptions.IncompleteException;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -39,11 +38,6 @@ public interface AnnotationStore {
   default Annotation.Builder edit(Annotation existing) {
     return getBuilder().from(existing);
   }
-
-  /**
-   * Save an annotation to the store from an annotation builder
-   */
-  Annotation save(final Annotation.Builder annotationBuilder) throws IncompleteException;
 
   /**
    * Delete an annotation from the store

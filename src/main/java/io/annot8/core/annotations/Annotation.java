@@ -4,11 +4,13 @@ import io.annot8.core.bounds.Bounds;
 import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.WithType;
-import io.annot8.core.helpers.builders.WithBuild;
 import io.annot8.core.helpers.builders.WithFrom;
 import io.annot8.core.helpers.builders.WithNewIdBuilder;
 import io.annot8.core.helpers.builders.WithPropertiesBuilder;
+import io.annot8.core.helpers.builders.WithSave;
 import io.annot8.core.helpers.builders.WithTypeBuilder;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Base annotation interface from which all other annotations extend.
@@ -21,9 +23,32 @@ public interface Annotation extends WithId, WithType, WithProperties {
   Bounds getBounds();
 
   /**
+   * Get the {@link Bounds} associated with this annotation casting it to the bounds provided (if it
+   * is of that type / subtype).
+   */
+  @SuppressWarnings("unchecked")
+  default <B extends Bounds> Optional<B> getBounds(Class<B> boundsClass) {
+    Bounds bounds = getBounds();
+    if (bounds != null && boundsClass.isInstance(bounds)) {
+      // This is checked
+      return Optional.of((B) bounds);
+    }
+    return Optional.empty();
+  }
+
+  /**
    * Get the name of the Content to which this annotation refers
    */
   String getContentName();
+
+  /**
+   * Do two instances represent the same underlying annotations?
+   *
+   * That is do they have the same id, even if the rest of the data is different.
+   */
+  default boolean sameAnnotation(Annotation other) {
+    return other != null && getId().equals(other.getId());
+  }
 
   /**
    * Builder interface to create (immutable) Annotation classes
@@ -33,12 +58,7 @@ public interface Annotation extends WithId, WithType, WithProperties {
       WithPropertiesBuilder<Annotation.Builder>,
       WithNewIdBuilder<Annotation.Builder>,
       WithFrom<Annotation.Builder, Annotation>,
-      WithBuild<Annotation> {
-
-    /**
-     * Set the name of the Content to which this annotation refers
-     */
-    Annotation.Builder withContent(final String contentName);
+      WithSave<Annotation> {
 
     /**
      * Set the {@link Bounds} associated with this annotation

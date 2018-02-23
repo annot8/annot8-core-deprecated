@@ -21,7 +21,7 @@ public interface Annot8Component extends AutoCloseable {
   }
 
   @Override
-  default void close() throws Exception {
+  default void close()  {
     // Do nothing
   }
 

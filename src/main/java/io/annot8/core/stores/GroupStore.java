@@ -1,7 +1,6 @@
 package io.annot8.core.stores;
 
 import io.annot8.core.annotations.Group;
-import io.annot8.core.exceptions.IncompleteException;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,7 +27,7 @@ public interface GroupStore {
    * Return a builder to based on the an existing group, but don't overwrite that group on save.
    */
   default Group.Builder copy(Group existing) {
-    return getBuilder().newId().from(existing);
+    return getBuilder().from(existing).newId();
   }
 
 
@@ -39,22 +38,16 @@ public interface GroupStore {
     return getBuilder().from(existing);
   }
 
-
-  /**
-   * Save a group to the store from a group builder
-   */
-  Group save(final Group.Builder groupBuilder) throws IncompleteException;
-
   /**
    * Delete a group from the store
    */
-  void delete(final Group annotation);
+  void delete(final Group group);
 
   /**
    * Delete a collection of groups from the store
    */
-  default void delete(final Collection<Group> annotations) {
-    annotations.forEach(this::delete);
+  default void delete(final Collection<Group> groups) {
+    groups.forEach(this::delete);
   }
 
   /**

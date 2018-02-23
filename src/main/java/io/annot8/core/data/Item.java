@@ -1,26 +1,15 @@
 package io.annot8.core.data;
 
-import io.annot8.core.exceptions.AlreadyExistsException;
+import java.util.Optional;
+import java.util.stream.Stream;
 import io.annot8.core.exceptions.UnsupportedContentException;
 import io.annot8.core.helpers.WithGroups;
 import io.annot8.core.helpers.WithMutableProperties;
-import java.util.Optional;
-import java.util.stream.Stream;
 
 /**
  * Base item interface from which all item implementations extend.
  */
 public interface Item extends WithMutableProperties, WithGroups {
-
-  /**
-   * Return the default content object for this item
-   */
-  Content<?> getDefaultContent();
-
-  /**
-   * Set the default content object for this item
-   */
-  void setDefaultContent(final String name);
 
   /**
    * Return true if this item has a content object with the specified name
@@ -56,13 +45,13 @@ public interface Item extends WithMutableProperties, WithGroups {
       throws UnsupportedContentException;
 
   /**
-   * Save content from the given content builder (the name should be taken from the builder object)
-   */
-  <C extends Content<D>, D> C save(Content.Builder<C, D> builder) throws AlreadyExistsException;
-
-  /**
    * Remove the specified content object from this item
    */
   void removeContent(final String name);
+  
+  /**
+   * Creates a new item, with the current item set as the parent.
+   */
+  Item createChildItem();
 
 }

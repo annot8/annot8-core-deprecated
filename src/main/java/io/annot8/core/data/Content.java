@@ -2,9 +2,9 @@ package io.annot8.core.data;
 
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.WithTags;
-import io.annot8.core.helpers.builders.WithBuild;
 import io.annot8.core.helpers.builders.WithFrom;
 import io.annot8.core.helpers.builders.WithPropertiesBuilder;
+import io.annot8.core.helpers.builders.WithSave;
 import io.annot8.core.helpers.builders.WithTagsBuilder;
 import io.annot8.core.stores.AnnotationStore;
 
@@ -17,6 +17,11 @@ public interface Content<D> extends WithTags, WithProperties {
    * Return the data associated with this content object
    */
   D getData();
+
+  /**
+   * Return the class of the data stored in this Content object
+   */
+  Class getDataClass();
 
   /**
    * Return the annotation store for this content
@@ -35,7 +40,7 @@ public interface Content<D> extends WithTags, WithProperties {
       WithPropertiesBuilder<Builder<A, D>>,
       WithTagsBuilder<Builder<A, D>>,
       WithFrom<Builder<A, D>, A>,
-      WithBuild<A> {
+      WithSave<A> {
 
     /**
      * Set the name of this content object
@@ -45,7 +50,7 @@ public interface Content<D> extends WithTags, WithProperties {
     /**
      * Set the data for this content object
      */
-    Content.Builder<A, D> withData(final D content);
+    Content.Builder<A, D> withData(final D data);
 
   }
 }
