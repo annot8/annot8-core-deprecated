@@ -1,12 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>io.annot8</groupId>
-  <artifactId>core</artifactId>
-  <version>0.1-SNAPSHOT</version>
-  <name>Annot8 Core</name>
 
+  <parent>
+    <groupId>io.annot8</groupId>
+    <artifactId>parent</artifactId>
+    <version>0.1-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>core</artifactId>
+
+  <name>Annot8 Core</name>
   <description>Core interfaces for the Annot8 project</description>
   <inceptionYear>2017</inceptionYear>
   <url>http://annot8.io</url>
@@ -44,14 +50,6 @@
     <developerConnection>scm:git:git@github.com/annot8/core.git</developerConnection>
   </scm>
 
-  <properties>
-    <maven.compiler.source>9</maven.compiler.source>
-    <maven.compiler.target>9</maven.compiler.target>
-
-    <junit.version>5.1.0</junit.version>
-    <mockito.version>2.15.0</mockito.version>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -59,7 +57,6 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
