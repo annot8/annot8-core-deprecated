@@ -11,35 +11,17 @@ import org.junit.jupiter.api.Test;
 public class SourceResponseTest {
 
   @Test
+  public void testOk() {
+    SourceResponse sr = SourceResponse.ok();
+
+    assertEquals(SourceResponse.Status.OK, sr.getStatus());
+  }
+
+  @Test
   public void testDone() {
     SourceResponse sr = SourceResponse.done();
 
     assertEquals(SourceResponse.Status.DONE, sr.getStatus());
-    assertEquals(0, sr.getItems().count());
-  }
-
-  @Test
-  public void testOkStream() {
-    SourceResponse sr = SourceResponse.ok(Stream.of(mock(Item.class), mock(Item.class)));
-
-    assertEquals(SourceResponse.Status.OK, sr.getStatus());
-    assertEquals(2, sr.getItems().count());
-  }
-
-  @Test
-  public void testOkParameters() {
-    SourceResponse sr = SourceResponse.ok(mock(Item.class), mock(Item.class));
-
-    assertEquals(SourceResponse.Status.OK, sr.getStatus());
-    assertEquals(2, sr.getItems().count());
-  }
-
-  @Test
-  public void testOkCollection() {
-    SourceResponse sr = SourceResponse.ok(Arrays.asList(mock(Item.class), mock(Item.class)));
-
-    assertEquals(SourceResponse.Status.OK, sr.getStatus());
-    assertEquals(2, sr.getItems().count());
   }
 
   @Test
@@ -47,7 +29,6 @@ public class SourceResponseTest {
     SourceResponse sr = SourceResponse.sourceError();
 
     assertEquals(SourceResponse.Status.SOURCE_ERROR, sr.getStatus());
-    assertEquals(0, sr.getItems().count());
   }
 
   @Test
@@ -55,6 +36,5 @@ public class SourceResponseTest {
     SourceResponse sr = SourceResponse.empty();
 
     assertEquals(SourceResponse.Status.EMPTY, sr.getStatus());
-    assertEquals(0, sr.getItems().count());
   }
 }

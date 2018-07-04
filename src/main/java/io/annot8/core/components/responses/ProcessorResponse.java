@@ -2,6 +2,8 @@ package io.annot8.core.components.responses;
 
 import io.annot8.core.data.Item;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Stream;
 
 /**
@@ -10,119 +12,42 @@ import java.util.stream.Stream;
  * The response consists of a status, and optionally any new items which should be processed by the
  * pipeline.
  */
-public final class ProcessorResponse {
-
-  private final Status status;
-  private final Stream<Item> items;
-
-  private ProcessorResponse(final Status status) {
-    this(status, Stream.empty());
-  }
-
-  private ProcessorResponse(final Status status, final Stream<Item> items) {
-    this.status = status;
-    this.items = items;
-
-  }
+public interface ProcessorResponse {
 
   /**
    * Create an OK response with no new items
    */
-  public static ProcessorResponse ok() {
-    return new ProcessorResponse(Status.OK, Stream.empty());
-  }
-
-  /**
-   * Create an OK response with the specified items
-   */
-  public static ProcessorResponse ok(final Item... item) {
-    return new ProcessorResponse(Status.OK, Stream.of(item));
-  }
-
-  /**
-   * Create an OK response with the specified items
-   */
-  public static ProcessorResponse ok(final Collection<Item> items) {
-    return new ProcessorResponse(Status.OK, items.stream());
-  }
-
-  /**
-   * Create an OK response with the specified items
-   */
-  public static ProcessorResponse ok(final Stream<Item> items) {
-    return new ProcessorResponse(Status.OK, items);
-  }
-
-  /**
-   * Create an ITEM_STOP response with no new items
-   */
-  public static ProcessorResponse itemStop() {
-    return new ProcessorResponse(Status.ITEM_STOP, Stream.empty());
-  }
-
-  /**
-   * Create an ITEM_STOP response with the specified items
-   */
-  public static ProcessorResponse itemStop(final Item... item) {
-    return new ProcessorResponse(Status.ITEM_STOP, Stream.of(item));
-  }
-
-  /**
-   * Create an ITEM_STOP response with the specified items
-   */
-  public static ProcessorResponse itemStop(final Collection<Item> items) {
-    return new ProcessorResponse(Status.ITEM_STOP, items.stream());
-  }
-
-  /**
-   * Create an ITEM_STOP response with the specified items
-   */
-  public static ProcessorResponse itemStop(final Stream<Item> items) {
-    return new ProcessorResponse(Status.ITEM_STOP, items);
+  static ProcessorResponseBuilder ok() {
+    return new ProcessorResponseBuilder(Status.OK);
   }
 
   /**
    * Create an ITEM_ERROR response
    */
-  public static ProcessorResponse itemError() {
-    return new ProcessorResponse(Status.ITEM_ERROR);
+  static ProcessorResponseBuilder itemError() {
+    return new ProcessorResponseBuilder(Status.ITEM_ERROR);
   }
 
   /**
    * Create a PIPELINE_ERROR response
    */
-  public static ProcessorResponse pipelineError() {
-    return new ProcessorResponse(Status.PIPELINE_ERROR);
+  static ProcessorResponseBuilder processingError() {
+    return new ProcessorResponseBuilder(Status.PROCESSOR_ERROR);
   }
 
   /**
    * Return the status associated with this response
    */
-  public Status getStatus() {
-    return status;
-  }
-
-  /**
-   * Return any new items to be processed
-   */
-  public Stream<Item> getItems() {
-    return items;
-  }
+  Status getStatus();
 
   /**
    * Response status returned by the processor
    */
-  public enum Status {
+  enum Status {
     /**
      * Indicates that the processor has worked successfully
      */
     OK,
-
-    /**
-     * Indicates that the processor has worked successfully, but that the current item should not be
-     * processed further
-     */
-    ITEM_STOP,
 
     /**
      * Indicates that an error happened whilst processing this item, but that it should be possible
@@ -134,6 +59,21 @@ public final class ProcessorResponse {
      * Indicates that an error happened whilst processing this item, and that it will prevent other
      * items from being processed.
      */
-    PIPELINE_ERROR
+    PROCESSOR_ERROR
+  }
+
+  class ProcessorResponseBuilder implements ProcessorResponse {
+
+    private final Status status;
+
+    protected ProcessorResponseBuilder(Status status) {
+      this.status = status;
+    }
+
+    @Override
+    public Status getStatus() {
+      return status;
+    }
+
   }
 }

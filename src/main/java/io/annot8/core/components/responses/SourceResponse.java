@@ -1,90 +1,53 @@
 package io.annot8.core.components.responses;
 
-import io.annot8.core.data.Item;
-import java.util.Collection;
-import java.util.stream.Stream;
-
 /**
  * Class to hold the response from a source.
  *
  * The response consists of a status, and optionally any new items which should be processed by the
  * pipeline.
  */
-public final class SourceResponse {
+public interface SourceResponse {
 
-  private final Status status;
-  private final Stream<Item> items;
-
-  private SourceResponse(final Status status) {
-    this(status, Stream.empty());
+  /**
+   * Create source read items normally
+   */
+  static SourceResponseBuilder ok() {
+    return new SourceResponseBuilder(Status.OK);
   }
 
-  private SourceResponse(final Status status, final Stream<Item> items) {
-    this.status = status;
-    this.items = items;
 
+  /**
+   * Source is now out of items
+   */
+  static SourceResponseBuilder done() {
+    return new SourceResponseBuilder(Status.DONE);
   }
 
   /**
-   * Create a DONE response
+   * There was an error reading from the Source
    */
-  public static SourceResponse done() {
-    return new SourceResponse(Status.DONE);
+  static SourceResponseBuilder sourceError() {
+    return new SourceResponseBuilder(Status.SOURCE_ERROR);
   }
 
-  /**
-   * Create an OK response with the specified items
-   */
-  public static SourceResponse ok(final Stream<Item> items) {
-    return new SourceResponse(Status.OK, items);
-  }
 
   /**
-   * Create an OK response with the specified items
+   * The Source is currently empty
    */
-  public static SourceResponse ok(final Item... items) {
-    return new SourceResponse(Status.OK, Stream.of(items));
+  static SourceResponseBuilder empty() {
+    return new SourceResponseBuilder(Status.EMPTY);
   }
 
-  /**
-   * Create an OK response with the specified items
-   */
-  public static SourceResponse ok(final Collection<Item> items) {
-    return new SourceResponse(Status.OK, items.stream());
-  }
-
-  /**
-   * Create a SOURCE_ERROR response
-   */
-  public static SourceResponse sourceError() {
-    return new SourceResponse(Status.SOURCE_ERROR);
-  }
-
-  /**
-   * Create an EMPTY response
-   */
-  public static SourceResponse empty() {
-    return new SourceResponse(Status.EMPTY);
-  }
 
   /**
    * Return the status associated with this response
    */
-  public Status getStatus() {
-    return status;
-  }
-
-  /**
-   * Return any new items to be processed
-   */
-  public Stream<Item> getItems() {
-    return items;
-  }
+  Status getStatus();
 
   /**
    * Response status returned by the source
    */
-  public enum Status {
+  enum Status {
     /**
      * Indicates that the source found new items, and that the pipeline may ask the source for new
      * items again as soon as it is ready.
@@ -108,6 +71,21 @@ public final class SourceResponse {
      * future.
      */
     EMPTY
+  }
+
+  class SourceResponseBuilder implements SourceResponse {
+
+    private final Status status;
+
+    protected SourceResponseBuilder(Status status) {
+      this.status = status;
+    }
+
+    @Override
+    public Status getStatus() {
+      return status;
+    }
+
   }
 
 }
