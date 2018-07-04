@@ -49,4 +49,23 @@ public interface Item extends WithMutableProperties, WithGroups {
    */
   void removeContent(final String name);
 
+  /**
+   * Creates a new item, with the current item set as the parent.
+   */
+  Item createChildItem();
+
+  /**
+   * Stop processing this item any further.
+   *
+   * Note that it is up to the underlying implementation as to whether they delete existing output from this item or not.
+   *
+   */
+  void discard();
+
+  /**
+   * If this item is to be discarded at the end of current processing
+   *
+   * @return true if discarded
+   */
+  boolean isDiscarded();
 }

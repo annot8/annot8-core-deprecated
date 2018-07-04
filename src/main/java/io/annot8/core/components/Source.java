@@ -1,7 +1,7 @@
 package io.annot8.core.components;
 
 import io.annot8.core.components.responses.SourceResponse;
-import io.annot8.core.context.ItemFactory;
+import io.annot8.core.data.ItemFactory;
 
 /**
  * Base processor interface from which all sources extend.
