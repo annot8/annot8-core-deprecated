@@ -50,7 +50,8 @@ module io.annot8.core {
   exports io.annot8.core.context;
   exports io.annot8.core.data;
   exports io.annot8.core.exceptions;
-  //io.annot8.core.helpers is not exported
+  exports io.annot8.core.helpers;
+  exports io.annot8.core.helpers.builders;
   exports io.annot8.core.properties;
   exports io.annot8.core.references;
   exports io.annot8.core.settings;
