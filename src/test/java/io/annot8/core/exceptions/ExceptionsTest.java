@@ -16,6 +16,7 @@ public class ExceptionsTest {
     testException(Annot8RuntimeException.class);
     testException(BadConfigurationException.class);
     testException(IncompleteException.class);
+    testException(InvalidBoundsException.class);
     testException(MissingResourceException.class);
     testException(ProcessingException.class);
     testException(UnsupportedContentException.class);
