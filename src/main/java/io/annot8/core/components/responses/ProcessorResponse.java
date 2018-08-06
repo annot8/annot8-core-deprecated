@@ -1,11 +1,5 @@
 package io.annot8.core.components.responses;
 
-import io.annot8.core.data.Item;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Stream;
-
 /**
  * Class to hold the response from a processor.
  *
