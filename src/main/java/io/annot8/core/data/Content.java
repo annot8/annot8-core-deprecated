@@ -1,5 +1,6 @@
 package io.annot8.core.data;
 
+import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.WithTags;
 import io.annot8.core.helpers.builders.WithFrom;
@@ -11,7 +12,7 @@ import io.annot8.core.stores.AnnotationStore;
 /**
  * Base content interface from which all content implementations extend.
  */
-public interface Content<D> extends WithTags, WithProperties {
+public interface Content<D> extends WithId, WithTags, WithProperties {
 
   /**
    * Return the data associated with this content object
@@ -21,7 +22,7 @@ public interface Content<D> extends WithTags, WithProperties {
   /**
    * Return the class of the data stored in this Content object
    */
-  Class getDataClass();
+  Class<D> getDataClass();
 
   /**
    * Return the annotation store for this content
@@ -36,11 +37,8 @@ public interface Content<D> extends WithTags, WithProperties {
   /**
    * Builder interface to create (immutable) Content classes
    */
-  interface Builder<A extends Content<D>, D> extends
-      WithPropertiesBuilder<Builder<A, D>>,
-      WithTagsBuilder<Builder<A, D>>,
-      WithFrom<Builder<A, D>, A>,
-      WithSave<A> {
+  interface Builder<A extends Content<D>, D> extends WithPropertiesBuilder<Builder<A, D>>,
+      WithTagsBuilder<Builder<A, D>>, WithFrom<Builder<A, D>, A>, WithSave<A> {
 
     /**
      * Set the name of this content object

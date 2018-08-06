@@ -4,12 +4,13 @@ import java.util.Optional;
 import java.util.stream.Stream;
 import io.annot8.core.exceptions.UnsupportedContentException;
 import io.annot8.core.helpers.WithGroups;
+import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithMutableProperties;
 
 /**
  * Base item interface from which all item implementations extend.
  */
-public interface Item extends WithMutableProperties, WithGroups {
+public interface Item extends WithId, WithMutableProperties, WithGroups {
 
   /**
    * Return true if this item has a content object with the specified name
