@@ -28,6 +28,23 @@ public interface Capabilities {
   Stream<String> getOutputAnnotations();
 
   /**
+   * Return the type of any required input annotations (i.e. annotations that must be present before
+   * a component can work)
+   */
+  Stream<String> getRequiredInputGroups();
+  
+  /**
+   * Return the type of any optional input annotations (i.e. annotations that should be present if
+   * possible before a component can work)
+   */
+  Stream<String> getOptionalInputGroups();
+  
+  /**
+   * Return the type of any output annotations produced by this component
+   */
+  Stream<String> getOutputGroups();
+
+  /**
    * Return the content classes produced by this component, or an empty stream if no new content
    * will be produced
    */
@@ -48,4 +65,6 @@ public interface Capabilities {
    * Return the bounds classes output by this component
    */
   Stream<Class<? extends Bounds>> getOutputBounds();
+
+
 }
