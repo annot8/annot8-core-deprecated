@@ -1,6 +1,7 @@
-package io.annot8.core.components;
+package io.annot8.core.capabilties;
 
 import io.annot8.core.bounds.Bounds;
+import io.annot8.core.components.Resource;
 import io.annot8.core.data.Content;
 import java.util.stream.Stream;
 
