@@ -25,6 +25,11 @@ public interface Content<D> extends WithId, WithTags, WithProperties {
   Class<D> getDataClass();
 
   /**
+   * Return the Content class this object implements
+   */
+  Class<? extends Content<D>> getContentClass();
+
+  /**
    * Return the annotation store for this content
    */
   AnnotationStore getAnnotations();
@@ -39,6 +44,11 @@ public interface Content<D> extends WithId, WithTags, WithProperties {
    */
   interface Builder<A extends Content<D>, D> extends WithPropertiesBuilder<Builder<A, D>>,
       WithTagsBuilder<Builder<A, D>>, WithFrom<Builder<A, D>, A>, WithSave<A> {
+
+    /**
+     * Set the id of this content object
+     */
+    Content.Builder<A, D> withId(final String id);
 
     /**
      * Set the name of this content object
