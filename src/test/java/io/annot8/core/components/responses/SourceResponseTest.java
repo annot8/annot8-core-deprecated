@@ -1,11 +1,6 @@
 package io.annot8.core.components.responses;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-
-import io.annot8.core.data.Item;
-import java.util.Arrays;
-import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 
 public class SourceResponseTest {
