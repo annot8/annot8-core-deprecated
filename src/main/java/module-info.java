@@ -23,8 +23,7 @@
  * object so that a Group may contain Annotations from multiple Content objects.
  *
  * Most of the objects above support Properties, which allow you to attach additional
- * information to an object. Many objects also have a type and an ID, and Content objects
- * can also have Tags associated with them.
+ * information to an object. Many objects also have a type and an ID.
  *
  * There are three types of 'component' which are used to create and manipulate the above
  * objects. A Source will create new Items from some external source, for example a file

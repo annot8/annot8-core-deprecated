@@ -27,12 +27,6 @@ public interface Capabilities {
   Stream<String> getOutputAnnotations();
 
   /**
-   * Return the content tags that this component will act on, or an empty stream if this component
-   * will act on all content
-   */
-  Stream<String> getAcceptedTags();
-
-  /**
    * Return the content classes produced by this component, or an empty stream if no new content
    * will be produced
    */
