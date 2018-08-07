@@ -1,16 +1,16 @@
 package io.annot8.core.annotations;
 
+import java.util.Optional;
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.WithType;
 import io.annot8.core.helpers.builders.WithFrom;
+import io.annot8.core.helpers.builders.WithIdBuilder;
 import io.annot8.core.helpers.builders.WithNewIdBuilder;
 import io.annot8.core.helpers.builders.WithPropertiesBuilder;
 import io.annot8.core.helpers.builders.WithSave;
 import io.annot8.core.helpers.builders.WithTypeBuilder;
-import java.util.Objects;
-import java.util.Optional;
 
 /**
  * Base annotation interface from which all other annotations extend.
@@ -53,12 +53,9 @@ public interface Annotation extends WithId, WithType, WithProperties {
   /**
    * Builder interface to create (immutable) Annotation classes
    */
-  interface Builder extends
-      WithTypeBuilder<Annotation.Builder>,
-      WithPropertiesBuilder<Annotation.Builder>,
-      WithNewIdBuilder<Annotation.Builder>,
-      WithFrom<Annotation.Builder, Annotation>,
-      WithSave<Annotation> {
+  interface Builder extends WithTypeBuilder<Annotation.Builder>, WithIdBuilder<Annotation.Builder>,
+      WithPropertiesBuilder<Annotation.Builder>, WithNewIdBuilder<Annotation.Builder>,
+      WithFrom<Annotation.Builder, Annotation>, WithSave<Annotation> {
 
     /**
      * Set the {@link Bounds} associated with this annotation
