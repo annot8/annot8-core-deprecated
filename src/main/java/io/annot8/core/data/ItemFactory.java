@@ -1,8 +1,5 @@
 package io.annot8.core.data;
 
-import io.annot8.core.data.Item;
-import java.util.function.Supplier;
-
 /**
  * Factory to create new items.
  *

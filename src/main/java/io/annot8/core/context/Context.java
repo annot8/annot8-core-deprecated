@@ -1,6 +1,5 @@
 package io.annot8.core.context;
 
-import io.annot8.core.data.Item;
 import java.util.Optional;
 import java.util.stream.Stream;
 import io.annot8.core.components.Resource;
