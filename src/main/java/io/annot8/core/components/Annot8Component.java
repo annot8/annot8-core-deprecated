@@ -1,5 +1,6 @@
 package io.annot8.core.components;
 
+import io.annot8.core.capabilties.AnnotationBasedCapabilities;
 import io.annot8.core.capabilties.Capabilities;
 import io.annot8.core.context.Context;
 import io.annot8.core.exceptions.BadConfigurationException;
@@ -28,5 +29,7 @@ public interface Annot8Component extends AutoCloseable {
   /**
    * Return the capabilities of this component
    */
-  Capabilities getCapabilities();
+  default Capabilities getCapabilities() {
+	  return new AnnotationBasedCapabilities(this.getClass());
+  }
 }
