@@ -1,4 +1,4 @@
-package io.annot8.core.capabilties;
+package io.annot8.core.capabilities;
 
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -8,14 +8,15 @@ import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import io.annot8.core.data.Content;
+import io.annot8.core.components.Resource;
 
 @Documented
 @Retention(RUNTIME)
 @Target(TYPE)
 @Inherited
-public @interface CreatesContent {
+public @interface UsesResource {
 
-	Class<? extends Content<?>>[] value();
+	Class<? extends Resource>[] value();
+
 
 }

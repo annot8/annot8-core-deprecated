@@ -1,4 +1,4 @@
-package io.annot8.core.capabilties;
+package io.annot8.core.capabilities;
 
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.components.Resource;

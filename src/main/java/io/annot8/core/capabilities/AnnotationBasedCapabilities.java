@@ -1,4 +1,4 @@
-package io.annot8.core.capabilties;
+package io.annot8.core.capabilities;
 
 import java.lang.annotation.Annotation;
 import java.util.Arrays;

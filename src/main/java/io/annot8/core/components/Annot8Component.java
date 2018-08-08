@@ -1,7 +1,7 @@
 package io.annot8.core.components;
 
-import io.annot8.core.capabilties.AnnotationBasedCapabilities;
-import io.annot8.core.capabilties.Capabilities;
+import io.annot8.core.capabilities.AnnotationBasedCapabilities;
+import io.annot8.core.capabilities.Capabilities;
 import io.annot8.core.context.Context;
 import io.annot8.core.exceptions.BadConfigurationException;
 import io.annot8.core.exceptions.MissingResourceException;

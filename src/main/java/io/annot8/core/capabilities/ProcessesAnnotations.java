@@ -1,4 +1,4 @@
-package io.annot8.core.capabilties;
+package io.annot8.core.capabilities;
 
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -12,8 +12,12 @@ import java.lang.annotation.Target;
 @Retention(RUNTIME)
 @Target(TYPE)
 @Inherited
-public @interface OutputsGroups {
+public @interface ProcessesAnnotations {
 
 	String[] value();
+	
+	String[] required();
+	
+	String[] optional();
 
 }

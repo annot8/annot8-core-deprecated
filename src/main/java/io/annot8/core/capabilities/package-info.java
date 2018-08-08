@@ -8,4 +8,4 @@
  * 
  * Returning a Capabilities object is useful in cases where the exact function of the component is determined by configuration.
  */
-package io.annot8.core.capabilties;
+package io.annot8.core.capabilities;
