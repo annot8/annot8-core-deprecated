@@ -52,7 +52,7 @@ public class AnnotationBasedCapabilities implements Capabilities {
 
 	@Override
 	public Stream<String> getOutputAnnotations() {
-		return extractFromAnnotations(OutputsAnnotations.class, a -> extractArrayAsStream(a.value()));
+		return extractFromAnnotations(CreatesAnnotations.class, a -> extractArrayAsStream(a.value()));
 	}
 	
 	@Override
@@ -74,7 +74,7 @@ public class AnnotationBasedCapabilities implements Capabilities {
 
 	@Override
 	public Stream<String> getOutputGroups() {
-		return extractFromAnnotations(OutputsGroups.class, a -> extractArrayAsStream(a.value()));
+		return extractFromAnnotations(CreatesGroups.class, a -> extractArrayAsStream(a.value()));
 	}
 
 	@Override
@@ -96,7 +96,7 @@ public class AnnotationBasedCapabilities implements Capabilities {
 
 	@Override
 	public Stream<Class<? extends Bounds>> getOutputBounds() {
-		return extractFromAnnotations(OutputsBounds.class, a -> extractArrayAsStream(a.value()));
+		return extractFromAnnotations(CreatesBounds.class, a -> extractArrayAsStream(a.value()));
 
 	}
 	

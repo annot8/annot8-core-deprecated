@@ -10,12 +10,19 @@ import java.lang.annotation.Target;
 
 import io.annot8.core.components.Resource;
 
+/**
+ * The resources which this component will required and use
+ *
+ */
 @Documented
 @Retention(RUNTIME)
 @Target(TYPE)
 @Inherited
 public @interface UsesResource {
 
+	/**
+	 * @return resource classes
+	 */
 	Class<? extends Resource>[] value();
 
 

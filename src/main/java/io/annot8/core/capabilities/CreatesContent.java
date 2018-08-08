@@ -10,12 +10,19 @@ import java.lang.annotation.Target;
 
 import io.annot8.core.data.Content;
 
+/**
+ * Denotes that the component will generate content.
+ *
+ */
 @Documented
 @Retention(RUNTIME)
 @Target(TYPE)
 @Inherited
 public @interface CreatesContent {
 
+	/**
+	 * @return the content class which will be generated
+	 */
 	Class<? extends Content<?>>[] value();
 
 }

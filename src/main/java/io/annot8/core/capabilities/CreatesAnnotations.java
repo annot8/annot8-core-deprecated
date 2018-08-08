@@ -8,15 +8,20 @@ import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import io.annot8.core.bounds.Bounds;
-
+/**
+ * Denotes the annotation types which the component will output.
+ *
+ */
 @Documented
 @Retention(RUNTIME)
 @Target(TYPE)
 @Inherited
-public @interface OutputsBounds {
+public @interface CreatesAnnotations {
 
-	Class<? extends Bounds>[] value();
-
-
+	/**
+	 * @return annotation types
+	 */
+	String[] value();
+	
+	
 }

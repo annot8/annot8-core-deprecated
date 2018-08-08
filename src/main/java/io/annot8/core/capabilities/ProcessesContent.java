@@ -10,12 +10,19 @@ import java.lang.annotation.Target;
 
 import io.annot8.core.data.Content;
 
+/**
+ * Denotes the content classes that the component will act upon
+ *
+ */
 @Documented
 @Retention(RUNTIME)
 @Target(TYPE)
 @Inherited
 public @interface ProcessesContent {
 
+	/**
+	 * @return content classes
+	 */
 	Class<? extends Content<?>>[] value();
 
 }

@@ -8,12 +8,19 @@ import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+/**
+ * Denotes the group types the component may output.
+ *
+ */
 @Documented
 @Retention(RUNTIME)
 @Target(TYPE)
 @Inherited
-public @interface OutputsGroups {
+public @interface CreatesGroups {
 
+	/**
+	 * @return group types
+	 */
 	String[] value();
 
 }
