@@ -3,6 +3,8 @@ package io.annot8.core.capabilities;
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.components.Resource;
 import io.annot8.core.data.Content;
+import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 /**
@@ -67,4 +69,55 @@ public interface Capabilities {
   Stream<Class<? extends Bounds>> getCreatedBounds();
 
 
+  interface Builder {
+
+    Builder requiresAnnotation(String type);
+
+    Builder optionalAnnotation(String type);
+
+    Builder createsAnnotation(String type);
+
+    Builder requiresGroup(String type);
+
+    Builder optionalGroup(String type);
+
+    Builder createsGroup(String type);
+
+    Builder requiresContent(Class<? extends Content<?>> clazz);
+
+    Builder createsContent(Class<? extends Content<?>> clazz);
+
+    Builder usesResource(Class<? extends Resource> clazz);
+
+    Builder createsBounds(Class<? extends Bounds> clazz);
+
+    Capabilities save();
+
+    default Builder merge(Capabilities capabilities) {
+
+      if(capabilities != null) {
+        applySafely(capabilities.getCreatedContent(), this::createsContent);
+        applySafely(capabilities.getRequiredContent(), this::requiresContent);
+        applySafely(capabilities.getCreatedAnnotations(), this::createsAnnotation);
+        applySafely(capabilities.getCreatedBounds(), this::createsBounds);
+        applySafely(capabilities.getCreatedGroups(), this::createsGroup);
+        applySafely(capabilities.getOptionalAnnotations(), this::optionalAnnotation);
+        applySafely(capabilities.getOptionalGroups(), this::optionalGroup);
+        applySafely(capabilities.getRequiredAnnotations(), this::requiresAnnotation);
+        applySafely(capabilities.getRequiredGroups(), this::requiresGroup);
+        applySafely(capabilities.getUsedResources(), this::usesResource);
+      }
+
+      return this;
+    }
+
+    private <T> void applySafely(Stream<T> stream, Consumer<T> consumer) {
+      if(stream == null) {
+        return;
+      }
+
+      stream.filter(Objects::nonNull).forEach(consumer);
+    }
+
+  }
 }
