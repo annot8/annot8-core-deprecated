@@ -24,36 +24,36 @@ public class AnnotationBasedCapabilitiesTest {
 
   @Test
   void getRequiredInputAnnotations() {
-    assertThat(capabilities.getRequiredInputAnnotations()).containsExactlyInAnyOrder("ar1", "ar2");
+    assertThat(capabilities.getRequiredAnnotations()).containsExactlyInAnyOrder("ar1", "ar2");
   }
 
   @Test
   void getOptionalInputAnnotations() {
-    assertThat(capabilities.getOptionalInputAnnotations()).containsExactlyInAnyOrder("ao1");
+    assertThat(capabilities.getOptionalAnnotations()).containsExactlyInAnyOrder("ao1");
 
   }
 
   @Test
   void getOutputAnnotations() {
-    assertThat(capabilities.getOutputAnnotations()).containsExactlyInAnyOrder("a1", "a2");
+    assertThat(capabilities.getCreatedAnnotations()).containsExactlyInAnyOrder("a1", "a2");
 
   }
 
   @Test
   void getRequiredInputGroups() {
-    assertThat(capabilities.getRequiredInputGroups()).containsExactlyInAnyOrder("gr1", "gr2");
+    assertThat(capabilities.getRequiredGroups()).containsExactlyInAnyOrder("gr1", "gr2");
 
   }
 
   @Test
   void getOptionalInputGroups() {
-    assertThat(capabilities.getOptionalInputGroups()).containsExactlyInAnyOrder("go1");
+    assertThat(capabilities.getOptionalGroups()).containsExactlyInAnyOrder("go1");
 
   }
 
   @Test
   void getOutputGroups() {
-    assertThat(capabilities.getOutputGroups()).containsExactlyInAnyOrder("g");
+    assertThat(capabilities.getCreatedGroups()).containsExactlyInAnyOrder("g");
 
   }
 
@@ -71,19 +71,19 @@ public class AnnotationBasedCapabilitiesTest {
 
   @Test
   void getRequiredResources() {
-    assertThat(capabilities.getRequiredResources()).containsExactlyInAnyOrder(Resource.class);
+    assertThat(capabilities.getUsedResources()).containsExactlyInAnyOrder(Resource.class);
   }
 
   @Test
   void getOutputBounds() {
-    assertThat(capabilities.getOutputBounds()).containsExactlyInAnyOrder(FakeBounds.class);
+    assertThat(capabilities.getCreatedBounds()).containsExactlyInAnyOrder(FakeBounds.class);
 
   }
 
   @Test
   void getOutputGroupsForChildComponent() {
     AnnotationBasedCapabilities child = new AnnotationBasedCapabilities(ChildAnnotatedComponent.class);
-    assertThat(child.getOutputGroups()).containsExactlyInAnyOrder("sg");
+    assertThat(child.getCreatedGroups()).containsExactlyInAnyOrder("sg");
   }
 
 

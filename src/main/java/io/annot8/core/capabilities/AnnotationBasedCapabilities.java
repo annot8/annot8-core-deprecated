@@ -34,7 +34,7 @@ public class AnnotationBasedCapabilities implements Capabilities {
 	}
 
 	@Override
-	public Stream<String> getRequiredInputAnnotations() {
+	public Stream<String> getRequiredAnnotations() {
 		return extractFromAnnotations(ProcessesAnnotations.class, a -> {
 			
 			Stream<String> value = extractArrayAsStream(a.value());
@@ -46,17 +46,17 @@ public class AnnotationBasedCapabilities implements Capabilities {
 	}
 
 	@Override
-	public Stream<String> getOptionalInputAnnotations() {
+	public Stream<String> getOptionalAnnotations() {
 		return extractFromAnnotations(ProcessesAnnotations.class, a -> extractArrayAsStream(a.optional()));
 	}
 
 	@Override
-	public Stream<String> getOutputAnnotations() {
+	public Stream<String> getCreatedAnnotations() {
 		return extractFromAnnotations(CreatesAnnotation.class, a -> extractItemAsStream(a.type()));
 	}
 	
 	@Override
-	public Stream<String> getRequiredInputGroups() {
+	public Stream<String> getRequiredGroups() {
 		return extractFromAnnotations(ProcessesGroups.class, a -> {
 			
 			Stream<String> value = extractArrayAsStream(a.value());
@@ -68,12 +68,12 @@ public class AnnotationBasedCapabilities implements Capabilities {
 	}
 
 	@Override
-	public Stream<String> getOptionalInputGroups() {
+	public Stream<String> getOptionalGroups() {
 		return extractFromAnnotations(ProcessesGroups.class, a -> extractArrayAsStream(a.optional()));
 	}
 
 	@Override
-	public Stream<String> getOutputGroups() {
+	public Stream<String> getCreatedGroups() {
 		return extractFromAnnotations(CreatesGroup.class, a -> extractItemAsStream(a.value()));
 	}
 
@@ -89,13 +89,13 @@ public class AnnotationBasedCapabilities implements Capabilities {
 	}
 
 	@Override
-	public Stream<Class<? extends Resource>> getRequiredResources() {
+	public Stream<Class<? extends Resource>> getUsedResources() {
 		return extractFromAnnotations(UsesResource.class, a -> extractItemAsStream(a.value()));
 
 	}
 
 	@Override
-	public Stream<Class<? extends Bounds>> getOutputBounds() {
+	public Stream<Class<? extends Bounds>> getCreatedBounds() {
 		return extractFromAnnotations(CreatesAnnotation.class, a -> extractItemAsStream(a.bounds()));
 	}
 	
