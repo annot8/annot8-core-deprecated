@@ -1,7 +1,6 @@
 package io.annot8.core.capabilities;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.components.Annot8Component;
@@ -9,10 +8,7 @@ import io.annot8.core.components.Resource;
 import io.annot8.core.data.Content;
 import io.annot8.core.properties.ImmutableProperties;
 import io.annot8.core.stores.AnnotationStore;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -39,7 +35,7 @@ public class AnnotationBasedCapabilitiesTest {
 
   @Test
   void getOutputAnnotations() {
-    assertThat(capabilities.getOutputAnnotations()).containsExactlyInAnyOrder("a");
+    assertThat(capabilities.getOutputAnnotations()).containsExactlyInAnyOrder("a1", "a2");
 
   }
 
@@ -87,14 +83,14 @@ public class AnnotationBasedCapabilitiesTest {
   @Test
   void getOutputGroupsForChildComponent() {
     AnnotationBasedCapabilities child = new AnnotationBasedCapabilities(ChildAnnotatedComponent.class);
-    assertThat(child.getOutputGroups()).containsExactlyInAnyOrder("g", "sg");
+    assertThat(child.getOutputGroups()).containsExactlyInAnyOrder("sg");
   }
 
 
-  @CreatesAnnotations("a")
-  @CreatesBounds(FakeBounds.class)
+  @CreatesAnnotation(type="a1", bounds=FakeBounds.class)
+  @CreatesAnnotation(type="a2", bounds=FakeBounds.class)
   @CreatesContent(FakeContent.class)
-  @CreatesGroups("g")
+  @CreatesGroup("g")
   @ProcessesAnnotations(value = "ar1", required = "ar2", optional = "ao1")
   @ProcessesContent(FakeContent.class)
   @ProcessesGroups(value = "gr1", required = "gr2", optional = "go1")
@@ -103,7 +99,7 @@ public class AnnotationBasedCapabilitiesTest {
 
   }
 
-  @CreatesGroups("sg")
+  @CreatesGroup("sg")
   public static class ChildAnnotatedComponent extends AnnotatedComponent {
 
   }

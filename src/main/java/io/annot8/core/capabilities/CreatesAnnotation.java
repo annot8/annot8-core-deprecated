@@ -3,27 +3,32 @@ package io.annot8.core.capabilities;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+import io.annot8.core.bounds.Bounds;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Inherited;
 import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import io.annot8.core.data.Content;
-
 /**
- * Denotes that the component will generate content.
+ * Denotes the annotation types which the component will output.
  *
  */
 @Documented
 @Retention(RUNTIME)
 @Target(TYPE)
-@Repeatable(CreatesContents.class)
-public @interface CreatesContent {
+@Repeatable(CreatesAnnotations.class)
+public @interface CreatesAnnotation {
+
 
 	/**
-	 * @return the content class which will be generated
+	 * @return annotation types
 	 */
-	Class<? extends Content<?>> value();
+	String type();
 
+	/**
+	 * @return the bound classes
+	 */
+	Class<? extends Bounds> bounds();
+	
 }

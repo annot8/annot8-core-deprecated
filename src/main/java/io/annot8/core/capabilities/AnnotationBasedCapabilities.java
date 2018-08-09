@@ -52,7 +52,7 @@ public class AnnotationBasedCapabilities implements Capabilities {
 
 	@Override
 	public Stream<String> getOutputAnnotations() {
-		return extractFromAnnotations(CreatesAnnotations.class, a -> extractArrayAsStream(a.value()));
+		return extractFromAnnotations(CreatesAnnotation.class, a -> extractItemAsStream(a.type()));
 	}
 	
 	@Override
@@ -74,12 +74,12 @@ public class AnnotationBasedCapabilities implements Capabilities {
 
 	@Override
 	public Stream<String> getOutputGroups() {
-		return extractFromAnnotations(CreatesGroups.class, a -> extractArrayAsStream(a.value()));
+		return extractFromAnnotations(CreatesGroup.class, a -> extractItemAsStream(a.value()));
 	}
 
 	@Override
 	public Stream<Class<? extends Content<?>>> getCreatedContent() {
-		return extractFromAnnotations(CreatesContent.class, a -> extractArrayAsStream(a.value()));
+		return extractFromAnnotations(CreatesContent.class, a -> extractItemAsStream(a.value()));
 
 	}
 
@@ -90,14 +90,13 @@ public class AnnotationBasedCapabilities implements Capabilities {
 
 	@Override
 	public Stream<Class<? extends Resource>> getRequiredResources() {
-		return extractFromAnnotations(UsesResource.class, a -> extractArrayAsStream(a.value()));
+		return extractFromAnnotations(UsesResource.class, a -> extractItemAsStream(a.value()));
 
 	}
 
 	@Override
 	public Stream<Class<? extends Bounds>> getOutputBounds() {
-		return extractFromAnnotations(CreatesBounds.class, a -> extractArrayAsStream(a.value()));
-
+		return extractFromAnnotations(CreatesAnnotation.class, a -> extractItemAsStream(a.bounds()));
 	}
 	
 	protected <T>  Stream<T> extractArrayAsStream(T[] value) {
@@ -105,6 +104,15 @@ public class AnnotationBasedCapabilities implements Capabilities {
 			return Stream.empty();
 		} else {
 			return Arrays.stream(value).filter(Objects::nonNull);
+		}
+	}
+
+
+	protected <T>  Stream<T> extractItemAsStream(T value) {
+		if(value == null) {
+			return Stream.empty();
+		} else {
+			return Stream.of(value);
 		}
 	}
 

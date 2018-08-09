@@ -5,6 +5,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Inherited;
+import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
@@ -17,13 +18,13 @@ import io.annot8.core.components.Resource;
 @Documented
 @Retention(RUNTIME)
 @Target(TYPE)
-@Inherited
+@Repeatable(UsesResources.class)
 public @interface UsesResource {
 
 	/**
-	 * @return resource classes
+	 * @return resource class
 	 */
-	Class<? extends Resource>[] value();
+	Class<? extends Resource> value();
 
 
 }

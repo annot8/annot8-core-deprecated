@@ -19,7 +19,6 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RUNTIME)
 @Target(TYPE)
-@Inherited
 public @interface ProcessesGroups {
 
 	/**

@@ -17,7 +17,6 @@ import io.annot8.core.data.Content;
 @Documented
 @Retention(RUNTIME)
 @Target(TYPE)
-@Inherited
 public @interface ProcessesContent {
 
 	/**

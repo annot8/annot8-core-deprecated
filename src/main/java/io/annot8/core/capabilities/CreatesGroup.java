@@ -9,21 +9,19 @@ import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import io.annot8.core.data.Content;
-
 /**
- * Denotes that the component will generate content.
+ * Denotes the group types the component may output.
  *
  */
 @Documented
 @Retention(RUNTIME)
 @Target(TYPE)
-@Repeatable(CreatesContents.class)
-public @interface CreatesContent {
+@Repeatable(CreatesGroups.class)
+public @interface CreatesGroup {
 
 	/**
-	 * @return the content class which will be generated
+	 * @return group types
 	 */
-	Class<? extends Content<?>> value();
+	String value();
 
 }
