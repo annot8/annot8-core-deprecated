@@ -8,6 +8,7 @@
     <groupId>io.annot8</groupId>
     <artifactId>parent</artifactId>
     <version>0.1-SNAPSHOT</version>
+    <relativePath>../parent</relativePath>
   </parent>
 
   <artifactId>core</artifactId>
