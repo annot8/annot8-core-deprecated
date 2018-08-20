@@ -16,80 +16,131 @@ public interface Capabilities {
    * Return the type of any required input annotations (i.e. annotations that must be present before
    * a component can work)
    */
-  Stream<String> getRequiredAnnotations();
+  Stream<AnnotationCapability> getProcessedAnnotations();
 
-  /**
-   * Return the type of any optional input annotations (i.e. annotations that should be present if
-   * possible before a component can work)
-   */
-  Stream<String> getOptionalAnnotations();
 
   /**
    * Return the type of any output annotations produced by this component
    */
-  Stream<String> getCreatedAnnotations();
+  Stream<AnnotationCapability> getCreatedAnnotations();
+
+  /**
+   * Return the type of any output annotations produced by this component
+   */
+  Stream<AnnotationCapability> getDeletedAnnotations();
 
   /**
    * Return the type of any required input annotations (i.e. annotations that must be present before
    * a component can work)
    */
-  Stream<String> getRequiredGroups();
-  
-  /**
-   * Return the type of any optional input annotations (i.e. annotations that should be present if
-   * possible before a component can work)
-   */
-  Stream<String> getOptionalGroups();
-  
+  Stream<GroupCapability> getProcessedGroups();
+
   /**
    * Return the type of any output annotations produced by this component
    */
-  Stream<String> getCreatedGroups();
+  Stream<GroupCapability> getCreatedGroups();
+
+
+  /**
+   * Return the type of any output annotations deleted by this component
+   */
+  Stream<GroupCapability> getDeletedGroups();
 
   /**
    * Return the content classes produced by this component, or an empty stream if no new content
    * will be produced
    */
-  Stream<Class<? extends Content<?>>> getCreatedContent();
+  Stream<ContentCapability> getCreatedContent();
+
+
+  /**
+   * Return the type of any deleted content
+   */
+  Stream<ContentCapability> getDeletedContent();
 
   /**
    * Return the type of any required content (i.e. content that must be present before
    * a component can work)
    */
-  Stream<Class<? extends Content<?>>> getRequiredContent();
+  Stream<ContentCapability> getProcessedContent();
 
     /**
      * Return the resource classes required by this component
      */
-  Stream<Class<? extends Resource>> getUsedResources();
-
-  /**
-   * Return the bounds classes output by this component
-   */
-  Stream<Class<? extends Bounds>> getCreatedBounds();
+  Stream<ResourceCapability> getUsedResources();
 
 
   interface Builder {
 
-    Builder requiresAnnotation(String type);
+    default Builder processesAnnotation(String type, Class<? extends Bounds> clazz, boolean optional) {
+      processesAnnotation(new AnnotationCapability(type, clazz, optional));
+      return this;
+    }
 
-    Builder optionalAnnotation(String type);
+    default Builder createsAnnotation(String type, Class<? extends Bounds> clazz) {
+      createsAnnotation(new AnnotationCapability(type, clazz, true));
+      return this;
+    }
 
-    Builder createsAnnotation(String type);
+    default Builder deletesAnnotation(String type, Class<? extends Bounds> clazz) {
+      deletesAnnotation(new AnnotationCapability(type, clazz, true));
+      return this;
+    }
 
-    Builder requiresGroup(String type);
+    default Builder processesGroup(String type, boolean optional) {
+      processesGroup(new GroupCapability(type, true));
+      return this;
+    }
 
-    Builder optionalGroup(String type);
+    default Builder createsGroup(String type)  {
+      createsGroup(new GroupCapability(type, true));
+      return this;
+    }
 
-    Builder createsGroup(String type);
+    default Builder deletesGroup(String type) {
+      deletesGroup(new GroupCapability(type, true));
+      return this;
+    }
 
-    Builder requiresContent(Class<? extends Content<?>> clazz);
+    default Builder processesContent(Class<? extends Content<?>> clazz, boolean optional) {
+      processesContent(new ContentCapability(clazz, optional));
+      return this;
+    }
 
-    Builder createsContent(Class<? extends Content<?>> clazz);
+    default Builder createsContent(Class<? extends Content<?>> clazz) {
+      createsContent(new ContentCapability(clazz, true));
+      return this;
+    }
 
-    Builder usesResource(Class<? extends Resource> clazz);
+    default Builder deletesContent(Class<? extends Content<?>> clazz) {
+      deletesContent(new ContentCapability(clazz, true));
+      return this;
+    }
 
-    Builder createsBounds(Class<? extends Bounds> clazz);
+    default Builder usesResource(Class<? extends Resource> clazz, boolean optional) {
+      usesResource(new ResourceCapability(clazz, true));
+      return this;
+    }
+
+    Builder processesAnnotation(AnnotationCapability capability);
+
+    Builder createsAnnotation(AnnotationCapability capability);
+
+    Builder deletesAnnotation(AnnotationCapability capability);
+
+    Builder processesGroup(GroupCapability capability);
+
+    Builder createsGroup(GroupCapability capability);
+
+    Builder deletesGroup(GroupCapability capability);
+
+    Builder processesContent(ContentCapability capability);
+
+    Builder createsContent(ContentCapability capability);
+
+    Builder deletesContent(ContentCapability capability);
+
+    Builder usesResource(ResourceCapability capability);
 
     Capabilities save();
 
@@ -97,15 +148,18 @@ public interface Capabilities {
 
       if(capabilities != null) {
         applySafely(capabilities.getCreatedContent(), this::createsContent);
-        applySafely(capabilities.getRequiredContent(), this::requiresContent);
         applySafely(capabilities.getCreatedAnnotations(), this::createsAnnotation);
-        applySafely(capabilities.getCreatedBounds(), this::createsBounds);
         applySafely(capabilities.getCreatedGroups(), this::createsGroup);
-        applySafely(capabilities.getOptionalAnnotations(), this::optionalAnnotation);
-        applySafely(capabilities.getOptionalGroups(), this::optionalGroup);
-        applySafely(capabilities.getRequiredAnnotations(), this::requiresAnnotation);
-        applySafely(capabilities.getRequiredGroups(), this::requiresGroup);
+
+        applySafely(capabilities.getProcessedAnnotations(), this::processesAnnotation);
+        applySafely(capabilities.getProcessedContent(), this::processesContent);
+        applySafely(capabilities.getProcessedGroups(), this::processesGroup);
+
         applySafely(capabilities.getUsedResources(), this::usesResource);
+
+        applySafely(capabilities.getDeletedAnnotations(), this::deletesAnnotation);
+        applySafely(capabilities.getDeletedGroups(), this::deletesGroup);
+        applySafely(capabilities.getDeletedContent(), this::deletesContent);
       }
 
       return this;
