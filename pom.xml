@@ -6,12 +6,12 @@
 
   <parent>
     <groupId>io.annot8</groupId>
-    <artifactId>parent</artifactId>
+    <artifactId>annot8-parent</artifactId>
     <version>0.1-SNAPSHOT</version>
-    <relativePath>../parent</relativePath>
+    <relativePath>../annot8-parent</relativePath>
   </parent>
 
-  <artifactId>core</artifactId>
+  <artifactId>annot8-core</artifactId>
   <name>Annot8 Core</name>
   <description>Core interfaces for the Annot8 project</description>
 
