@@ -24,7 +24,7 @@ public @interface CreatesAnnotation {
 	/**
 	 * @return annotation types
 	 */
-	String type();
+	String value();
 
 	/**
 	 * @return the bound classes

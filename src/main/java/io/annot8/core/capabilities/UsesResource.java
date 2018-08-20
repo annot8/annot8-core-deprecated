@@ -26,5 +26,6 @@ public @interface UsesResource {
 	 */
 	Class<? extends Resource> value();
 
+	boolean optional() default false;
 
 }
