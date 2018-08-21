@@ -3,18 +3,36 @@ package io.annot8.core.capabilities;
 import io.annot8.core.components.Resource;
 import java.util.Objects;
 
+/**
+ * Specification for resource used by a component.
+ *
+ * Note that optional will be set to true for create and delete operations. This reflects that
+ * typically we may or may not create/delete elements, even if all the prerequisites are met.
+ *
+ */
 public class ResourceCapability {
 
   private final Class<? extends Resource> type;
 
   private final boolean optional;
 
+  /**
+   * Create from details
+   *
+   * @param type the resource type
+   * @param optional true if the resource optional
+   */
   public ResourceCapability(
       Class<? extends Resource> type, boolean optional) {
     this.type = type;
     this.optional = optional;
   }
 
+  /**
+   * Create from {@link UsesResource}.
+   *
+   * @param annotation specification
+   */
   public ResourceCapability(UsesResource annotation) {
     this(
         annotation.value(),
@@ -22,10 +40,20 @@ public class ResourceCapability {
     );
   }
 
+  /**
+   * Get the resource type created/deleted/processed
+   *
+   * @return resource type
+   */
   public Class<? extends Resource> getType() {
     return type;
   }
 
+  /**
+   * Is the resource defined by this object optionally used (ie used is available)
+   *
+   * @return true if optional
+   */
   public boolean isOptional() {
     return optional;
   }

@@ -4,7 +4,7 @@ import io.annot8.core.bounds.Bounds;
 import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.WithType;
-import io.annot8.core.helpers.builders.WithFrom;
+import io.annot8.core.helpers.builders.WithFromBuilder;
 import io.annot8.core.helpers.builders.WithIdBuilder;
 import io.annot8.core.helpers.builders.WithNewIdBuilder;
 import io.annot8.core.helpers.builders.WithPropertiesBuilder;
@@ -19,12 +19,17 @@ public interface Annotation extends WithId, WithType, WithProperties {
 
   /**
    * Get the {@link Bounds} associated with this annotation
+   *
+   * @return the bounds
    */
   Bounds getBounds();
 
   /**
    * Get the {@link Bounds} associated with this annotation casting it to the bounds provided (if it
    * is of that type / subtype).
+   *
+   * @param boundsClass the class the bounds should have
+   * @return optional bounds of requested class, empty if the bounds are not of that class
    */
   @SuppressWarnings("unchecked")
   default <B extends Bounds> Optional<B> getBounds(Class<B> boundsClass) {
@@ -38,6 +43,8 @@ public interface Annotation extends WithId, WithType, WithProperties {
 
   /**
    * Get the name of the Content to which this annotation refers
+   *
+   * @return content name
    */
   String getContentName();
 
@@ -45,6 +52,9 @@ public interface Annotation extends WithId, WithType, WithProperties {
    * Do two instances represent the same underlying annotations?
    *
    * That is do they have the same id, even if the rest of the data is different.
+   *
+   * @param other the annotation to test against
+   * @return true is non-null and have the same id
    */
   default boolean sameAnnotation(Annotation other) {
     return other != null && getId().equals(other.getId());
@@ -55,10 +65,13 @@ public interface Annotation extends WithId, WithType, WithProperties {
    */
   interface Builder extends WithTypeBuilder<Annotation.Builder>, WithIdBuilder<Annotation.Builder>,
       WithPropertiesBuilder<Annotation.Builder>, WithNewIdBuilder<Annotation.Builder>,
-      WithFrom<Annotation.Builder, Annotation>, WithSave<Annotation> {
+      WithFromBuilder<Builder, Annotation>, WithSave<Annotation> {
 
     /**
      * Set the {@link Bounds} associated with this annotation
+     *
+     * @param bounds the bounds of the annotation
+     * @return the builder for chaining
      */
     Annotation.Builder withBounds(final Bounds bounds);
   }

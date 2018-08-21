@@ -8,7 +8,8 @@ import io.annot8.core.stores.GroupStore;
 public interface WithGroups {
 
   /**
-   * Return the groups contained within this object
+   * Get the group store
+   * @return  the groups contained within this object
    */
   GroupStore getGroups();
 }

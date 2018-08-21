@@ -10,22 +10,35 @@ import io.annot8.core.properties.Properties;
 public interface WithPropertiesBuilder<A> {
 
   /**
-   * Return a builder with the key-value property pair added to it
+   * Add a property
+   * @param key the key
+   * @param value the value
+   * @return  a builder with the key-value property pair added to it
    */
   A withProperty(final String key, final Object value);
 
   /**
-   * Return a builder with the key-value property pair removed from it
+   * Remove a property with matching key and value
+   *
+   * @param key the key to remove
+   * @param value the value to remove
+   * @return  a builder with the key-value property pair removed from it
    */
   A withoutProperty(final String key, final Object value);
 
   /**
-   * Return a builder with the key removed from it
+   * Remove a property
+   *
+   * @param key the key to remove
+   * @return  a builder with the key removed from it
    */
   A withoutProperty(final String key);
 
   /**
-   * Return a builder with the specified properties
+   * Add in existing properties
+   *
+   * @param properties to add
+   * @return  a builder with the specified properties
    */
   A withProperties(final Properties properties);
 }

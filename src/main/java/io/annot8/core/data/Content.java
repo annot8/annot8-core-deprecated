@@ -2,7 +2,7 @@ package io.annot8.core.data;
 
 import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithProperties;
-import io.annot8.core.helpers.builders.WithFrom;
+import io.annot8.core.helpers.builders.WithFromBuilder;
 import io.annot8.core.helpers.builders.WithIdBuilder;
 import io.annot8.core.helpers.builders.WithPropertiesBuilder;
 import io.annot8.core.helpers.builders.WithSave;
@@ -10,32 +10,43 @@ import io.annot8.core.stores.AnnotationStore;
 
 /**
  * Base content interface from which all content implementations extend.
+ *
+ * @type D the type of data held
  */
-
 public interface Content<D> extends WithId, WithProperties {
 
   /**
-   * Return the data associated with this content object
+   * The data associated with this content object
+   *
+   * @return the data
    */
   D getData();
 
   /**
-   * Return the class of the data stored in this Content object
+   * The class of the data stored in this Content object
+   *
+   * @return data class
    */
   Class<D> getDataClass();
 
   /**
-   * Return the Content class this object implements
+   * The top level content interface this object implements
+   *
+   * @return common content interface
    */
   Class<? extends Content<D>> getContentClass();
 
   /**
-   * Return the annotation store for this content
+   * The annotation store for this content
+   *
+   * @return annotation store
    */
   AnnotationStore getAnnotations();
 
   /**
-   * Return the name of this content
+   * The name of this content
+   *
+   * @return name
    */
   String getName();
 
@@ -44,17 +55,23 @@ public interface Content<D> extends WithId, WithProperties {
    */
   interface Builder<A extends Content<D>, D> extends
       WithPropertiesBuilder<Builder<A, D>>,
-      WithFrom<Builder<A, D>, A>,
+      WithFromBuilder<Builder<A, D>, A>,
       WithIdBuilder<Builder<A, D>>,
       WithSave<A> {
 
     /**
      * Set the name of this content object
+     *
+     * @param name the content name
+     * @return this builder for chaining
      */
     Content.Builder<A, D> withName(final String name);
 
     /**
      * Set the data for this content object
+     *
+     * @param data the data name
+     * @return this builder for chaining
      */
     Content.Builder<A, D> withData(final D data);
 

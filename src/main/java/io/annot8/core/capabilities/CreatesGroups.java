@@ -7,10 +7,19 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+/**
+ * Wrapper for repeated {@link CreatesGroup}.
+ *
+ * Developers do not need to use this (it is used internally by java to autowrap multiple annotations).
+ */
 @Documented
 @Retention(RUNTIME)
 @Target(TYPE)
 public @interface CreatesGroups {
 
+  /**
+   * Get the array of annotations
+   * @return the repeated annotations
+   */
   CreatesGroup[] value();
 }

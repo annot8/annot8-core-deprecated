@@ -12,19 +12,26 @@ import java.util.stream.Stream;
 public interface GroupStore {
 
   /**
-   * Return a builder object for the supported group
+   * Create a new group builder
+   * 
+   * @return  a builder object for the supported group
    */
   Group.Builder getBuilder();
 
   /**
-   * Return a builder to create a new annotation
+   * Create a new group
+   *
+   * @return  a builder to create a new group
    */
   default Group.Builder create() {
     return getBuilder();
   }
 
   /**
-   * Return a builder to based on the an existing group, but don't overwrite that group on save.
+   * Clone an existing group to create a new group
+   *
+   * @param existing the existing group
+   * @return  a builder to based on the an existing group, but don't overwrite that group on save.
    */
   default Group.Builder copy(Group existing) {
     return getBuilder().from(existing).newId();
@@ -32,7 +39,10 @@ public interface GroupStore {
 
 
   /**
-   * Return a builder to edit an existing group
+   * Edit an existing group, saving will replace it
+   *
+   * @param existing the existing group
+   * @return  a builder to edit an existing group
    */
   default Group.Builder edit(Group existing) {
     return getBuilder().from(existing);
@@ -40,11 +50,15 @@ public interface GroupStore {
 
   /**
    * Delete a group from the store
+   *
+   * @param group to delete
    */
   void delete(final Group group);
 
   /**
    * Delete a collection of groups from the store
+   *
+   * @param groups the groups to delete
    */
   default void delete(final Collection<Group> groups) {
     groups.forEach(this::delete);
@@ -58,12 +72,17 @@ public interface GroupStore {
   }
 
   /**
-   * Get all groups currently held in this store
+   * Get all groups
+   *
+   * @return  all groups currently held in this store
    */
   Stream<Group> getAll();
 
   /**
    * Get all groups of a given type currently held in this store
+   *
+   * @param type the type to filter on
+   * @return the groups of that types
    */
   default Stream<Group> getByType(final String type) {
     return getAll().filter(a -> type.equals(a.getType()));
@@ -71,6 +90,9 @@ public interface GroupStore {
 
   /**
    * Get the group with the given ID, if it is currently held in this store
+   *
+   * @param groupId the id
+   * @return the group
    */
   Optional<Group> getById(final String groupId);
 

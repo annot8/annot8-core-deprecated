@@ -12,7 +12,8 @@ public interface Bounds {
    * Get the subset of data which is covered by these bounds, returning the data in the native
    * format of the Content.
    *
-   * Return optional empty if there is nothing covered.
+   * @param content the content the bounds should be applied to
+   * @return optional empty if there is nothing covered.
    */
   default <D, C extends Content<D>> Optional<D> getData(C content) {
     try {
@@ -27,7 +28,9 @@ public interface Bounds {
    *
    * Most bounds will likely support only one (or very few) required class and data class.
    *
-   * Return optional empty if there is nothing covered, or if the combinations are not supported.
+   * @param content the content the bounds should be applied to
+   * @param requiredClass the type of data required
+   * @return  optional empty if there is nothing covered, or if the combinations are not supported.
    */
   <D, C extends Content<D>, R> Optional<R> getData(C content, Class<R> requiredClass);
 

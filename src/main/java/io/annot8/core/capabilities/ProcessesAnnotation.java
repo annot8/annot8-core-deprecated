@@ -25,15 +25,22 @@ import java.lang.annotation.Target;
 public @interface ProcessesAnnotation {
 
   /**
-   * @return required annotation types
+   * Annotation type processed
+   * @return annotation types
    */
   String value();
 
   /**
-   * @return the bound classes
+   * Annotation bounds processed
+   * @return the bound classes (defaults to Bounds.class meaning any, but should be made as specific as possible)
    */
   Class<? extends Bounds> bounds() default Bounds.class;
 
+  /**
+   * Is the annotation required for the component to function?
+   *
+   * @return true if optional, default is false
+   */
   boolean optional() default false;
 
 }

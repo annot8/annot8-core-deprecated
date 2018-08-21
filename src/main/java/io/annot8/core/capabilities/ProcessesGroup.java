@@ -24,10 +24,17 @@ import java.lang.annotation.Target;
 public @interface ProcessesGroup {
 
   /**
-   * @return required annotation types
+   * Group types processed
+   *
+   * @return group types
    */
   String value();
 
+  /**
+   * Is the group required for the component to function?
+   *
+   * @return true if optional, default is false
+   */
   boolean optional() default false;
 
 

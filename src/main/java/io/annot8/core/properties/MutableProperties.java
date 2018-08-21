@@ -11,17 +11,22 @@ public interface MutableProperties extends Properties {
 
   /**
    * Set the property value for the specified key
+   * @param key the key
+   * @param value the value
    */
   void set(final String key, final Object value);
 
   /**
    * Remove the property for the specified key, and return it's object (if it exists)
+   * @param key the key to remove
+   * @return object which was present at that key (if it existed)
    */
   Optional<Object> remove(final String key);
 
 
   /**
    * Set the current properties to be equal to the map
+   * @param properties map to set
    */
   default void set(final Map<String, Object> properties) {
     removeAll();
@@ -37,6 +42,8 @@ public interface MutableProperties extends Properties {
 
   /**
    * Add all properties from the given map, overwriting values where they already exist
+   *
+   * @param properties the map to add
    */
   default void add(final Map<String, Object> properties) {
     if (properties != null) {
@@ -46,6 +53,8 @@ public interface MutableProperties extends Properties {
 
   /**
    * Remove all properties that match the given keys
+   *
+   * @param keys the keys to remove
    */
   default void remove(final Collection<String> keys) {
     if (keys != null) {

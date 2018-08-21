@@ -3,6 +3,13 @@ package io.annot8.core.capabilities;
 import io.annot8.core.bounds.Bounds;
 import java.util.Objects;
 
+/**
+ * Specification for annotation created, processed or deleted by a component.
+ *
+ * Note that optional will be set to true for create and delete operations. This reflects that
+ * typically we may or may not create/delete elements, even if all the prerequisites are met.
+ *
+ */
 public class AnnotationCapability {
 
   private final String type;
@@ -11,6 +18,11 @@ public class AnnotationCapability {
 
   private final boolean optional;
 
+  /**
+   * Create from {@link CreatesAnnotation}
+   *
+   * @param annotation the annotation
+   */
   public AnnotationCapability(CreatesAnnotation annotation) {
     this(
         annotation.value(),
@@ -19,6 +31,11 @@ public class AnnotationCapability {
     );
   }
 
+  /**
+   * Create from {@link DeletesAnnotation}
+   *
+   * @param annotation the annotation
+   */
   public AnnotationCapability(DeletesAnnotation annotation) {
     this(
         annotation.value(),
@@ -27,6 +44,11 @@ public class AnnotationCapability {
     );
   }
 
+  /**
+   * Create from {@link ProcessesAnnotation}
+   *
+   * @param annotation the annotation
+   */
   public AnnotationCapability(ProcessesAnnotation annotation) {
     this(
         annotation.value(),
@@ -35,6 +57,13 @@ public class AnnotationCapability {
     );
   }
 
+  /**
+   * Create from fields
+   *
+   * @param type the annotation type
+   * @param bounds the annotation bounds
+   * @param optional whether the above are required (processing specific)
+   */
   public AnnotationCapability(String type,
       Class<? extends Bounds> bounds, boolean optional) {
     this.type = type;
@@ -42,14 +71,29 @@ public class AnnotationCapability {
     this.optional = optional;
   }
 
+  /**
+   * Get the annotation type created/deleted/processed
+   *
+   * @return annotation type
+   */
   public String getType() {
     return type;
   }
 
+  /**
+   * Get the bounds created/deleted/processed
+   *
+   * @return
+   */
   public Class<? extends Bounds> getBounds() {
     return bounds;
   }
 
+  /**
+   * Is the annotation defined by this object optionally (required for processing, created, deleted)
+   *
+   * @return true if optional
+   */
   public boolean isOptional() {
     return optional;
   }

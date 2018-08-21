@@ -19,8 +19,14 @@ public interface AnnotationReference {
 
   /**
    * Convert a stream of annotation references to annotations
+   * @param references reference to convert (may be null)
+   * @return annotations
    */
   static Stream<Annotation> toAnnotations(Stream<AnnotationReference> references) {
+    if(references == null) {
+      return Stream.empty();
+    }
+
     return references.map(AnnotationReference::toAnnotation)
         .filter(Optional::isPresent)
         .map(Optional::get);
@@ -28,11 +34,15 @@ public interface AnnotationReference {
 
   /**
    * The name of the content to which this annotation belongs.
+   *
+   * @return the content name
    */
   String getContentName();
 
   /**
    * The annotation's id
+   *
+   * @return the id
    */
   String getAnnotationId();
 
@@ -40,6 +50,8 @@ public interface AnnotationReference {
    * Convert the reference to an annotations.
    *
    * Since the underlying content or annotation may have been deleted this returns an optional.
+   *
+   * @return the annotation
    */
   Optional<Annotation> toAnnotation();
 

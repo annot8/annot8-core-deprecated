@@ -12,5 +12,9 @@ import java.lang.annotation.Target;
 @Target(TYPE)
 public @interface DeletesAnnotations {
 
+  /**
+   * Get the array of annotations
+   * @return the repeated annotations
+   */
   DeletesAnnotation[] value();
 }

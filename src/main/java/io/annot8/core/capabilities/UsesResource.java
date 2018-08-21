@@ -10,7 +10,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * The resources which this component will required and use
+ * The resources which this component may or will use.
  */
 @Documented
 @Retention(RUNTIME)
@@ -19,10 +19,18 @@ import java.lang.annotation.Target;
 public @interface UsesResource {
 
   /**
+   * Resources class used.
+   *
    * @return resource class
    */
   Class<? extends Resource> value();
 
+
+  /**
+   * Is the resource required for the component to function?
+   *
+   * @return true if optional, default is false
+   */
   boolean optional() default false;
 
 }

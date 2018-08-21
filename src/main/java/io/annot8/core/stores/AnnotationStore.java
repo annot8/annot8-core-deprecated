@@ -13,19 +13,26 @@ import java.util.stream.Stream;
 public interface AnnotationStore {
 
   /**
-   * Return a builder object for the supported annotations
+   * Get a new annotation builder
+   *
+   * @return a builder object for the supported annotations
    */
   Annotation.Builder getBuilder();
 
   /**
-   * Return a builder to create a new annotation
+   * Get a builder to create a new annotation
+   *
+   * @return a builder to create a new annotation
    */
   default Annotation.Builder create() {
     return getBuilder();
   }
 
   /**
-   * Return a builder to based on the an existing  annotation, but don't overwrite that annotation
+   * Clone an existing annotation to create a new annotation
+   *
+   * @param existing the annotation to copy
+   * @return a builder to based on the an existing  annotation, but don't overwrite that annotation
    * on save.
    */
   default Annotation.Builder copy(Annotation existing) {
@@ -33,7 +40,10 @@ public interface AnnotationStore {
   }
 
   /**
-   * Return a builder to edit an existing annotation
+   * Edit an annotation (saving will replace the old version)
+   *
+   * @param existing the annotation to edit
+   * @return a builder to edit an existing annotation
    */
   default Annotation.Builder edit(Annotation existing) {
     return getBuilder().from(existing);
@@ -41,11 +51,15 @@ public interface AnnotationStore {
 
   /**
    * Delete an annotation from the store
+   *
+   * @param annotation the annotation to delete
    */
   void delete(final Annotation annotation);
 
   /**
    * Delete a collection of annotations from the store
+   *
+   * @param annotations the annotations to delete
    */
   default void delete(final Collection<Annotation> annotations) {
     annotations.forEach(this::delete);
@@ -53,6 +67,7 @@ public interface AnnotationStore {
 
   /**
    * Delete all annotations from the store
+   *
    */
   default void deleteAll() {
     delete(getAll().collect(Collectors.toList()));
@@ -60,11 +75,16 @@ public interface AnnotationStore {
 
   /**
    * Get all annotations currently held in this store
+   *
+   * @return annotations
    */
   Stream<Annotation> getAll();
 
   /**
    * Get all annotations of a given type currently held in this store
+   *
+   * @param type the annotation type to find
+   * @return annotations
    */
   default Stream<Annotation> getByType(final String type) {
     return getAll().filter(a -> type.equals(a.getType()));
@@ -72,6 +92,9 @@ public interface AnnotationStore {
 
   /**
    * Get all annotations of a given bounds currently held in this store
+   *
+   * @param boundsClass the bound to filter on
+   * @return annotations
    */
   default <B extends Bounds> Stream<Annotation> getByBounds(final Class<B> boundsClass) {
     return getAll()
@@ -80,6 +103,9 @@ public interface AnnotationStore {
 
   /**
    * Get the annotation with the given ID, if it is currently held in this store
+   *
+   * @param annotationId  the id
+   * @return annotation
    */
   Optional<Annotation> getById(final String annotationId);
 

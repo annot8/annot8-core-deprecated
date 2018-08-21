@@ -2,17 +2,35 @@ package io.annot8.core.capabilities;
 
 import java.util.Objects;
 
+/**
+ * Specification for group created, processed or deleted by a component.
+ *
+ * Note that optional will be set to true for create and delete operations. This reflects that
+ * typically we may or may not create/delete elements, even if all the prerequisites are met.
+ */
 public class GroupCapability {
 
   private final String type;
 
   private final boolean optional;
 
+
+  /**
+   * Create from details
+   *
+   * @param type the group type
+   * @param optional true if the resource optional
+   */
   public GroupCapability(String type, boolean optional) {
     this.type = type;
-    this.optional = optional;
+    this.optional =
+        optional;
   }
-
+  /**
+   * Create from {@link CreatesGroup}
+   *
+   * @param annotation specification
+   */
   public GroupCapability(CreatesGroup annotation) {
     this(
         annotation.value(),
@@ -20,6 +38,11 @@ public class GroupCapability {
     );
   }
 
+  /**
+   * Create from {@link DeletesGroup}
+   *
+   * @param annotation specification
+   */
   public GroupCapability(DeletesGroup annotation) {
     this(
         annotation.value(),
@@ -27,6 +50,11 @@ public class GroupCapability {
     );
   }
 
+  /**
+   * Create from {@link ProcessesGroup}
+   *
+   * @param annotation specification
+   */
   public GroupCapability(ProcessesGroup annotation) {
     this(
         annotation.value(),
@@ -34,10 +62,20 @@ public class GroupCapability {
     );
   }
 
+  /**
+   * Get the group type created/deleted/processed
+   *
+   * @return group type
+   */
   public String getType() {
     return type;
   }
 
+  /**
+   * Is the group defined by this object optionally (required for processing, created, deleted)
+   *
+   * @return true if optional
+   */
   public boolean isOptional() {
     return optional;
   }

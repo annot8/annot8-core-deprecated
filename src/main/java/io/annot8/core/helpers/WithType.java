@@ -6,7 +6,9 @@ package io.annot8.core.helpers;
 public interface WithType {
 
   /**
-   * Return the type assigned to this object
+   * Get the type
+   *
+   * @return  the type assigned to this object
    */
   String getType();
 }

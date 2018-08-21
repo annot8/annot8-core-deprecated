@@ -18,6 +18,8 @@ import java.lang.annotation.Target;
 public @interface DeletesGroup {
 
   /**
+   * Type of group deleted
+   *
    * @return group types
    */
   String value();

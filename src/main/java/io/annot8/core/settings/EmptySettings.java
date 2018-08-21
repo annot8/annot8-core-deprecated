@@ -11,6 +11,11 @@ public final class EmptySettings implements Settings {
     //No public constructor for singleton
   }
 
+  /**
+   * Get the instance
+   *
+   * @return instance of empty settings
+   */
   public static EmptySettings getInstance() {
     return INSTANCE;
   }

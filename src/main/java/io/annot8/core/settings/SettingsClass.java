@@ -18,6 +18,8 @@ public @interface SettingsClass {
 
   /**
    * The class used by this component to hold it's settings
+   *
+   * @return settings class
    */
   Class<? extends Settings> value();
 }

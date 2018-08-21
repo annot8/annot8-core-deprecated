@@ -8,7 +8,10 @@ package io.annot8.core.helpers.builders;
 public interface WithIdBuilder<A> {
 
   /**
-   * Return a builder with the given id
+   * Set the id
+   *
+   * @param id  the id to set
+   * @return  a builder with the given id
    */
   A withId(String id);
 

@@ -22,11 +22,15 @@ public @interface Parameter {
 
   /**
    * The configuration key associated with this parameter
+   *
+   * @return the key
    */
   String key();
 
   /**
    * A description of this parameter
+   *
+   * @return description
    */
   String description();
 }

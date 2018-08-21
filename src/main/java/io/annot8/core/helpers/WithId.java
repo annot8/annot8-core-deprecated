@@ -6,7 +6,9 @@ package io.annot8.core.helpers;
 public interface WithId {
 
   /**
-   * Return the ID assigned to this object
+   * Get the ID
+   *
+   * @return  the ID assigned to this object
    */
   String getId();
 }

@@ -19,6 +19,8 @@ import java.lang.annotation.Target;
 public @interface DeletesContent {
 
   /**
+   * Type of content deleted
+   *
    * @return the content class which will be deleted
    */
   Class<? extends Content<?>> value();

@@ -3,8 +3,7 @@ package io.annot8.core.components.responses;
 /**
  * Class to hold the response from a processor.
  *
- * The response consists of a status, and optionally any new items which should be processed by the
- * pipeline.
+ * The response consists of a status.
  */
 public interface ProcessorResponse {
 

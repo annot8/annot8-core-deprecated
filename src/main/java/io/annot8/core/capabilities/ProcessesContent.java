@@ -19,10 +19,17 @@ import java.lang.annotation.Target;
 public @interface ProcessesContent {
 
   /**
+   * Content processed
+   *
    * @return content classes
    */
   Class<? extends Content<?>> value();
 
+  /**
+   * Is the content required for the component to function?
+   *
+   * @return true if optional, default is false
+   */
   boolean optional() default false;
 
 }

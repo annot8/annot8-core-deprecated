@@ -18,6 +18,8 @@ import java.lang.annotation.Target;
 public @interface CreatesGroup {
 
   /**
+   * Type of group created
+   *
    * @return group types
    */
   String value();

@@ -7,10 +7,14 @@ package io.annot8.core.helpers.builders;
  * @param <E> The builder class
  * @param <A> The class to derive from
  */
-public interface WithFrom<E, A> {
+public interface WithFromBuilder<E, A> {
 
   /**
-   * Return a builder based on an existing object
+   * Add the informaton from the provided param
+   *
+   * @param from the object to build from
+   * @return builder based on an existing object
+   *
    */
   E from(final A from);
 }

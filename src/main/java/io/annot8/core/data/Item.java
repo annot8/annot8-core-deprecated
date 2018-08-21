@@ -13,45 +13,65 @@ import java.util.stream.Stream;
 public interface Item extends WithId, WithMutableProperties, WithGroups {
 
   /**
-   * Return true if this item has a content object with the specified name
+   * Check if content name exists
+   *
+   * @return true if this item has a content object with the specified name
    */
   default boolean hasContent(final String name) {
     return listContents().anyMatch(name::equals);
   }
 
   /**
-   * Return the names of the content objects currently held within this item
+   * The names of the content objects currently held within this item
+   *
+   * @return content names
    */
   Stream<String> listContents();
 
   /**
-   * Return the content object for the specified name
+   * The content object for the specified name
+   *
+   * @param name the content name
+   * @return the content if it exists
    */
   Optional<Content<?>> getContent(final String name);
 
   /**
-   * Return all content objects contained within this item
+   * All content objects contained within this item
+   *
+   * @return all content
    */
   Stream<Content<?>> getContents();
 
   /**
-   * Return all content objects of the specified class contained within this item
+   * All content objects of the specified class contained within this item
+   *
+   * @param clazz the content class to filter against
+   * @return content
    */
   <T extends Content<?>> Stream<T> getContents(final Class<T> clazz);
 
   /**
    * Create a new content builder to generate content.
+   *
+   * @param clazz the top level content type required
+   * @return content builder
+   * @throws UnsupportedContentException if the clazz can't be created
    */
   <C extends Content<D>, D> Content.Builder<C, D> create(Class<C> clazz)
       throws UnsupportedContentException;
 
   /**
    * Remove the specified content object from this item
+   *
+   * @param name the content name
    */
   void removeContent(final String name);
 
   /**
    * Creates a new item, with the current item set as the parent.
+   *
+   * @return new item
    */
   Item createChildItem();
 

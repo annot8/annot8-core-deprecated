@@ -20,11 +20,15 @@ public @interface CreatesAnnotation {
 
 
   /**
-   * @return annotation types
+   * Type of annotation created.
+   *
+   * @return annotation type
    */
   String value();
 
   /**
+   * Bounds of annotation generated
+   *
    * @return the bound classes
    */
   Class<? extends Bounds> bounds();

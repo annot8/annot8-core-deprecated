@@ -19,6 +19,8 @@ import java.lang.annotation.Target;
 public @interface CreatesContent {
 
   /**
+   * Content class to be created
+   *
    * @return the content class which will be generated
    */
   Class<? extends Content<?>> value();

@@ -3,138 +3,296 @@ package io.annot8.core.capabilities;
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.components.Resource;
 import io.annot8.core.data.Content;
+import io.annot8.core.helpers.builders.WithSave;
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 /**
- * Base capabilities interface used to describe the capabilities of a component
+ * Base capabilities interface used to describe the capabilities of a component.
+ *
+ * In all cases an empty stream should be returned (rather than null)
  */
 public interface Capabilities {
 
   /**
-   * Return the type of any required input annotations (i.e. annotations that must be present before
+   * The type of any input annotations (i.e. annotations that must be present before
    * a component can work)
+   *
+   * @return annotation specifications
    */
   Stream<AnnotationCapability> getProcessedAnnotations();
 
 
   /**
-   * Return the type of any output annotations produced by this component
+   * The type of any output annotations produced by this component
+   *
+   * @return annotation specifications
    */
   Stream<AnnotationCapability> getCreatedAnnotations();
 
   /**
-   * Return the type of any output annotations produced by this component
+   * The type of any output annotations deleted by this component
+   *
+   * @return annotation specifications
    */
   Stream<AnnotationCapability> getDeletedAnnotations();
 
   /**
-   * Return the type of any required input annotations (i.e. annotations that must be present before
+   * The type of any required input annotations (i.e. annotations that must be present before
    * a component can work)
+   *
+   * @return annotation specifications
    */
   Stream<GroupCapability> getProcessedGroups();
 
   /**
-   * Return the type of any output annotations produced by this component
+   * The type of any output annotations produced by this component
+   *
+   * @return group specifications
    */
   Stream<GroupCapability> getCreatedGroups();
 
 
   /**
-   * Return the type of any output annotations deleted by this component
+   * The type of any output annotations deleted by this component
+   *
+   * @return group specifications
    */
   Stream<GroupCapability> getDeletedGroups();
 
   /**
-   * Return the content classes produced by this component, or an empty stream if no new content
+   * The content classes produced by this component, or an empty stream if no new content
    * will be produced
+   *
+   * @return content specifications
    */
   Stream<ContentCapability> getCreatedContent();
 
 
   /**
-   * Return the type of any deleted content
+   * The type of any deleted content
+   *
+   * @return content specifications
    */
   Stream<ContentCapability> getDeletedContent();
 
   /**
-   * Return the type of any required content (i.e. content that must be present before a component
+   * The type of any required content (i.e. content that must be present before a component
    * can work)
+   *
+   * @return content specifications
    */
   Stream<ContentCapability> getProcessedContent();
 
   /**
-   * Return the resource classes required by this component
+   * The resource classes required by this component
+   *
+   * @return resource specifications
    */
   Stream<ResourceCapability> getUsedResources();
 
 
-  interface Builder {
+  /**
+   * Builder for capabilties
+   */
+  interface Builder extends WithSave<Capabilities> {
 
+    /**
+     * Declare that the component will process an annotation
+     *
+     * @param type annotation type
+     * @param clazz bounds class
+     * @param optional true if the component can function and generated output without this
+     * @return the builder for chaining
+     */
     default Builder processesAnnotation(String type, Class<? extends Bounds> clazz,
         boolean optional) {
       return processesAnnotation(new AnnotationCapability(type, clazz, optional));
     }
 
+    /**
+     * Declare that the component will create an annotation
+     *
+     * @param type annotation type
+     * @param clazz bounds class
+     * @return the builder for chaining
+     */
     default Builder createsAnnotation(String type, Class<? extends Bounds> clazz) {
       return createsAnnotation(new AnnotationCapability(type, clazz, true));
     }
 
+    /**
+     * Declare that the component will delete an annotation
+     *
+     * @param type annotation type
+     * @param clazz bounds class
+     * @return the builder for chaining
+     */
     default Builder deletesAnnotation(String type, Class<? extends Bounds> clazz) {
       return deletesAnnotation(new AnnotationCapability(type, clazz, true));
     }
 
+    /**
+     * Declare that the component will process a group
+     *
+     * @param type group type
+     * @param optional true if the component can function and generated output without this
+     * @return the builder for chaining
+     */
     default Builder processesGroup(String type, boolean optional) {
       return processesGroup(new GroupCapability(type, true));
     }
 
+    /**
+     * Declare that the component will create a group
+     *
+     * @param type annotation type
+     * @return the builder for chaining
+     */
     default Builder createsGroup(String type) {
       return createsGroup(new GroupCapability(type, true));
     }
 
+    /**
+     * Declare that the component will delete a group
+     *
+     * @param type annotation type
+     * @return the builder for chaining
+     */
     default Builder deletesGroup(String type) {
       return deletesGroup(new GroupCapability(type, true));
     }
 
+    /**
+     * Declare that the component will process a type of content
+     *
+     * @param clazz content type
+     * @param optional true if the component can function and generated output without this
+     * @return the builder for chaining
+     */
     default Builder processesContent(Class<? extends Content<?>> clazz, boolean optional) {
       return processesContent(new ContentCapability(clazz, optional));
     }
 
+    /**
+     * Declare that the component will create a type of content
+     *
+     * @param clazz content type
+     * @return the builder for chaining
+     */
     default Builder createsContent(Class<? extends Content<?>> clazz) {
       return createsContent(new ContentCapability(clazz, true));
     }
 
+    /**
+     * Declare that the component will delete a type of content
+     *
+     * @param clazz content type
+     * @return the builder for chaining
+     */
     default Builder deletesContent(Class<? extends Content<?>> clazz) {
       return deletesContent(new ContentCapability(clazz, true));
     }
 
+    /**
+     * Declare that the component will use a resource
+     *
+     * @param clazz resorce type
+     * @param optional true if the component can function and generated output without this
+     * @return the builder for chaining
+     */
     default Builder usesResource(Class<? extends Resource> clazz, boolean optional) {
       return usesResource(new ResourceCapability(clazz, true));
     }
 
+    /**
+     * Declare that the component will process an annotation
+     *
+     * @param capability capability definition
+     * @return the builder for chaining
+     */
     Builder processesAnnotation(AnnotationCapability capability);
 
+    /**
+     * Declare that the component will create an annotation
+     *
+     * @param capability capability definition
+     * @return the builder for chaining
+     */
     Builder createsAnnotation(AnnotationCapability capability);
 
+    /**
+     * Declare that the component will delete an annotation
+     *
+     * @param capability capability definition
+     * @return the builder for chaining
+     */
     Builder deletesAnnotation(AnnotationCapability capability);
 
+    /**
+     * Declare that the component will process a group
+     *
+     * @param capability capability definition
+     * @return the builder for chaining
+     */
     Builder processesGroup(GroupCapability capability);
 
+    /**
+     * Declare that the component will create a group
+     *
+     * @param capability capability definition
+     * @return the builder for chaining
+     */
     Builder createsGroup(GroupCapability capability);
 
+    /**
+     * Declare that the component will delete a group
+     *
+     * @param capability capability definition
+     * @return the builder for chaining
+     */
     Builder deletesGroup(GroupCapability capability);
 
+    /**
+     * Declare that the component will process a content type
+     *
+     * @param capability capability definition
+     * @return the builder for chaining
+     */
     Builder processesContent(ContentCapability capability);
 
+    /**
+     * Declare that the component will create a content type
+     *
+     * @param capability capability definition
+     * @return the builder for chaining
+     */
     Builder createsContent(ContentCapability capability);
 
+    /**
+     * Declare that the component will delete a content type
+     *
+     * @param capability capability definition
+     * @return the builder for chaining
+     */
     Builder deletesContent(ContentCapability capability);
 
+    /**
+     * Declare that the component will use a resource
+     *
+     * @param capability capability definition
+     * @return the builder for chaining
+     */
     Builder usesResource(ResourceCapability capability);
 
-    Capabilities save();
 
+    /**
+     * Merge another set of existing capabilities.
+     *
+     * @param capabilities the capabilities to add
+     * @return this builder for chaining
+     */
     default Builder merge(Capabilities capabilities) {
 
       if (capabilities != null) {
@@ -156,8 +314,15 @@ public interface Capabilities {
       return this;
     }
 
+    /**
+     * Applies the consumer to each non-null member of the stream.
+     *
+     * @param stream stream of elements (may be null, and contain nulls)
+     * @param consumer applied to elements
+     * @param <T> the type of element
+     */
     private <T> void applySafely(Stream<T> stream, Consumer<T> consumer) {
-      if (stream == null) {
+      if (stream == null || consumer == null) {
         return;
       }
 

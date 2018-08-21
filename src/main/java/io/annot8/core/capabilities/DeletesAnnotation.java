@@ -19,11 +19,15 @@ import java.lang.annotation.Target;
 public @interface DeletesAnnotation {
 
   /**
+   * Type of annotation deleted.
+   *
    * @return annotation types
    */
   String value();
 
   /**
+   * Bound of annotation deleted
+   *
    * @return the bound classes
    */
   Class<? extends Bounds> bounds();
