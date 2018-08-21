@@ -1,6 +1,5 @@
 package io.annot8.core.annotations;
 
-import java.util.Optional;
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithProperties;
@@ -11,6 +10,7 @@ import io.annot8.core.helpers.builders.WithNewIdBuilder;
 import io.annot8.core.helpers.builders.WithPropertiesBuilder;
 import io.annot8.core.helpers.builders.WithSave;
 import io.annot8.core.helpers.builders.WithTypeBuilder;
+import java.util.Optional;
 
 /**
  * Base annotation interface from which all other annotations extend.
@@ -29,7 +29,7 @@ public interface Annotation extends WithId, WithType, WithProperties {
   @SuppressWarnings("unchecked")
   default <B extends Bounds> Optional<B> getBounds(Class<B> boundsClass) {
     Bounds bounds = getBounds();
-    if (bounds != null && boundsClass.isInstance(bounds)) {
+    if (boundsClass.isInstance(bounds)) {
       // This is checked
       return Optional.of((B) bounds);
     }

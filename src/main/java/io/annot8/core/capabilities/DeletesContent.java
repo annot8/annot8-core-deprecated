@@ -11,7 +11,6 @@ import java.lang.annotation.Target;
 
 /**
  * Denotes that the component will delete content.
- *
  */
 @Documented
 @Retention(RUNTIME)
@@ -19,9 +18,9 @@ import java.lang.annotation.Target;
 @Repeatable(DeletesContents.class)
 public @interface DeletesContent {
 
-	/**
-	 * @return the content class which will be deleted
-	 */
-	Class<? extends Content<?>> value();
+  /**
+   * @return the content class which will be deleted
+   */
+  Class<? extends Content<?>> value();
 
 }

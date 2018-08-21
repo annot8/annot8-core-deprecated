@@ -1,6 +1,5 @@
 package io.annot8.core.capabilities;
 
-import io.annot8.core.bounds.Bounds;
 import io.annot8.core.data.Content;
 import java.util.Objects;
 

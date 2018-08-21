@@ -40,7 +40,6 @@ public interface AnnotationReference {
    * Convert the reference to an annotations.
    *
    * Since the underlying content or annotation may have been deleted this returns an optional.
-   *
    */
   Optional<Annotation> toAnnotation();
 

@@ -12,10 +12,11 @@ import java.lang.annotation.Target;
 /**
  * Denotes the annotation types which are processed by the component.
  *
- * To simply use value and required are synonymous and either can be used. If both are used they are merged into a combined list.
+ * To simply use value and required are synonymous and either can be used. If both are used they are
+ * merged into a combined list.
  *
- * Optional types are not needed in order for the component to generate output, but they may enhance the processing.
- *
+ * Optional types are not needed in order for the component to generate output, but they may enhance
+ * the processing.
  */
 @Documented
 @Retention(RUNTIME)
@@ -23,16 +24,16 @@ import java.lang.annotation.Target;
 @Repeatable(ProcessesAnnotations.class)
 public @interface ProcessesAnnotation {
 
-	/**
-	 * @return required annotation types
-	 */
-	String value();
+  /**
+   * @return required annotation types
+   */
+  String value();
 
-	/**
-	 * @return the bound classes
-	 */
-	Class<? extends Bounds> bounds() default Bounds.class;
+  /**
+   * @return the bound classes
+   */
+  Class<? extends Bounds> bounds() default Bounds.class;
 
-	boolean optional() default false;
+  boolean optional() default false;
 
 }

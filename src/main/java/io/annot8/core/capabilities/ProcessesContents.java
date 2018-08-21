@@ -12,6 +12,6 @@ import java.lang.annotation.Target;
 @Target(TYPE)
 public @interface ProcessesContents {
 
-	ProcessesContent[] value();
+  ProcessesContent[] value();
 
 }

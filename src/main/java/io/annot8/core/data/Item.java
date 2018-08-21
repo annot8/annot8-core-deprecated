@@ -1,11 +1,11 @@
 package io.annot8.core.data;
 
-import java.util.Optional;
-import java.util.stream.Stream;
 import io.annot8.core.exceptions.UnsupportedContentException;
 import io.annot8.core.helpers.WithGroups;
 import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithMutableProperties;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * Base item interface from which all item implementations extend.
@@ -58,8 +58,8 @@ public interface Item extends WithId, WithMutableProperties, WithGroups {
   /**
    * Stop processing this item any further.
    *
-   * Note that it is up to the underlying implementation as to whether they delete existing output from this item or not.
-   *
+   * Note that it is up to the underlying implementation as to whether they delete existing output
+   * from this item or not.
    */
   void discard();
 

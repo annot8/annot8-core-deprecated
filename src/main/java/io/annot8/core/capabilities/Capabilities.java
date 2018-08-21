@@ -59,67 +59,58 @@ public interface Capabilities {
   Stream<ContentCapability> getDeletedContent();
 
   /**
-   * Return the type of any required content (i.e. content that must be present before
-   * a component can work)
+   * Return the type of any required content (i.e. content that must be present before a component
+   * can work)
    */
   Stream<ContentCapability> getProcessedContent();
 
-    /**
-     * Return the resource classes required by this component
-     */
+  /**
+   * Return the resource classes required by this component
+   */
   Stream<ResourceCapability> getUsedResources();
 
 
   interface Builder {
 
-    default Builder processesAnnotation(String type, Class<? extends Bounds> clazz, boolean optional) {
-      processesAnnotation(new AnnotationCapability(type, clazz, optional));
-      return this;
+    default Builder processesAnnotation(String type, Class<? extends Bounds> clazz,
+        boolean optional) {
+      return processesAnnotation(new AnnotationCapability(type, clazz, optional));
     }
 
     default Builder createsAnnotation(String type, Class<? extends Bounds> clazz) {
-      createsAnnotation(new AnnotationCapability(type, clazz, true));
-      return this;
+      return createsAnnotation(new AnnotationCapability(type, clazz, true));
     }
 
     default Builder deletesAnnotation(String type, Class<? extends Bounds> clazz) {
-      deletesAnnotation(new AnnotationCapability(type, clazz, true));
-      return this;
+      return deletesAnnotation(new AnnotationCapability(type, clazz, true));
     }
 
     default Builder processesGroup(String type, boolean optional) {
-      processesGroup(new GroupCapability(type, true));
-      return this;
+      return processesGroup(new GroupCapability(type, true));
     }
 
-    default Builder createsGroup(String type)  {
-      createsGroup(new GroupCapability(type, true));
-      return this;
+    default Builder createsGroup(String type) {
+      return createsGroup(new GroupCapability(type, true));
     }
 
     default Builder deletesGroup(String type) {
-      deletesGroup(new GroupCapability(type, true));
-      return this;
+      return deletesGroup(new GroupCapability(type, true));
     }
 
     default Builder processesContent(Class<? extends Content<?>> clazz, boolean optional) {
-      processesContent(new ContentCapability(clazz, optional));
-      return this;
+      return processesContent(new ContentCapability(clazz, optional));
     }
 
     default Builder createsContent(Class<? extends Content<?>> clazz) {
-      createsContent(new ContentCapability(clazz, true));
-      return this;
+      return createsContent(new ContentCapability(clazz, true));
     }
 
     default Builder deletesContent(Class<? extends Content<?>> clazz) {
-      deletesContent(new ContentCapability(clazz, true));
-      return this;
+      return deletesContent(new ContentCapability(clazz, true));
     }
 
     default Builder usesResource(Class<? extends Resource> clazz, boolean optional) {
-      usesResource(new ResourceCapability(clazz, true));
-      return this;
+      return usesResource(new ResourceCapability(clazz, true));
     }
 
     Builder processesAnnotation(AnnotationCapability capability);
@@ -146,7 +137,7 @@ public interface Capabilities {
 
     default Builder merge(Capabilities capabilities) {
 
-      if(capabilities != null) {
+      if (capabilities != null) {
         applySafely(capabilities.getCreatedContent(), this::createsContent);
         applySafely(capabilities.getCreatedAnnotations(), this::createsAnnotation);
         applySafely(capabilities.getCreatedGroups(), this::createsGroup);
@@ -166,7 +157,7 @@ public interface Capabilities {
     }
 
     private <T> void applySafely(Stream<T> stream, Consumer<T> consumer) {
-      if(stream == null) {
+      if (stream == null) {
         return;
       }
 

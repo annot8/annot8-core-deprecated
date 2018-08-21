@@ -10,7 +10,6 @@ import java.lang.annotation.Target;
 
 /**
  * Denotes the group types the component may delete.
- *
  */
 @Documented
 @Retention(RUNTIME)
@@ -18,9 +17,9 @@ import java.lang.annotation.Target;
 @Repeatable(DeletesGroups.class)
 public @interface DeletesGroup {
 
-	/**
-	 * @return group types
-	 */
-	String value();
+  /**
+   * @return group types
+   */
+  String value();
 
 }

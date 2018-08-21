@@ -1,10 +1,10 @@
 package io.annot8.core.exceptions;
 
 /**
- * Runtime exception indicating that an attempt to either create or use
- * an invalid Bounds object has been performed.
+ * Runtime exception indicating that an attempt to either create or use an invalid Bounds object has
+ * been performed.
  */
-public class InvalidBoundsException extends Annot8RuntimeException{
+public class InvalidBoundsException extends Annot8RuntimeException {
 
   private static final long serialVersionUID = 1L;
 

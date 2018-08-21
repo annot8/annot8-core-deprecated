@@ -10,11 +10,12 @@ import java.lang.annotation.Target;
 
 /**
  * Denotes the groups types which are processed by the component.
- * 
- * To simply use value and required are synonymous and either can be used. If both are used they are merged into a combined list. 
- * 
- * Optional types are not needed in order for the component to generate output, but they may enhance the processing.
- *  
+ *
+ * To simply use value and required are synonymous and either can be used. If both are used they are
+ * merged into a combined list.
+ *
+ * Optional types are not needed in order for the component to generate output, but they may enhance
+ * the processing.
  */
 @Documented
 @Retention(RUNTIME)
@@ -22,12 +23,12 @@ import java.lang.annotation.Target;
 @Repeatable(ProcessesGroups.class)
 public @interface ProcessesGroup {
 
-	/**
-	 * @return required annotation types 
-	 */
-	String value();
+  /**
+   * @return required annotation types
+   */
+  String value();
 
-	boolean optional() default false;
+  boolean optional() default false;
 
 
 }

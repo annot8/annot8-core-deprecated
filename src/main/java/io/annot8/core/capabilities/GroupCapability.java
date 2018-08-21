@@ -1,6 +1,5 @@
 package io.annot8.core.capabilities;
 
-import io.annot8.core.bounds.Bounds;
 import java.util.Objects;
 
 public class GroupCapability {

@@ -9,15 +9,15 @@ import java.util.Optional;
 public interface Bounds {
 
   /**
-   * Get the subset of data which is covered by these bounds,
-   * returning the data in the native format of the Content.
+   * Get the subset of data which is covered by these bounds, returning the data in the native
+   * format of the Content.
    *
    * Return optional empty if there is nothing covered.
    */
-  default <D, C extends Content<D>> Optional<D> getData(C content){
+  default <D, C extends Content<D>> Optional<D> getData(C content) {
     try {
-      return (Optional<D>) getData(content, content.getDataClass());
-    }catch (ClassCastException cce){
+      return getData(content, content.getDataClass());
+    } catch (ClassCastException cce) {
       return Optional.empty();
     }
   }

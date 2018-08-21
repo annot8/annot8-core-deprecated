@@ -11,7 +11,6 @@ import java.lang.annotation.Target;
 
 /**
  * Denotes the annotation types which the component will delete.
- *
  */
 @Documented
 @Retention(RUNTIME)
@@ -19,14 +18,14 @@ import java.lang.annotation.Target;
 @Repeatable(DeletesAnnotations.class)
 public @interface DeletesAnnotation {
 
-	/**
-	 * @return annotation types
-	 */
-	String value();
+  /**
+   * @return annotation types
+   */
+  String value();
 
-	/**
-	 * @return the bound classes
-	 */
-	Class<? extends Bounds> bounds();
-	
+  /**
+   * @return the bound classes
+   */
+  Class<? extends Bounds> bounds();
+
 }

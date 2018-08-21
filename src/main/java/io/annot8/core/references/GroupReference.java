@@ -24,7 +24,6 @@ public interface GroupReference {
    * Convert a reference to a group instance.
    *
    * Since the group may have been deleted, this returns an optional.
-   *
    */
   Optional<Group> toGroup();
 

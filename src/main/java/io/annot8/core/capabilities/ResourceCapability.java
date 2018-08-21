@@ -1,7 +1,6 @@
 package io.annot8.core.capabilities;
 
 import io.annot8.core.components.Resource;
-import io.annot8.core.data.Content;
 import java.util.Objects;
 
 public class ResourceCapability {

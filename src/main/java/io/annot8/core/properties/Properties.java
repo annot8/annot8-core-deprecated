@@ -52,9 +52,9 @@ public interface Properties {
    */
   @SuppressWarnings("unchecked")
   default <T> T getOrDefault(final String key, final T defaultValue) {
-    final Class<? extends Object> clazz = defaultValue.getClass();
+    final Class<?> clazz = defaultValue.getClass();
     final Object o = getObjectOrDefault(key, defaultValue.getClass());
-    if (o != null && clazz.isInstance(o)) {
+    if (clazz.isInstance(o)) {
       return (T) clazz.cast(o);
     } else {
       return defaultValue;
