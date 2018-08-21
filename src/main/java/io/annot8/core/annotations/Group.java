@@ -1,19 +1,20 @@
 package io.annot8.core.annotations;
 
-import io.annot8.core.helpers.WithId;
-import io.annot8.core.helpers.WithProperties;
-import io.annot8.core.helpers.WithType;
-import io.annot8.core.helpers.builders.WithFrom;
-import io.annot8.core.helpers.builders.WithNewIdBuilder;
-import io.annot8.core.helpers.builders.WithPropertiesBuilder;
-import io.annot8.core.helpers.builders.WithSave;
-import io.annot8.core.helpers.builders.WithTypeBuilder;
-import io.annot8.core.references.AnnotationReference;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import io.annot8.core.helpers.WithId;
+import io.annot8.core.helpers.WithProperties;
+import io.annot8.core.helpers.WithType;
+import io.annot8.core.helpers.builders.WithFrom;
+import io.annot8.core.helpers.builders.WithIdBuilder;
+import io.annot8.core.helpers.builders.WithNewIdBuilder;
+import io.annot8.core.helpers.builders.WithPropertiesBuilder;
+import io.annot8.core.helpers.builders.WithSave;
+import io.annot8.core.helpers.builders.WithTypeBuilder;
+import io.annot8.core.references.AnnotationReference;
 
 /**
  * Base annotation interface from which all other annotations extend.
@@ -97,6 +98,7 @@ public interface Group extends WithId, WithType, WithProperties {
    * Builder interface to create (immutable) Group classes
    */
   interface Builder extends
+      WithIdBuilder<Builder>,
       WithTypeBuilder<Builder>,
       WithPropertiesBuilder<Builder>,
       WithNewIdBuilder<Builder>,
