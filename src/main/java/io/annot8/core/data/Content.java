@@ -52,8 +52,12 @@ public interface Content<D> extends WithId, WithProperties {
 
   /**
    * Builder interface to create (immutable) Content classes
+   *
+   * Note that in theory we might assume that we want A extends Content(D) but that is restrictive on the builder
+   * For example we might want a Content(D) but the way to get instance of D if through a provider, thus we need to
+   * withData(Supplier(D)) rather than withData(D).
    */
-  interface Builder<A extends Content<D>, D> extends
+  interface Builder<A extends Content<?>, D> extends
       WithPropertiesBuilder<Builder<A, D>>,
       WithFromBuilder<Builder<A, D>, A>,
       WithIdBuilder<Builder<A, D>>,
