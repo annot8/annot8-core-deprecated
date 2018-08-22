@@ -32,7 +32,7 @@ public class GroupStoreTest {
   @Test
   public void testCreate() {
     GroupStore store = new TestGroupStore();
-    Builder builder = store.getBuilder();
+    Builder builder = store.create();
     assertNotNull(builder);
   }
 
