@@ -7,7 +7,6 @@ import static org.mockito.Mockito.doReturn;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import io.annot8.core.bounds.Bounds;
 
@@ -24,6 +23,9 @@ public class AnnotationCapabilityTest {
 
   @Mock
   private ProcessesAnnotation processesAnnotation;
+
+  @Mock
+  private CreatesAnnotation empty;
 
   @Test
   public void testCreatesAnnotationConstructor() {
@@ -72,9 +74,8 @@ public class AnnotationCapabilityTest {
     doReturn(TestBounds.class).when(createsAnnotation).bounds();
     doReturn(TEST_VALUE).when(createsAnnotation).value();
 
-    CreatesAnnotation creates2 = Mockito.mock(CreatesAnnotation.class);
     AnnotationCapability cap1 = new AnnotationCapability(createsAnnotation);
-    AnnotationCapability cap2 = new AnnotationCapability(creates2);
+    AnnotationCapability cap2 = new AnnotationCapability(empty);
 
     assertFalse(cap1.equals(cap2));
     assertFalse(cap1.equals(null));

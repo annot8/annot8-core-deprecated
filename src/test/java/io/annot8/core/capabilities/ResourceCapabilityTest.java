@@ -7,7 +7,6 @@ import static org.mockito.Mockito.doReturn;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import io.annot8.core.components.Resource;
 
@@ -16,6 +15,9 @@ public class ResourceCapabilityTest {
 
   @Mock
   private UsesResource usesResource;
+
+  @Mock
+  private UsesResource empty;
 
   @Test
   public void testUsesResourceConstructor() {
@@ -43,7 +45,7 @@ public class ResourceCapabilityTest {
     doReturn(TestResource.class).when(usesResource).value();
     doReturn(true).when(usesResource).optional();
     ResourceCapability capability = new ResourceCapability(usesResource);
-    ResourceCapability capability2 = new ResourceCapability(Mockito.mock(UsesResource.class));
+    ResourceCapability capability2 = new ResourceCapability(empty);
     assertFalse(capability.equals(capability2));
     assertFalse(capability.equals(null));
   }

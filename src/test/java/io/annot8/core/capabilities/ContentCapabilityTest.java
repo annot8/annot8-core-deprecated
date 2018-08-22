@@ -7,7 +7,6 @@ import static org.mockito.Mockito.doReturn;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import io.annot8.core.data.Content;
 
@@ -22,6 +21,9 @@ public class ContentCapabilityTest {
 
   @Mock
   private ProcessesContent processesContent;
+
+  @Mock
+  private CreatesContent empty;
 
   @Test
   public void testCreatesContentConstructor() {
@@ -61,7 +63,7 @@ public class ContentCapabilityTest {
   public void testNotEquals() {
     doReturn(TestContent.class).when(createsContent).value();
     ContentCapability capability = new ContentCapability(createsContent);
-    ContentCapability capability2 = new ContentCapability(Mockito.mock(CreatesContent.class));
+    ContentCapability capability2 = new ContentCapability(empty);
     assertFalse(capability.equals(capability2));
     assertFalse(capability.equals(null));
   }

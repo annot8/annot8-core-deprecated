@@ -7,7 +7,6 @@ import static org.mockito.Mockito.doReturn;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
@@ -23,6 +22,9 @@ public class GroupCapabilityTest {
 
   @Mock
   private ProcessesGroup processesGroup;
+
+  @Mock
+  private CreatesGroup empty;
 
   @Test
   public void testCreatesGroupConstructor() {
@@ -62,7 +64,7 @@ public class GroupCapabilityTest {
   public void testNotEquals() {
     doReturn(GROUP_TYPE).when(createsGroup).value();
     GroupCapability capability = new GroupCapability(createsGroup);
-    GroupCapability capability2 = new GroupCapability(Mockito.mock(CreatesGroup.class));
+    GroupCapability capability2 = new GroupCapability(empty);
     assertFalse(capability.equals(capability2));
     assertFalse(capability.equals(null));
   }
