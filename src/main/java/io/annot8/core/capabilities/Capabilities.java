@@ -286,6 +286,14 @@ public interface Capabilities {
      */
     Builder usesResource(ResourceCapability capability);
 
+    /**
+     * Save content of the builder into an capabilities
+     *
+     * Note this does not throw an exception (hence overrides the WithSave)
+     *
+     * @return the object being built by this builder
+     */
+    Capabilities save();
 
     /**
      * Merge another set of existing capabilities.
