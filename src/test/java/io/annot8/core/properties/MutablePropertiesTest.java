@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
-public class MutablePropertiesTest extends AbstractPropertiesTest {
+public class MutablePropertiesTest extends PropertiesTestResources {
 
   @Test
   public void testSet() {

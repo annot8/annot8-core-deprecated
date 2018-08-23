@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit tests for the default methods on the {@link Properties} interface.
  */
-public class PropertiesTest extends AbstractPropertiesTest {
+public class PropertiesTest extends PropertiesTestResources {
 
   @Test
   public void testHas() {

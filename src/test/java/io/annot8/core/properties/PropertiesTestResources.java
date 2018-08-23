@@ -3,7 +3,7 @@ package io.annot8.core.properties;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AbstractPropertiesTest {
+public class PropertiesTestResources {
 
   protected static final String TEST_KEY = "KEY";
   protected static final String TEST_VALUE = "VALUE";
