@@ -136,7 +136,7 @@ public class GroupStoreTest {
     private String type;
     private ImmutableProperties properties;
     private String role;
-    private Map<String, Stream<AnnotationReference>> references;
+    private Map<String, Collection<AnnotationReference>> references;
 
     @Override
     public Builder withId(String id) {

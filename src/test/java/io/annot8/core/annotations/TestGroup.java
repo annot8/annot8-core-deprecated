@@ -1,7 +1,10 @@
 package io.annot8.core.annotations;
 
+import java.util.Collection;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import io.annot8.core.properties.ImmutableProperties;
 import io.annot8.core.references.AnnotationReference;
@@ -11,11 +14,11 @@ public class TestGroup implements Group {
   private String id;
   private String type;
   private ImmutableProperties properties;
-  private Map<String, Stream<AnnotationReference>> references;
+  private Map<String, Collection<AnnotationReference>> references;
   private String role;
 
   public TestGroup(String id, String type, ImmutableProperties properties,
-      Map<String, Stream<AnnotationReference>> references, String role) {
+      Map<String, Collection<AnnotationReference>> references, String role) {
     this.id = id;
     this.type = type;
     this.properties = properties;
@@ -40,7 +43,8 @@ public class TestGroup implements Group {
 
   @Override
   public Map<String, Stream<AnnotationReference>> getReferences() {
-    return references;
+    return references.entrySet().stream()
+        .collect(Collectors.toMap(Entry::getKey, e -> e.getValue().stream()));
   }
 
   @Override

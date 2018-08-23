@@ -49,7 +49,10 @@ public interface Group extends WithId, WithType, WithProperties {
    * @return stream of annotations having that role
    */
   default Stream<Annotation> getAnnotations(final String role) {
-    return getAnnotations().get(role);
+    if (getAnnotations().containsKey(role)) {
+      return getAnnotations().get(role);
+    }
+    return Stream.empty();
   }
 
   /**
