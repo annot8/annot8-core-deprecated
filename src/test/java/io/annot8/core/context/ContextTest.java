@@ -97,6 +97,11 @@ public class ContextTest {
 
 
   private class TestSettings implements Settings {
+
+    @Override
+    public boolean validate() {
+      return true;
+    }
   }
 
 

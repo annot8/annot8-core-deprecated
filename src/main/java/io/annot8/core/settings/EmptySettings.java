@@ -19,4 +19,9 @@ public final class EmptySettings implements Settings {
   public static EmptySettings getInstance() {
     return INSTANCE;
   }
+
+  @Override
+  public boolean validate() {
+    return true;
+  }
 }

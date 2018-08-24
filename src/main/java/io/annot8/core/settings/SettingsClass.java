@@ -27,4 +27,11 @@ public @interface SettingsClass {
    * @return settings class
    */
   Class<? extends Settings> value();
+
+  /**
+   * Is the content required for the component to function?
+   *
+   * @return true if optional, default is false
+   */
+  boolean optional() default false;
 }

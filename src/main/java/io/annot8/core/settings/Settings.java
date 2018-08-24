@@ -5,4 +5,20 @@ package io.annot8.core.settings;
  */
 public interface Settings {
 
+
+  /**
+   *
+   * Check that the settings are sufficiently complete to allow them to be used.
+   *
+   * You should log any errors in validation.
+   *
+   * Validation will be ignored/superceded by more strict validation by the caller (for example,
+   * the caller might offer defaults if data is missing). However the implementation should be
+   * sufficiently robust that the use of settings instance as-is would not cause null pointers or
+   * obvious errors.
+   *
+   *
+   * @return true is the settings are valid
+   */
+  boolean validate();
 }
