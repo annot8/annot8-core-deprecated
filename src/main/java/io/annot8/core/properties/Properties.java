@@ -11,6 +11,14 @@ import java.util.stream.Stream;
  */
 public interface Properties {
 
+  static boolean equals(Properties a, Properties b) {
+    return a.getAll().equals(b.getAll());
+  }
+
+  static int hashCode(Properties properties) {
+    return properties.getAll().hashCode();
+  }
+
   /**
    * Check if a key exists
    *
