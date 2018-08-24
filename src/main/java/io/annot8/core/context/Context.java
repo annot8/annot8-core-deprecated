@@ -19,19 +19,19 @@ public interface Context {
    * Return a settings object as the given class, attempting to create a new settings object of that
    * class if the currently given settings are not of this class.
    */
-  default <T extends Settings> T getSettings(final Class<T> clazz) {
+  default <T extends Settings> Optional<T> getSettings(final Class<T> clazz) {
     final Optional<Settings> o = getSettings();
     if (o.isPresent()) {
       final Object v = o.get();
       if (clazz.isInstance(v)) {
-        return clazz.cast(v);
+        return Optional.of(clazz.cast(v));
       }
     }
 
     try {
-      return clazz.getConstructor().newInstance();
+      return Optional.of(clazz.getConstructor().newInstance());
     } catch (final Exception e) {
-      return null;
+      return Optional.empty();
     }
   }
 
