@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 public class ContentCapability {
 
-  private final Class<? extends Content> type;
+  private final Class<? extends Content<?>> type;
 
   private final boolean optional;
 
@@ -60,7 +60,7 @@ public class ContentCapability {
    * @param optional true if the resource optional
    */
   public ContentCapability(
-      Class<? extends Content> type, boolean optional) {
+      Class<? extends Content<?>> type, boolean optional) {
     this.type = type;
     this.optional = optional;
   }
@@ -70,7 +70,7 @@ public class ContentCapability {
    *
    * @return content type
    */
-  public Class<? extends Content> getType() {
+  public Class<? extends Content<?>> getType() {
     return type;
   }
 
