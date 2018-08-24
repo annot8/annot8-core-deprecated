@@ -11,23 +11,26 @@ import java.util.stream.Stream;
 public interface Context {
 
   /**
-   * Return the settings object for the component that this context is being passed to.
+   * The settings for the component that this context is being passed to.
    */
-  Optional<Settings> getSettings();
+  Stream<Settings> getSettings();
 
   /**
    * Return a settings object as the given class, attempting to create a new settings object of that
    * class if the currently given settings are not of this class.
    */
   default <T extends Settings> Optional<T> getSettings(final Class<T> clazz) {
-    final Optional<Settings> o = getSettings();
-    if (o.isPresent()) {
-      final Object v = o.get();
-      if (clazz.isInstance(v)) {
-        return Optional.of(clazz.cast(v));
-      }
+    final Stream<Settings> stream = getSettings();
+
+    Optional<T> optional = stream.filter(clazz::isInstance)
+        .map(clazz::cast)
+        .findFirst();
+
+    if(optional.isPresent()) {
+      return optional;
     }
 
+    // If not, found then try to create new instance
     try {
       return Optional.of(clazz.getConstructor().newInstance());
     } catch (final Exception e) {
@@ -36,7 +39,11 @@ public interface Context {
   }
 
   /**
-   * Return the resource of the given type associated with the given key
+   *Find the resource of the given type associated with the given key
+   *
+   * @param key the  key (if null / empty then any resource can be returned)
+   * @param clazz the required resource class
+   * @return resouce if found
    */
   <T extends Resource> Optional<T> getResource(final String key, final Class<T> clazz);
 

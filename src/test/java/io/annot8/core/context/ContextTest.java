@@ -26,13 +26,13 @@ public class ContextTest {
     Context context2 = Mockito.mock(Context.class);
     TestSettings settings = new TestSettings();
     Settings settings2 = Mockito.mock(Settings.class);
-    doReturn(Optional.of(settings)).when(context).getSettings();
-    doReturn(Optional.of(settings2)).when(context2).getSettings();
+    doReturn(Stream.of(settings)).when(context).getSettings();
+    doReturn(Stream.of(settings2)).when(context2).getSettings();
     doCallRealMethod().when(context).getSettings(Mockito.any());
     doCallRealMethod().when(context2).getSettings(Mockito.any());
 
-    assertEquals(settings, context.getSettings(TestSettings.class));
-    assertNotEquals(settings, context2.getSettings(TestSettings.class));
+    assertEquals(settings, context.getSettings(TestSettings.class).get());
+    assertFalse(context2.getSettings(TestSettings.class).isPresent());
   }
 
   @Test
