@@ -2,16 +2,17 @@ package io.annot8.core.capabilities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import io.annot8.core.bounds.Bounds;
+import io.annot8.core.capabilities.Capabilities.Builder;
+import io.annot8.core.components.Resource;
+import io.annot8.core.data.Content;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
-import io.annot8.core.bounds.Bounds;
-import io.annot8.core.capabilities.Capabilities.Builder;
-import io.annot8.core.components.Resource;
-import io.annot8.core.data.Content;
 
 /**
  * Unit tests for the default implementations of the {@link Capabilities} interface

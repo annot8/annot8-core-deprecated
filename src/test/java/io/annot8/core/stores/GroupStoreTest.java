@@ -4,6 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import io.annot8.core.annotations.Annotation;
+import io.annot8.core.annotations.Group;
+import io.annot8.core.annotations.Group.Builder;
+import io.annot8.core.annotations.TestGroup;
+import io.annot8.core.exceptions.IncompleteException;
+import io.annot8.core.properties.ImmutableProperties;
+import io.annot8.core.properties.Properties;
+import io.annot8.core.references.AnnotationReference;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -13,14 +22,6 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
-import io.annot8.core.annotations.Annotation;
-import io.annot8.core.annotations.Group;
-import io.annot8.core.annotations.Group.Builder;
-import io.annot8.core.annotations.TestGroup;
-import io.annot8.core.exceptions.IncompleteException;
-import io.annot8.core.properties.ImmutableProperties;
-import io.annot8.core.properties.Properties;
-import io.annot8.core.references.AnnotationReference;
 
 /**
  * Unit tests for the default method implementations on {@link GroupStore}

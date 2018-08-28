@@ -1,13 +1,13 @@
 package io.annot8.core.annotations;
 
+import io.annot8.core.properties.ImmutableProperties;
+import io.annot8.core.references.AnnotationReference;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import io.annot8.core.properties.ImmutableProperties;
-import io.annot8.core.references.AnnotationReference;
 
 public class TestGroup implements Group {
 
