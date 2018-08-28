@@ -7,6 +7,7 @@ import io.annot8.core.helpers.builders.WithIdBuilder;
 import io.annot8.core.helpers.builders.WithPropertiesBuilder;
 import io.annot8.core.helpers.builders.WithSave;
 import io.annot8.core.stores.AnnotationStore;
+import java.util.function.Supplier;
 
 /**
  * Base content interface from which all content implementations extend.
@@ -53,11 +54,8 @@ public interface Content<D> extends WithId, WithProperties {
   /**
    * Builder interface to create (immutable) Content classes
    *
-   * Note that in theory we might assume that we want A extends Content(D) but that is restrictive on the builder
-   * For example we might want a Content(D) but the way to get instance of D if through a provider, thus we need to
-   * withData(Supplier(D)) rather than withData(D).
    */
-  interface Builder<A extends Content<?>, D> extends
+  interface Builder<A extends Content<D>, D> extends
       WithPropertiesBuilder<Builder<A, D>>,
       WithFromBuilder<Builder<A, D>, A>,
       WithIdBuilder<Builder<A, D>>,
@@ -77,7 +75,22 @@ public interface Content<D> extends WithId, WithProperties {
      * @param data the data name
      * @return this builder for chaining
      */
-    Content.Builder<A, D> withData(final D data);
+    default Content.Builder<A, D> withData(final D data) {
+      if(data == null) {
+        withData((Supplier<D>)null);
+      } else {
+        withData(() -> data);
+      }
+      return this;
+    }
+
+    /**
+     * Set the data for this content object, accessed via a supplier
+     *
+     * @param data the data name
+     * @return this builder for chaining
+     */
+    Content.Builder<A, D> withData(final Supplier<D> data);
 
   }
 }
