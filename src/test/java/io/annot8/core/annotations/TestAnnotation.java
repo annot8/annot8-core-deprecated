@@ -9,15 +9,15 @@ public class TestAnnotation implements Annotation {
   private String type;
   private ImmutableProperties properties;
   private Bounds bounds;
-  private String contentName;
+  private String contentId;
 
   public TestAnnotation(String id, String type, ImmutableProperties properties, Bounds bounds,
-      String contentName) {
+      String contentId) {
     this.id = id;
     this.type = type;
     this.properties = properties;
     this.bounds = bounds;
-    this.contentName = contentName;
+    this.contentId = contentId;
   }
 
   @Override
@@ -41,8 +41,8 @@ public class TestAnnotation implements Annotation {
   }
 
   @Override
-  public String getContentName() {
-    return contentName;
+  public String getContentId() {
+    return contentId;
   }
 
 }

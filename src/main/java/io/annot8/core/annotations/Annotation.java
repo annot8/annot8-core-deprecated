@@ -42,11 +42,11 @@ public interface Annotation extends WithId, WithType, WithProperties {
   }
 
   /**
-   * Get the name of the Content to which this annotation refers
+   * Get the id of the Content to which this annotation refers
    *
-   * @return content name
+   * @return content id
    */
-  String getContentName();
+  String getContentId();
 
   /**
    * Do two instances represent the same underlying annotations?

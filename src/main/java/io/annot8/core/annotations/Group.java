@@ -80,7 +80,7 @@ public interface Group extends WithId, WithType, WithProperties {
   default Stream<Annotation> getAnnotationsForContent(Content content) {
     return getAnnotations().values().stream()
         .flatMap(s -> s)
-        .filter(a -> content.getName().equals(a.getContentName()));
+        .filter(a -> content.getId().equals(a.getContentId()));
   }
 
   /**
@@ -92,7 +92,7 @@ public interface Group extends WithId, WithType, WithProperties {
    **/
   default Stream<Annotation> getAnnotationsForContentAndRole(Content content, String role) {
     return getAnnotations(role)
-        .filter(a -> content.getName().equals(a.getContentName()));
+        .filter(a -> content.getId().equals(a.getContentId()));
   }
 
   /**

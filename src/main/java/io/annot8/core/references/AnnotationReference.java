@@ -33,11 +33,11 @@ public interface AnnotationReference {
   }
 
   /**
-   * The name of the content to which this annotation belongs.
+   * The id of the content to which this annotation belongs.
    *
-   * @return the content name
+   * @return the content id
    */
-  String getContentName();
+  String getContentId();
 
   /**
    * The annotation's id
