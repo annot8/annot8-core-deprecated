@@ -12,6 +12,12 @@ import java.util.stream.Stream;
  */
 public interface Item extends WithId, WithMutableProperties, WithGroups {
 
+  Optional<String> getParent();
+
+  default boolean hasParent() {
+    return getParent().isPresent();
+  }
+
   /**
    * Check if content name exists
    *
@@ -62,7 +68,11 @@ public interface Item extends WithId, WithMutableProperties, WithGroups {
    * @param clazz the content class to filter against
    * @return content
    */
-  <T extends Content<?>> Stream<T> getContents(final Class<T> clazz);
+  default <T extends Content<?>> Stream<T> getContents(final Class<T> clazz) {
+    return getContents()
+        .filter(clazz::isInstance)
+        .map(clazz::cast);
+  }
 
   /**
    * Create a new content builder to generate content.
