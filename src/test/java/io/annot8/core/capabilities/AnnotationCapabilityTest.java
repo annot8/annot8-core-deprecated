@@ -6,11 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doReturn;
 
-import io.annot8.core.bounds.Bounds;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import io.annot8.core.bounds.Bounds;
 
 @ExtendWith(MockitoExtension.class)
 public class AnnotationCapabilityTest {

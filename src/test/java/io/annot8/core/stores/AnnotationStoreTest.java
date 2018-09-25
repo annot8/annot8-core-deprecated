@@ -139,7 +139,7 @@ public class AnnotationStoreTest {
 
   private class TestAnnotationStore implements AnnotationStore {
 
-    private Map<String, Annotation> annotations = new ConcurrentHashMap<>();
+    private Map<String, Annotation> annotations;
 
     public TestAnnotationStore() {
       this(Collections.EMPTY_LIST);
