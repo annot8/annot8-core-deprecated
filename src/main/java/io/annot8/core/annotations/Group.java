@@ -1,4 +1,11 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.annotations;
+
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import io.annot8.core.data.Content;
 import io.annot8.core.helpers.WithId;
@@ -11,15 +18,8 @@ import io.annot8.core.helpers.builders.WithPropertiesBuilder;
 import io.annot8.core.helpers.builders.WithSave;
 import io.annot8.core.helpers.builders.WithTypeBuilder;
 import io.annot8.core.references.AnnotationReference;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-/**
- * Base annotation interface from which all other annotations extend.
- */
+/** Base annotation interface from which all other annotations extend. */
 public interface Group extends WithId, WithType, WithProperties {
 
   /**
@@ -28,15 +28,15 @@ public interface Group extends WithId, WithType, WithProperties {
    * @return a map of all roles
    */
   default Map<String, Stream<Annotation>> getAnnotations() {
-    return getReferences().entrySet().stream().collect(Collectors.toMap(
-        Entry::getKey,
-        e -> AnnotationReference.toAnnotations(e.getValue())
-    ));
-
+    return getReferences()
+        .entrySet()
+        .stream()
+        .collect(
+            Collectors.toMap(Entry::getKey, e -> AnnotationReference.toAnnotations(e.getValue())));
   }
 
   /**
-   * The  associated annotations references in this group
+   * The associated annotations references in this group
    *
    * @return a map of all references
    */
@@ -57,6 +57,7 @@ public interface Group extends WithId, WithType, WithProperties {
 
   /**
    * Return all the roles currently associated with annotations in this group
+   *
    * @return distinct roles
    */
   default Stream<String> getRoles() {
@@ -76,9 +77,11 @@ public interface Group extends WithId, WithType, WithProperties {
    *
    * @param content the content
    * @return annotations in that content
-   **/
+   */
   default Stream<Annotation> getAnnotationsForContent(Content content) {
-    return getAnnotations().values().stream()
+    return getAnnotations()
+        .values()
+        .stream()
         .flatMap(s -> s)
         .filter(a -> content.getId().equals(a.getContentId()));
   }
@@ -89,10 +92,9 @@ public interface Group extends WithId, WithType, WithProperties {
    * @param content the content to limit to
    * @param role the role to filter on
    * @return annotation in that content of that role
-   **/
+   */
   default Stream<Annotation> getAnnotationsForContentAndRole(Content content, String role) {
-    return getAnnotations(role)
-        .filter(a -> content.getId().equals(a.getContentId()));
+    return getAnnotations(role).filter(a -> content.getId().equals(a.getContentId()));
   }
 
   /**
@@ -116,7 +118,7 @@ public interface Group extends WithId, WithType, WithProperties {
   /**
    * Do two instances represent the same underlying group?
    *
-   * That is do they have the same id, even if they are different revisions.
+   * <p>That is do they have the same id, even if they are different revisions.
    *
    * @param other the annotation to check against
    * @return true if they are the same (id)
@@ -125,16 +127,14 @@ public interface Group extends WithId, WithType, WithProperties {
     return other != null && getId().equals(other.getId());
   }
 
-  /**
-   * Builder interface to create (immutable) Group classes
-   */
-  interface Builder extends
-      WithIdBuilder<Builder>,
-      WithTypeBuilder<Builder>,
-      WithPropertiesBuilder<Builder>,
-      WithNewIdBuilder<Builder>,
-      WithFromBuilder<Builder, Group>,
-      WithSave<Group> {
+  /** Builder interface to create (immutable) Group classes */
+  interface Builder
+      extends WithIdBuilder<Builder>,
+          WithTypeBuilder<Builder>,
+          WithPropertiesBuilder<Builder>,
+          WithNewIdBuilder<Builder>,
+          WithFromBuilder<Builder, Group>,
+          WithSave<Group> {
 
     /**
      * Add an annotation to this group with the specified role.

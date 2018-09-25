@@ -1,33 +1,36 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.references;
 
-import io.annot8.core.annotations.Annotation;
 import java.util.Optional;
 import java.util.stream.Stream;
+
+import io.annot8.core.annotations.Annotation;
 
 /**
  * A reference to an annotation.
  *
- * As annotations can change (though their id and content stays the same) we can't simply hold
+ * <p>As annotations can change (though their id and content stays the same) we can't simply hold
  * Annotation in Java objects. Instead we hold a reference to them (based on content and annotation
  * ids).
  *
- * Since an content or annotation may be deleted, we do not know if the annotation still exists when
- * we call toAnnotation.
+ * <p>Since an content or annotation may be deleted, we do not know if the annotation still exists
+ * when we call toAnnotation.
  */
 public interface AnnotationReference {
 
-
   /**
    * Convert a stream of annotation references to annotations
+   *
    * @param references reference to convert (may be null)
    * @return annotations
    */
   static Stream<Annotation> toAnnotations(Stream<AnnotationReference> references) {
-    if(references == null) {
+    if (references == null) {
       return Stream.empty();
     }
 
-    return references.map(AnnotationReference::toAnnotation)
+    return references
+        .map(AnnotationReference::toAnnotation)
         .filter(Optional::isPresent)
         .map(Optional::get);
   }
@@ -49,10 +52,9 @@ public interface AnnotationReference {
   /**
    * Convert the reference to an annotations.
    *
-   * Since the underlying content or annotation may have been deleted this returns an optional.
+   * <p>Since the underlying content or annotation may have been deleted this returns an optional.
    *
    * @return the annotation
    */
   Optional<Annotation> toAnnotation();
-
 }

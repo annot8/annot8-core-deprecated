@@ -1,14 +1,15 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.capabilities;
 
-import io.annot8.core.components.Resource;
 import java.util.Objects;
+
+import io.annot8.core.components.Resource;
 
 /**
  * Specification for resource used by a component.
  *
- * Note that optional will be set to true for create and delete operations. This reflects that
+ * <p>Note that optional will be set to true for create and delete operations. This reflects that
  * typically we may or may not create/delete elements, even if all the prerequisites are met.
- *
  */
 public class ResourceCapability {
 
@@ -22,8 +23,7 @@ public class ResourceCapability {
    * @param type the resource type
    * @param optional true if the resource optional
    */
-  public ResourceCapability(
-      Class<? extends Resource> type, boolean optional) {
+  public ResourceCapability(Class<? extends Resource> type, boolean optional) {
     this.type = type;
     this.optional = optional;
   }
@@ -34,10 +34,7 @@ public class ResourceCapability {
    * @param annotation specification
    */
   public ResourceCapability(UsesResource annotation) {
-    this(
-        annotation.value(),
-        annotation.optional()
-    );
+    this(annotation.value(), annotation.optional());
   }
 
   /**
@@ -67,8 +64,7 @@ public class ResourceCapability {
       return false;
     }
     ResourceCapability that = (ResourceCapability) o;
-    return optional == that.optional &&
-        Objects.equals(type, that.type);
+    return optional == that.optional && Objects.equals(type, that.type);
   }
 
   @Override

@@ -1,3 +1,4 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.properties;
 
 import java.util.Map;
@@ -30,5 +31,4 @@ public class TestProperties implements MutableProperties {
     }
     return Optional.empty();
   }
-
 }

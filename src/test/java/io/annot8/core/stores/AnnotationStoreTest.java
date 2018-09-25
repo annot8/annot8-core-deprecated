@@ -1,3 +1,4 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.stores;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -5,13 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import io.annot8.core.annotations.Annotation;
-import io.annot8.core.annotations.Annotation.Builder;
-import io.annot8.core.annotations.TestAnnotation;
-import io.annot8.core.bounds.Bounds;
-import io.annot8.core.exceptions.IncompleteException;
-import io.annot8.core.properties.ImmutableProperties;
-import io.annot8.core.properties.Properties;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,12 +15,19 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-/**
- * Unit tests for the default method implementations on {@link AnnotationStore}
- */
+import io.annot8.core.annotations.Annotation;
+import io.annot8.core.annotations.Annotation.Builder;
+import io.annot8.core.annotations.TestAnnotation;
+import io.annot8.core.bounds.Bounds;
+import io.annot8.core.exceptions.IncompleteException;
+import io.annot8.core.properties.ImmutableProperties;
+import io.annot8.core.properties.Properties;
+
+/** Unit tests for the default method implementations on {@link AnnotationStore} */
 public class AnnotationStoreTest {
 
   @Test
@@ -132,11 +133,9 @@ public class AnnotationStoreTest {
     assertEquals(id2, store.getByBounds(TestBounds2.class).findFirst().get().getId());
   }
 
-  public abstract class TestBounds implements Bounds {
-  };
+  public abstract class TestBounds implements Bounds {};
 
-  public abstract class TestBounds2 implements Bounds {
-  };
+  public abstract class TestBounds2 implements Bounds {};
 
   private class TestAnnotationStore implements AnnotationStore {
 
@@ -224,15 +223,13 @@ public class AnnotationStoreTest {
 
     @Override
     public Annotation save() throws IncompleteException {
-      return new TestAnnotation(id, type, Mockito.mock(ImmutableProperties.class),
-          Mockito.mock(Bounds.class), null);
+      return new TestAnnotation(
+          id, type, Mockito.mock(ImmutableProperties.class), Mockito.mock(Bounds.class), null);
     }
 
     @Override
     public Builder withBounds(Bounds bounds) {
       return this;
     }
-
   }
-
 }

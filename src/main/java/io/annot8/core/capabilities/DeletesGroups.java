@@ -1,3 +1,4 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.capabilities;
 
 import static java.lang.annotation.ElementType.TYPE;
@@ -7,11 +8,11 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-
 /**
  * Wrapper for repeated {@link DeletesGroup}.
  *
- * Developers do not need to use this (it is used internally by java to autowrap multiple annotations).
+ * <p>Developers do not need to use this (it is used internally by java to autowrap multiple
+ * annotations).
  */
 @Documented
 @Retention(RUNTIME)
@@ -20,6 +21,7 @@ public @interface DeletesGroups {
 
   /**
    * Get the array of annotations
+   *
    * @return the repeated annotations
    */
   DeletesGroup[] value();

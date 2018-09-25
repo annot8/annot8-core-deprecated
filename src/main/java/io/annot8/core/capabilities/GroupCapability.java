@@ -1,3 +1,4 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.capabilities;
 
 import java.util.Objects;
@@ -5,7 +6,7 @@ import java.util.Objects;
 /**
  * Specification for group created, processed or deleted by a component.
  *
- * Note that optional will be set to true for create and delete operations. This reflects that
+ * <p>Note that optional will be set to true for create and delete operations. This reflects that
  * typically we may or may not create/delete elements, even if all the prerequisites are met.
  */
 public class GroupCapability {
@@ -13,7 +14,6 @@ public class GroupCapability {
   private final String type;
 
   private final boolean optional;
-
 
   /**
    * Create from details
@@ -23,8 +23,7 @@ public class GroupCapability {
    */
   public GroupCapability(String type, boolean optional) {
     this.type = type;
-    this.optional =
-        optional;
+    this.optional = optional;
   }
   /**
    * Create from {@link CreatesGroup}
@@ -32,10 +31,7 @@ public class GroupCapability {
    * @param annotation specification
    */
   public GroupCapability(CreatesGroup annotation) {
-    this(
-        annotation.value(),
-        true
-    );
+    this(annotation.value(), true);
   }
 
   /**
@@ -44,10 +40,7 @@ public class GroupCapability {
    * @param annotation specification
    */
   public GroupCapability(DeletesGroup annotation) {
-    this(
-        annotation.value(),
-        true
-    );
+    this(annotation.value(), true);
   }
 
   /**
@@ -56,10 +49,7 @@ public class GroupCapability {
    * @param annotation specification
    */
   public GroupCapability(ProcessesGroup annotation) {
-    this(
-        annotation.value(),
-        annotation.optional()
-    );
+    this(annotation.value(), annotation.optional());
   }
 
   /**
@@ -89,8 +79,7 @@ public class GroupCapability {
       return false;
     }
     GroupCapability that = (GroupCapability) o;
-    return optional == that.optional &&
-        Objects.equals(type, that.type);
+    return optional == that.optional && Objects.equals(type, that.type);
   }
 
   @Override

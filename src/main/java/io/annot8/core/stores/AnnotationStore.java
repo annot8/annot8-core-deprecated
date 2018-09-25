@@ -1,15 +1,15 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.stores;
 
-import io.annot8.core.annotations.Annotation;
-import io.annot8.core.bounds.Bounds;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/**
- * Base annotations interface from which all other annotation stores extend.
- */
+import io.annot8.core.annotations.Annotation;
+import io.annot8.core.bounds.Bounds;
+
+/** Base annotations interface from which all other annotation stores extend. */
 public interface AnnotationStore {
 
   /**
@@ -32,8 +32,8 @@ public interface AnnotationStore {
    * Clone an existing annotation to create a new annotation
    *
    * @param existing the annotation to copy
-   * @return a builder to based on the an existing  annotation, but don't overwrite that annotation
-   * on save.
+   * @return a builder to based on the an existing annotation, but don't overwrite that annotation
+   *     on save.
    */
   default Annotation.Builder copy(Annotation existing) {
     return getBuilder().from(existing).newId();
@@ -65,10 +65,7 @@ public interface AnnotationStore {
     annotations.forEach(this::delete);
   }
 
-  /**
-   * Delete all annotations from the store
-   *
-   */
+  /** Delete all annotations from the store */
   default void deleteAll() {
     delete(getAll().collect(Collectors.toList()));
   }
@@ -97,16 +94,14 @@ public interface AnnotationStore {
    * @return annotations
    */
   default <B extends Bounds> Stream<Annotation> getByBounds(final Class<B> boundsClass) {
-    return getAll()
-        .filter(a -> a.getBounds() != null && boundsClass.isInstance(a.getBounds()));
+    return getAll().filter(a -> a.getBounds() != null && boundsClass.isInstance(a.getBounds()));
   }
 
   /**
    * Get the annotation with the given ID, if it is currently held in this store
    *
-   * @param annotationId  the id
+   * @param annotationId the id
    * @return annotation
    */
   Optional<Annotation> getById(final String annotationId);
-
 }

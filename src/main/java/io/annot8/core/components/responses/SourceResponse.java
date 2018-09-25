@@ -1,51 +1,37 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.components.responses;
 
 /**
  * Class to hold the response from a source.
  *
- * The response consists of a status.
+ * <p>The response consists of a status.
  */
 public interface SourceResponse {
 
-  /**
-   * Create source read items normally
-   */
+  /** Create source read items normally */
   static SourceResponseBuilder ok() {
     return new SourceResponseBuilder(Status.OK);
   }
 
-
-  /**
-   * Source is now out of items
-   */
+  /** Source is now out of items */
   static SourceResponseBuilder done() {
     return new SourceResponseBuilder(Status.DONE);
   }
 
-  /**
-   * There was an error reading from the Source
-   */
+  /** There was an error reading from the Source */
   static SourceResponseBuilder sourceError() {
     return new SourceResponseBuilder(Status.SOURCE_ERROR);
   }
 
-
-  /**
-   * The Source is currently empty
-   */
+  /** The Source is currently empty */
   static SourceResponseBuilder empty() {
     return new SourceResponseBuilder(Status.EMPTY);
   }
 
-
-  /**
-   * Return the status associated with this response
-   */
+  /** Return the status associated with this response */
   Status getStatus();
 
-  /**
-   * Response status returned by the source
-   */
+  /** Response status returned by the source */
   enum Status {
     /**
      * Indicates that the source found new items, and that the pipeline may ask the source for new
@@ -66,8 +52,7 @@ public interface SourceResponse {
     DONE,
 
     /**
-     * Indicates that the source is temporarily empty, but that it may have new items in the
-     * future.
+     * Indicates that the source is temporarily empty, but that it may have new items in the future.
      */
     EMPTY
   }
@@ -84,7 +69,5 @@ public interface SourceResponse {
     public Status getStatus() {
       return status;
     }
-
   }
-
 }

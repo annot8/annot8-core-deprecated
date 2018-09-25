@@ -1,3 +1,4 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.helpers.builders;
 
 /**
@@ -14,7 +15,6 @@ public interface WithFromBuilder<E, A> {
    *
    * @param from the object to build from
    * @return builder based on an existing object
-   *
    */
   E from(final A from);
 }

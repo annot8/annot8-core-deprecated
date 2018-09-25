@@ -1,10 +1,11 @@
-/* Annot8 (annot8.io). Licensed under Apache-2.0. */
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.components.responses;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import io.annot8.core.components.responses.ProcessorResponse.Status;
 import org.junit.jupiter.api.Test;
+
+import io.annot8.core.components.responses.ProcessorResponse.Status;
 
 public class ProcessorResponseTest {
 

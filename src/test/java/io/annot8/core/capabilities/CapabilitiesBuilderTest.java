@@ -1,22 +1,23 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.capabilities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import io.annot8.core.bounds.Bounds;
-import io.annot8.core.capabilities.Capabilities.Builder;
-import io.annot8.core.components.Resource;
-import io.annot8.core.data.Content;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 import org.junit.jupiter.api.Test;
 
-/**
- * Unit tests for the default implementations of the {@link Capabilities} interface
- */
+import io.annot8.core.bounds.Bounds;
+import io.annot8.core.capabilities.Capabilities.Builder;
+import io.annot8.core.components.Resource;
+import io.annot8.core.data.Content;
+
+/** Unit tests for the default implementations of the {@link Capabilities} interface */
 public class CapabilitiesBuilderTest {
 
   private static final String TEST_TYPE = "TEST_TYPE";
@@ -122,14 +123,19 @@ public class CapabilitiesBuilderTest {
   @Test
   public void testMerge() {
     Capabilities saved =
-        new TestCapabilitiesBuilder().processesAnnotation(TEST_TYPE, TestBounds.class, true)
+        new TestCapabilitiesBuilder()
+            .processesAnnotation(TEST_TYPE, TestBounds.class, true)
             .createsAnnotation(TEST_TYPE, TestBounds.class)
-            .deletesAnnotation(TEST_TYPE, TestBounds.class).save();
+            .deletesAnnotation(TEST_TYPE, TestBounds.class)
+            .save();
 
     Capabilities merged =
-        new TestCapabilitiesBuilder().processesAnnotation(TEST_TYPE2, TestBounds.class, true)
+        new TestCapabilitiesBuilder()
+            .processesAnnotation(TEST_TYPE2, TestBounds.class, true)
             .createsAnnotation(TEST_TYPE2, TestBounds.class)
-            .deletesAnnotation(TEST_TYPE2, TestBounds.class).merge(saved).save();
+            .deletesAnnotation(TEST_TYPE2, TestBounds.class)
+            .merge(saved)
+            .save();
 
     assertEquals(2, merged.getProcessedAnnotations().count());
     assertEquals(2, merged.getCreatedAnnotations().count());
@@ -156,14 +162,11 @@ public class CapabilitiesBuilderTest {
     assertTrue(contentCapabilities.get(0).isOptional());
   }
 
-  private abstract class TestResource implements Resource {
-  }
+  private abstract class TestResource implements Resource {}
 
-  private abstract class TestBounds implements Bounds {
-  }
+  private abstract class TestBounds implements Bounds {}
 
-  private abstract class TestContent implements Content<String> {
-  }
+  private abstract class TestContent implements Content<String> {}
 
   class TestCapabilities implements Capabilities {
 
@@ -178,11 +181,16 @@ public class CapabilitiesBuilderTest {
     private final Set<ContentCapability> deletedContent;
     private final Set<ResourceCapability> usedResources;
 
-    public TestCapabilities(Set<AnnotationCapability> processedAnnotations,
-        Set<AnnotationCapability> createdAnnotations, Set<AnnotationCapability> deletedAnnotations,
-        Set<GroupCapability> processedGroups, Set<GroupCapability> createdGroups,
-        Set<GroupCapability> deletedGroups, Set<ContentCapability> processedContent,
-        Set<ContentCapability> createdContent, Set<ContentCapability> deletedContent,
+    public TestCapabilities(
+        Set<AnnotationCapability> processedAnnotations,
+        Set<AnnotationCapability> createdAnnotations,
+        Set<AnnotationCapability> deletedAnnotations,
+        Set<GroupCapability> processedGroups,
+        Set<GroupCapability> createdGroups,
+        Set<GroupCapability> deletedGroups,
+        Set<ContentCapability> processedContent,
+        Set<ContentCapability> createdContent,
+        Set<ContentCapability> deletedContent,
         Set<ResourceCapability> usedResources) {
       this.processedAnnotations = processedAnnotations;
       this.createdAnnotations = createdAnnotations;
@@ -245,7 +253,6 @@ public class CapabilitiesBuilderTest {
     public Stream<ResourceCapability> getUsedResources() {
       return usedResources.stream();
     }
-
   }
 
   class TestCapabilitiesBuilder implements Capabilities.Builder {
@@ -323,10 +330,17 @@ public class CapabilitiesBuilderTest {
 
     @Override
     public Capabilities save() {
-      return new TestCapabilities(processedAnnotations, createdAnnotations, deletedAnnotations,
-          processedGroups, createdGroups, deletedGroups, processedContent, createdContent,
-          deletedContent, usedResources);
+      return new TestCapabilities(
+          processedAnnotations,
+          createdAnnotations,
+          deletedAnnotations,
+          processedGroups,
+          createdGroups,
+          deletedGroups,
+          processedContent,
+          createdContent,
+          deletedContent,
+          usedResources);
     }
   }
-
 }

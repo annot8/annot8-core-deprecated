@@ -1,3 +1,4 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.annotations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -6,10 +7,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doCallRealMethod;
 import static org.mockito.Mockito.doReturn;
 
-import io.annot8.core.bounds.Bounds;
 import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
+import io.annot8.core.bounds.Bounds;
 
 public class AnnotationTest {
 
@@ -40,11 +43,7 @@ public class AnnotationTest {
     assertFalse(ann1.sameAnnotation(ann3));
   }
 
+  public abstract class TestBounds implements Bounds {}
 
-  public abstract class TestBounds implements Bounds {
-  }
-
-  public abstract class TestBounds2 implements Bounds {
-  }
-
+  public abstract class TestBounds2 implements Bounds {}
 }

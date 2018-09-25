@@ -1,11 +1,11 @@
 /**
  * This package contains the core data objects used by Annot8
  *
- * Content objects contain the actual data, or more specifically a view on the data. For example,
+ * <p>Content objects contain the actual data, or more specifically a view on the data. For example,
  * you might have a Content object containing French text, and a Content object containing a
  * translated version of that text. Annotations are stored within the Content objects.
  *
- * Content objects are stored within Item objects, which are the object that is passed around
+ * <p>Content objects are stored within Item objects, which are the object that is passed around
  * between components. Groups are stored within the Item object, as a group may contain annotations
  * from more than one content object.
  */

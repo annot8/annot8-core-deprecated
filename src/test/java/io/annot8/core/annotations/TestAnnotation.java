@@ -1,3 +1,4 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.annotations;
 
 import io.annot8.core.bounds.Bounds;
@@ -11,8 +12,8 @@ public class TestAnnotation implements Annotation {
   private Bounds bounds;
   private String contentId;
 
-  public TestAnnotation(String id, String type, ImmutableProperties properties, Bounds bounds,
-      String contentId) {
+  public TestAnnotation(
+      String id, String type, ImmutableProperties properties, Bounds bounds, String contentId) {
     this.id = id;
     this.type = type;
     this.properties = properties;
@@ -44,5 +45,4 @@ public class TestAnnotation implements Annotation {
   public String getContentId() {
     return contentId;
   }
-
 }

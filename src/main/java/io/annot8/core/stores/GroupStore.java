@@ -1,27 +1,27 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.stores;
 
-import io.annot8.core.annotations.Group;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/**
- * Base groups interface from which all other group stores extend.
- */
+import io.annot8.core.annotations.Group;
+
+/** Base groups interface from which all other group stores extend. */
 public interface GroupStore {
 
   /**
    * Create a new group builder
-   * 
-   * @return  a builder object for the supported group
+   *
+   * @return a builder object for the supported group
    */
   Group.Builder getBuilder();
 
   /**
    * Create a new group
    *
-   * @return  a builder to create a new group
+   * @return a builder to create a new group
    */
   default Group.Builder create() {
     return getBuilder();
@@ -31,18 +31,17 @@ public interface GroupStore {
    * Clone an existing group to create a new group
    *
    * @param existing the existing group
-   * @return  a builder to based on the an existing group, but don't overwrite that group on save.
+   * @return a builder to based on the an existing group, but don't overwrite that group on save.
    */
   default Group.Builder copy(Group existing) {
     return getBuilder().from(existing).newId();
   }
 
-
   /**
    * Edit an existing group, saving will replace it
    *
    * @param existing the existing group
-   * @return  a builder to edit an existing group
+   * @return a builder to edit an existing group
    */
   default Group.Builder edit(Group existing) {
     return getBuilder().from(existing);
@@ -64,9 +63,7 @@ public interface GroupStore {
     groups.forEach(this::delete);
   }
 
-  /**
-   * Delete all groups from the store
-   */
+  /** Delete all groups from the store */
   default void deleteAll() {
     delete(getAll().collect(Collectors.toList()));
   }
@@ -74,7 +71,7 @@ public interface GroupStore {
   /**
    * Get all groups
    *
-   * @return  all groups currently held in this store
+   * @return all groups currently held in this store
    */
   Stream<Group> getAll();
 
@@ -95,5 +92,4 @@ public interface GroupStore {
    * @return the group
    */
   Optional<Group> getById(final String groupId);
-
 }

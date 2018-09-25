@@ -1,3 +1,4 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.capabilities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,17 +16,13 @@ public class GroupCapabilityTest {
 
   private static final String GROUP_TYPE = "testGroup";
 
-  @Mock
-  private CreatesGroup createsGroup;
+  @Mock private CreatesGroup createsGroup;
 
-  @Mock
-  private DeletesGroup deletesGroup;
+  @Mock private DeletesGroup deletesGroup;
 
-  @Mock
-  private ProcessesGroup processesGroup;
+  @Mock private ProcessesGroup processesGroup;
 
-  @Mock
-  private CreatesGroup empty;
+  @Mock private CreatesGroup empty;
 
   @Test
   public void testCreatesGroupConstructor() {
@@ -69,5 +66,4 @@ public class GroupCapabilityTest {
     assertFalse(capability.equals(capability2));
     assertFalse(capability.equals(null));
   }
-
 }

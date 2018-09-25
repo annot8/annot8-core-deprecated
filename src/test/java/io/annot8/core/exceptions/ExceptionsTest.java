@@ -1,9 +1,10 @@
-/* Annot8 (annot8.io). Licensed under Apache-2.0. */
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.exceptions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
 
 public class ExceptionsTest {

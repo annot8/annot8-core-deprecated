@@ -1,3 +1,4 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.properties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -5,11 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashMap;
+
 import org.junit.jupiter.api.Test;
 
-/**
- * Unit tests for the default methods on the {@link Properties} interface.
- */
+/** Unit tests for the default methods on the {@link Properties} interface. */
 public class PropertiesTest extends PropertiesTestResources {
 
   @Test
@@ -74,5 +74,4 @@ public class PropertiesTest extends PropertiesTestResources {
     assertEquals(TEST_VALUE, properties.getAll(String.class).get(TEST_KEY));
     assertEquals(0, properties.getAll(Integer.class).size());
   }
-
 }

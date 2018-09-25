@@ -1,14 +1,15 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.capabilities;
 
-import io.annot8.core.data.Content;
 import java.util.Objects;
+
+import io.annot8.core.data.Content;
 
 /**
  * Specification for content created, processed or deleted by a component.
  *
- * Note that optional will be set to true for create and delete operations. This reflects that
+ * <p>Note that optional will be set to true for create and delete operations. This reflects that
  * typically we may or may not create/delete elements, even if all the prerequisites are met.
- *
  */
 public class ContentCapability {
 
@@ -22,10 +23,7 @@ public class ContentCapability {
    * @param annotation specification
    */
   public ContentCapability(CreatesContent annotation) {
-    this(
-        annotation.value(),
-        true
-    );
+    this(annotation.value(), true);
   }
 
   /**
@@ -34,10 +32,7 @@ public class ContentCapability {
    * @param annotation specification
    */
   public ContentCapability(DeletesContent annotation) {
-    this(
-        annotation.value(),
-        true
-    );
+    this(annotation.value(), true);
   }
 
   /**
@@ -46,12 +41,8 @@ public class ContentCapability {
    * @param annotation specification
    */
   public ContentCapability(ProcessesContent annotation) {
-    this(
-        annotation.value(),
-        annotation.optional()
-    );
+    this(annotation.value(), annotation.optional());
   }
-
 
   /**
    * Create from details
@@ -59,8 +50,7 @@ public class ContentCapability {
    * @param type the resource type
    * @param optional true if the resource optional
    */
-  public ContentCapability(
-      Class<? extends Content<?>> type, boolean optional) {
+  public ContentCapability(Class<? extends Content<?>> type, boolean optional) {
     this.type = type;
     this.optional = optional;
   }
@@ -92,8 +82,7 @@ public class ContentCapability {
       return false;
     }
     ContentCapability that = (ContentCapability) o;
-    return optional == that.optional &&
-        Objects.equals(type, that.type);
+    return optional == that.optional && Objects.equals(type, that.type);
   }
 
   @Override

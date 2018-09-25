@@ -1,28 +1,29 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.capabilities;
+
+import java.util.Objects;
+import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.components.Resource;
 import io.annot8.core.data.Content;
 import io.annot8.core.helpers.builders.WithSave;
-import java.util.Objects;
-import java.util.function.Consumer;
-import java.util.stream.Stream;
 
 /**
  * Base capabilities interface used to describe the capabilities of a component.
  *
- * In all cases an empty stream should be returned (rather than null)
+ * <p>In all cases an empty stream should be returned (rather than null)
  */
 public interface Capabilities {
 
   /**
-   * The type of any input annotations (i.e. annotations that must be present before
-   * a component can work)
+   * The type of any input annotations (i.e. annotations that must be present before a component can
+   * work)
    *
    * @return annotation specifications
    */
   Stream<AnnotationCapability> getProcessedAnnotations();
-
 
   /**
    * The type of any output annotations produced by this component
@@ -39,8 +40,8 @@ public interface Capabilities {
   Stream<AnnotationCapability> getDeletedAnnotations();
 
   /**
-   * The type of any required input annotations (i.e. annotations that must be present before
-   * a component can work)
+   * The type of any required input annotations (i.e. annotations that must be present before a
+   * component can work)
    *
    * @return annotation specifications
    */
@@ -53,7 +54,6 @@ public interface Capabilities {
    */
   Stream<GroupCapability> getCreatedGroups();
 
-
   /**
    * The type of any output annotations deleted by this component
    *
@@ -62,13 +62,12 @@ public interface Capabilities {
   Stream<GroupCapability> getDeletedGroups();
 
   /**
-   * The content classes produced by this component, or an empty stream if no new content
-   * will be produced
+   * The content classes produced by this component, or an empty stream if no new content will be
+   * produced
    *
    * @return content specifications
    */
   Stream<ContentCapability> getCreatedContent();
-
 
   /**
    * The type of any deleted content
@@ -78,8 +77,8 @@ public interface Capabilities {
   Stream<ContentCapability> getDeletedContent();
 
   /**
-   * The type of any required content (i.e. content that must be present before a component
-   * can work)
+   * The type of any required content (i.e. content that must be present before a component can
+   * work)
    *
    * @return content specifications
    */
@@ -92,10 +91,7 @@ public interface Capabilities {
    */
   Stream<ResourceCapability> getUsedResources();
 
-
-  /**
-   * Builder for capabilties
-   */
+  /** Builder for capabilties */
   interface Builder extends WithSave<Capabilities> {
 
     /**
@@ -106,8 +102,8 @@ public interface Capabilities {
      * @param optional true if the component can function and generated output without this
      * @return the builder for chaining
      */
-    default Builder processesAnnotation(String type, Class<? extends Bounds> clazz,
-        boolean optional) {
+    default Builder processesAnnotation(
+        String type, Class<? extends Bounds> clazz, boolean optional) {
       return processesAnnotation(new AnnotationCapability(type, clazz, optional));
     }
 
@@ -289,7 +285,7 @@ public interface Capabilities {
     /**
      * Save content of the builder into an capabilities
      *
-     * Note this does not throw an exception (hence overrides the WithSave)
+     * <p>Note this does not throw an exception (hence overrides the WithSave)
      *
      * @return the object being built by this builder
      */
@@ -336,6 +332,5 @@ public interface Capabilities {
 
       stream.filter(Objects::nonNull).forEach(consumer);
     }
-
   }
 }

@@ -1,4 +1,7 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.annotations;
+
+import java.util.Optional;
 
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.helpers.WithId;
@@ -10,11 +13,8 @@ import io.annot8.core.helpers.builders.WithNewIdBuilder;
 import io.annot8.core.helpers.builders.WithPropertiesBuilder;
 import io.annot8.core.helpers.builders.WithSave;
 import io.annot8.core.helpers.builders.WithTypeBuilder;
-import java.util.Optional;
 
-/**
- * Base annotation interface from which all other annotations extend.
- */
+/** Base annotation interface from which all other annotations extend. */
 public interface Annotation extends WithId, WithType, WithProperties {
 
   /**
@@ -51,7 +51,7 @@ public interface Annotation extends WithId, WithType, WithProperties {
   /**
    * Do two instances represent the same underlying annotations?
    *
-   * That is do they have the same id, even if the rest of the data is different.
+   * <p>That is do they have the same id, even if the rest of the data is different.
    *
    * @param other the annotation to test against
    * @return true is non-null and have the same id
@@ -60,12 +60,14 @@ public interface Annotation extends WithId, WithType, WithProperties {
     return other != null && getId().equals(other.getId());
   }
 
-  /**
-   * Builder interface to create (immutable) Annotation classes
-   */
-  interface Builder extends WithTypeBuilder<Annotation.Builder>, WithIdBuilder<Annotation.Builder>,
-      WithPropertiesBuilder<Annotation.Builder>, WithNewIdBuilder<Annotation.Builder>,
-      WithFromBuilder<Builder, Annotation>, WithSave<Annotation> {
+  /** Builder interface to create (immutable) Annotation classes */
+  interface Builder
+      extends WithTypeBuilder<Annotation.Builder>,
+          WithIdBuilder<Annotation.Builder>,
+          WithPropertiesBuilder<Annotation.Builder>,
+          WithNewIdBuilder<Annotation.Builder>,
+          WithFromBuilder<Builder, Annotation>,
+          WithSave<Annotation> {
 
     /**
      * Set the {@link Bounds} associated with this annotation

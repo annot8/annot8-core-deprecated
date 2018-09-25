@@ -1,3 +1,4 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.components;
 
 import io.annot8.core.components.responses.ProcessorResponse;
@@ -7,12 +8,10 @@ import io.annot8.core.exceptions.Annot8Exception;
 /**
  * Base processor interface from which all processors extend.
  *
- * Processors do work on an item, such as adding new annotations, or creating new content.
+ * <p>Processors do work on an item, such as adding new annotations, or creating new content.
  */
 public interface Processor extends Annot8Component {
 
-  /**
-   * Process the given item
-   */
+  /** Process the given item */
   ProcessorResponse process(final Item item) throws Annot8Exception;
 }

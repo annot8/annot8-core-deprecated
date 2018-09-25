@@ -1,3 +1,4 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.capabilities;
 
 import static java.lang.annotation.ElementType.TYPE;
@@ -14,6 +15,7 @@ public @interface DeletesAnnotations {
 
   /**
    * Get the array of annotations
+   *
    * @return the repeated annotations
    */
   DeletesAnnotation[] value();

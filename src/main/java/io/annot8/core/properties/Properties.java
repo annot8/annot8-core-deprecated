@@ -1,3 +1,4 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.properties;
 
 import java.util.Map;
@@ -6,9 +7,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/**
- * Base properties interface from which all other properties objects/interfaces extend.
- */
+/** Base properties interface from which all other properties objects/interfaces extend. */
 public interface Properties {
 
   static boolean equals(Properties a, Properties b) {
@@ -32,7 +31,7 @@ public interface Properties {
   /**
    * Check if key existing and its value is of a specific class
    *
-   * @return  true if a property of the given class with the given key exists
+   * @return true if a property of the given class with the given key exists
    */
   default boolean has(final String key, final Class<?> clazz) {
     return getAll(clazz).containsKey(key);
@@ -53,7 +52,7 @@ public interface Properties {
    *
    * @param key the key
    * @param clazz the requried value classs
-   * @return  the property value as the specified class for the specified key, if it exists
+   * @return the property value as the specified class for the specified key, if it exists
    */
   default <T> Optional<T> getProperty(final String key, final Class<T> clazz) {
     return Optional.ofNullable(getAll(clazz).get(key));
@@ -61,10 +60,11 @@ public interface Properties {
 
   /**
    * Get the value or use a default if missing
+   *
    * @param key the key
    * @param defaultValue the value to return if key is not present
-   * @return  the property value as an Object for the specified key, or a default value if the key
-   * doesn't exist
+   * @return the property value as an Object for the specified key, or a default value if the key
+   *     doesn't exist
    */
   default Object getObjectOrDefault(final String key, final Object defaultValue) {
     return get(key).orElse(defaultValue);
@@ -75,7 +75,7 @@ public interface Properties {
    *
    * @param key the key
    * @param defaultValue the value to return if key is missing or of different type (non-null)
-   * @return  the property value for the specified key, or a default value if the key doesn't exist
+   * @return the property value for the specified key, or a default value if the key doesn't exist
    */
   @SuppressWarnings("unchecked")
   default <T> T getOrDefault(final String key, final T defaultValue) {
@@ -91,7 +91,7 @@ public interface Properties {
   /**
    * Get all keys
    *
-   * @return  all currently set property keys
+   * @return all currently set property keys
    */
   default Stream<String> keys() {
     return getAll().keySet().stream();
@@ -110,7 +110,7 @@ public interface Properties {
   /**
    * Get the properties as a map
    *
-   * @return  a map of all properties
+   * @return a map of all properties
    */
   Map<String, Object> getAll();
 
@@ -121,7 +121,10 @@ public interface Properties {
    * @return a map of all properties that have a value of the specified class
    */
   default <T> Map<String, T> getAll(final Class<T> clazz) {
-    return getAll().entrySet().stream().filter(e -> clazz.isInstance(e.getValue()))
+    return getAll()
+        .entrySet()
+        .stream()
+        .filter(e -> clazz.isInstance(e.getValue()))
         .collect(Collectors.toMap(Entry::getKey, e -> clazz.cast(e.getValue())));
   }
 }

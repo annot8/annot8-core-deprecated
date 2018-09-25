@@ -1,3 +1,4 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.capabilities;
 
 import static java.lang.annotation.ElementType.TYPE;
@@ -11,11 +12,11 @@ import java.lang.annotation.Target;
 /**
  * Denotes the groups types which are processed by the component.
  *
- * To simply use value and required are synonymous and either can be used. If both are used they are
- * merged into a combined list.
+ * <p>To simply use value and required are synonymous and either can be used. If both are used they
+ * are merged into a combined list.
  *
- * Optional types are not needed in order for the component to generate output, but they may enhance
- * the processing.
+ * <p>Optional types are not needed in order for the component to generate output, but they may
+ * enhance the processing.
  */
 @Documented
 @Retention(RUNTIME)
@@ -36,6 +37,4 @@ public @interface ProcessesGroup {
    * @return true if optional, default is false
    */
   boolean optional() default false;
-
-
 }

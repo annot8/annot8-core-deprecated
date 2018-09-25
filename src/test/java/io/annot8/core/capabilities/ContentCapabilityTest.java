@@ -1,3 +1,4 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.capabilities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -5,26 +6,23 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doReturn;
 
-import io.annot8.core.data.Content;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import io.annot8.core.data.Content;
+
 @ExtendWith(MockitoExtension.class)
 public class ContentCapabilityTest {
 
-  @Mock
-  private CreatesContent createsContent;
+  @Mock private CreatesContent createsContent;
 
-  @Mock
-  private DeletesContent deletesContent;
+  @Mock private DeletesContent deletesContent;
 
-  @Mock
-  private ProcessesContent processesContent;
+  @Mock private ProcessesContent processesContent;
 
-  @Mock
-  private CreatesContent empty;
+  @Mock private CreatesContent empty;
 
   @Test
   public void testCreatesContentConstructor() {
@@ -69,7 +67,5 @@ public class ContentCapabilityTest {
     assertFalse(capability.equals(null));
   }
 
-  private abstract class TestContent implements Content<String> {
-  }
-
+  private abstract class TestContent implements Content<String> {}
 }

@@ -1,3 +1,4 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.capabilities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -5,28 +6,25 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doReturn;
 
-import io.annot8.core.bounds.Bounds;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import io.annot8.core.bounds.Bounds;
 
 @ExtendWith(MockitoExtension.class)
 public class AnnotationCapabilityTest {
 
   private static final String TEST_VALUE = "TEST_VALUE";
 
-  @Mock
-  private CreatesAnnotation createsAnnotation;
+  @Mock private CreatesAnnotation createsAnnotation;
 
-  @Mock
-  private DeletesAnnotation deletesAnnotation;
+  @Mock private DeletesAnnotation deletesAnnotation;
 
-  @Mock
-  private ProcessesAnnotation processesAnnotation;
+  @Mock private ProcessesAnnotation processesAnnotation;
 
-  @Mock
-  private CreatesAnnotation empty;
+  @Mock private CreatesAnnotation empty;
 
   @Test
   public void testCreatesAnnotationConstructor() {
@@ -82,7 +80,5 @@ public class AnnotationCapabilityTest {
     assertFalse(cap1.equals(null));
   }
 
-  private abstract class TestBounds implements Bounds {
-  }
-
+  private abstract class TestBounds implements Bounds {}
 }

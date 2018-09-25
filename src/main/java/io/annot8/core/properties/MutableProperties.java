@@ -1,16 +1,16 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.properties;
 
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 
-/**
- * Base mutable properties interface from which all other mutable properties extend.
- */
+/** Base mutable properties interface from which all other mutable properties extend. */
 public interface MutableProperties extends Properties {
 
   /**
    * Set the property value for the specified key
+   *
    * @param key the key
    * @param value the value
    */
@@ -18,14 +18,15 @@ public interface MutableProperties extends Properties {
 
   /**
    * Remove the property for the specified key, and return it's object (if it exists)
+   *
    * @param key the key to remove
    * @return object which was present at that key (if it existed)
    */
   Optional<Object> remove(final String key);
 
-
   /**
    * Set the current properties to be equal to the map
+   *
    * @param properties map to set
    */
   default void set(final Map<String, Object> properties) {
@@ -33,9 +34,7 @@ public interface MutableProperties extends Properties {
     add(properties);
   }
 
-  /**
-   * Return a map of all properties
-   */
+  /** Return a map of all properties */
   default void removeAll() {
     keys().forEach(this::remove);
   }
@@ -61,5 +60,4 @@ public interface MutableProperties extends Properties {
       keys.forEach(this::remove);
     }
   }
-
 }

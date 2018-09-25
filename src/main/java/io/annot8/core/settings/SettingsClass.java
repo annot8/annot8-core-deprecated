@@ -1,3 +1,4 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.settings;
 
 import java.lang.annotation.Documented;
@@ -10,7 +11,7 @@ import java.lang.annotation.Target;
 /**
  * Specify which class is to be used for settings by a component.
  *
- * Note that whilst from a configuration perspective the annotation is inherited (ie you can
+ * <p>Note that whilst from a configuration perspective the annotation is inherited (ie you can
  * configure the parent, from a Java perspective is it not - the settings class applues to the class
  * they are defined on)
  */

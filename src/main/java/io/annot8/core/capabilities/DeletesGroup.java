@@ -1,3 +1,4 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.capabilities;
 
 import static java.lang.annotation.ElementType.TYPE;
@@ -8,9 +9,7 @@ import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-/**
- * Denotes the group types the component may delete.
- */
+/** Denotes the group types the component may delete. */
 @Documented
 @Retention(RUNTIME)
 @Target(TYPE)
@@ -23,5 +22,4 @@ public @interface DeletesGroup {
    * @return group types
    */
   String value();
-
 }

@@ -1,45 +1,34 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.components.responses;
 
 /**
  * Class to hold the response from a processor.
  *
- * The response consists of a status.
+ * <p>The response consists of a status.
  */
 public interface ProcessorResponse {
 
-  /**
-   * Create an OK response with no new items
-   */
+  /** Create an OK response with no new items */
   static ProcessorResponseBuilder ok() {
     return new ProcessorResponseBuilder(Status.OK);
   }
 
-  /**
-   * Create an ITEM_ERROR response
-   */
+  /** Create an ITEM_ERROR response */
   static ProcessorResponseBuilder itemError() {
     return new ProcessorResponseBuilder(Status.ITEM_ERROR);
   }
 
-  /**
-   * Create a PIPELINE_ERROR response
-   */
+  /** Create a PIPELINE_ERROR response */
   static ProcessorResponseBuilder processingError() {
     return new ProcessorResponseBuilder(Status.PROCESSOR_ERROR);
   }
 
-  /**
-   * Return the status associated with this response
-   */
+  /** Return the status associated with this response */
   Status getStatus();
 
-  /**
-   * Response status returned by the processor
-   */
+  /** Response status returned by the processor */
   enum Status {
-    /**
-     * Indicates that the processor has worked successfully
-     */
+    /** Indicates that the processor has worked successfully */
     OK,
 
     /**
@@ -67,6 +56,5 @@ public interface ProcessorResponse {
     public Status getStatus() {
       return status;
     }
-
   }
 }

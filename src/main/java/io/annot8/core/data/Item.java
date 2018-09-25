@@ -1,15 +1,15 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.data;
+
+import java.util.Optional;
+import java.util.stream.Stream;
 
 import io.annot8.core.exceptions.UnsupportedContentException;
 import io.annot8.core.helpers.WithGroups;
 import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithMutableProperties;
-import java.util.Optional;
-import java.util.stream.Stream;
 
-/**
- * Base item interface from which all item implementations extend.
- */
+/** Base item interface from which all item implementations extend. */
 public interface Item extends WithId, WithMutableProperties, WithGroups {
 
   Optional<String> getParent();
@@ -34,7 +34,6 @@ public interface Item extends WithId, WithMutableProperties, WithGroups {
    */
   default Stream<String> listNames() {
     return getContents().map(Content::getName);
-
   }
 
   /**
@@ -69,9 +68,7 @@ public interface Item extends WithId, WithMutableProperties, WithGroups {
    * @return content
    */
   default <T extends Content<?>> Stream<T> getContents(final Class<T> clazz) {
-    return getContents()
-        .filter(clazz::isInstance)
-        .map(clazz::cast);
+    return getContents().filter(clazz::isInstance).map(clazz::cast);
   }
 
   /**
@@ -101,8 +98,8 @@ public interface Item extends WithId, WithMutableProperties, WithGroups {
   /**
    * Stop processing this item any further.
    *
-   * Note that it is up to the underlying implementation as to whether they delete existing output
-   * from this item or not.
+   * <p>Note that it is up to the underlying implementation as to whether they delete existing
+   * output from this item or not.
    */
   void discard();
 

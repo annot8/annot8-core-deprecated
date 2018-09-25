@@ -1,3 +1,4 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.annotations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -5,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doReturn;
 
-import io.annot8.core.data.Content;
-import io.annot8.core.references.AnnotationReference;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -15,15 +14,19 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 
+import io.annot8.core.data.Content;
+import io.annot8.core.references.AnnotationReference;
+
 /**
  * Unit tests for the default method implementations on the {@link Group} interface.
- * 
- * Mockito strictness settings are relaxed to avoid unused stubbing exceptions in the reusable
+ *
+ * <p>Mockito strictness settings are relaxed to avoid unused stubbing exceptions in the reusable
  * mocking methods
  */
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -152,5 +155,4 @@ public class GroupTest {
     refs.put(TEST_ROLE, Collections.singletonList(reference));
     return new TestGroup(TEST_GROUP_ID, null, null, refs, TEST_ROLE);
   }
-
 }

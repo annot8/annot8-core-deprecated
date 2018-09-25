@@ -1,3 +1,4 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.properties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.junit.jupiter.api.Test;
 
 public class MutablePropertiesTest extends PropertiesTestResources {
@@ -66,5 +68,4 @@ public class MutablePropertiesTest extends PropertiesTestResources {
     properties.remove(existingKeys);
     assertEquals(0, properties.getAll().size());
   }
-
 }

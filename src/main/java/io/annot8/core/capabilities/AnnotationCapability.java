@@ -1,14 +1,15 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.capabilities;
 
-import io.annot8.core.bounds.Bounds;
 import java.util.Objects;
+
+import io.annot8.core.bounds.Bounds;
 
 /**
  * Specification for annotation created, processed or deleted by a component.
  *
- * Note that optional will be set to true for create and delete operations. This reflects that
+ * <p>Note that optional will be set to true for create and delete operations. This reflects that
  * typically we may or may not create/delete elements, even if all the prerequisites are met.
- *
  */
 public class AnnotationCapability {
 
@@ -24,11 +25,7 @@ public class AnnotationCapability {
    * @param annotation the annotation
    */
   public AnnotationCapability(CreatesAnnotation annotation) {
-    this(
-        annotation.value(),
-        annotation.bounds(),
-        true
-    );
+    this(annotation.value(), annotation.bounds(), true);
   }
 
   /**
@@ -37,11 +34,7 @@ public class AnnotationCapability {
    * @param annotation the annotation
    */
   public AnnotationCapability(DeletesAnnotation annotation) {
-    this(
-        annotation.value(),
-        annotation.bounds(),
-        true
-    );
+    this(annotation.value(), annotation.bounds(), true);
   }
 
   /**
@@ -50,11 +43,7 @@ public class AnnotationCapability {
    * @param annotation the annotation
    */
   public AnnotationCapability(ProcessesAnnotation annotation) {
-    this(
-        annotation.value(),
-        annotation.bounds(),
-        annotation.optional()
-    );
+    this(annotation.value(), annotation.bounds(), annotation.optional());
   }
 
   /**
@@ -64,8 +53,7 @@ public class AnnotationCapability {
    * @param bounds the annotation bounds
    * @param optional whether the above are required (processing specific)
    */
-  public AnnotationCapability(String type,
-      Class<? extends Bounds> bounds, boolean optional) {
+  public AnnotationCapability(String type, Class<? extends Bounds> bounds, boolean optional) {
     this.type = type;
     this.bounds = bounds;
     this.optional = optional;
@@ -107,9 +95,9 @@ public class AnnotationCapability {
       return false;
     }
     AnnotationCapability that = (AnnotationCapability) o;
-    return optional == that.optional &&
-        Objects.equals(type, that.type) &&
-        Objects.equals(bounds, that.bounds);
+    return optional == that.optional
+        && Objects.equals(type, that.type)
+        && Objects.equals(bounds, that.bounds);
   }
 
   @Override

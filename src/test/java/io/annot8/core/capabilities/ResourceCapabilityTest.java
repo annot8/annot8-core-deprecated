@@ -1,3 +1,4 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.capabilities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -5,20 +6,19 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doReturn;
 
-import io.annot8.core.components.Resource;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import io.annot8.core.components.Resource;
+
 @ExtendWith(MockitoExtension.class)
 public class ResourceCapabilityTest {
 
-  @Mock
-  private UsesResource usesResource;
+  @Mock private UsesResource usesResource;
 
-  @Mock
-  private UsesResource empty;
+  @Mock private UsesResource empty;
 
   @Test
   public void testUsesResourceConstructor() {
@@ -51,7 +51,5 @@ public class ResourceCapabilityTest {
     assertFalse(capability.equals(null));
   }
 
-  private abstract class TestResource implements Resource {
-  };
-
+  private abstract class TestResource implements Resource {};
 }

@@ -1,13 +1,15 @@
+/* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.annotations;
 
-import io.annot8.core.properties.ImmutableProperties;
-import io.annot8.core.references.AnnotationReference;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import io.annot8.core.properties.ImmutableProperties;
+import io.annot8.core.references.AnnotationReference;
 
 public class TestGroup implements Group {
 
@@ -17,8 +19,12 @@ public class TestGroup implements Group {
   private Map<String, Collection<AnnotationReference>> references;
   private String role;
 
-  public TestGroup(String id, String type, ImmutableProperties properties,
-      Map<String, Collection<AnnotationReference>> references, String role) {
+  public TestGroup(
+      String id,
+      String type,
+      ImmutableProperties properties,
+      Map<String, Collection<AnnotationReference>> references,
+      String role) {
     this.id = id;
     this.type = type;
     this.properties = properties;
@@ -43,7 +49,9 @@ public class TestGroup implements Group {
 
   @Override
   public Map<String, Stream<AnnotationReference>> getReferences() {
-    return references.entrySet().stream()
+    return references
+        .entrySet()
+        .stream()
         .collect(Collectors.toMap(Entry::getKey, e -> e.getValue().stream()));
   }
 
@@ -56,5 +64,4 @@ public class TestGroup implements Group {
   public boolean containsAnnotation(Annotation annotation) {
     return false;
   }
-
 }
