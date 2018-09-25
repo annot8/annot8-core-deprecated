@@ -2,16 +2,15 @@
 package io.annot8.core.capabilities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doReturn;
 
+import io.annot8.core.components.Resource;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import io.annot8.core.components.Resource;
 
 @ExtendWith(MockitoExtension.class)
 public class ResourceCapabilityTest {
@@ -37,8 +36,8 @@ public class ResourceCapabilityTest {
     ResourceCapability capability = new ResourceCapability(usesResource);
     ResourceCapability capability2 = new ResourceCapability(usesResource);
 
-    assertTrue(capability.equals(capability2));
-    assertTrue(capability.equals(capability));
+    assertEquals(capability, capability2);
+    assertEquals(capability, capability);
   }
 
   @Test
@@ -47,9 +46,9 @@ public class ResourceCapabilityTest {
     doReturn(true).when(usesResource).optional();
     ResourceCapability capability = new ResourceCapability(usesResource);
     ResourceCapability capability2 = new ResourceCapability(empty);
-    assertFalse(capability.equals(capability2));
-    assertFalse(capability.equals(null));
+    assertNotEquals(capability, capability2);
+    assertNotEquals(null, capability);
   }
 
-  private abstract class TestResource implements Resource {};
+  private abstract class TestResource implements Resource {}
 }

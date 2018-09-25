@@ -13,11 +13,11 @@ import io.annot8.core.references.AnnotationReference;
 
 public class TestGroup implements Group {
 
-  private String id;
-  private String type;
-  private ImmutableProperties properties;
-  private Map<String, Collection<AnnotationReference>> references;
-  private String role;
+  private final String id;
+  private final String type;
+  private final ImmutableProperties properties;
+  private final Map<String, Collection<AnnotationReference>> references;
+  private final String role;
 
   public TestGroup(
       String id,

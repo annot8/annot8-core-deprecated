@@ -14,7 +14,7 @@ import io.annot8.core.stores.AnnotationStore;
 /**
  * Base content interface from which all content implementations extend.
  *
- * @type D the type of data held
+ * @param <D> the type of data held
  */
 public interface Content<D> extends WithId, WithProperties {
 

@@ -6,11 +6,11 @@ import io.annot8.core.properties.ImmutableProperties;
 
 public class TestAnnotation implements Annotation {
 
-  private String id;
-  private String type;
-  private ImmutableProperties properties;
-  private Bounds bounds;
-  private String contentId;
+  private final String id;
+  private final String type;
+  private final ImmutableProperties properties;
+  private final Bounds bounds;
+  private final String contentId;
 
   public TestAnnotation(
       String id, String type, ImmutableProperties properties, Bounds bounds, String contentId) {

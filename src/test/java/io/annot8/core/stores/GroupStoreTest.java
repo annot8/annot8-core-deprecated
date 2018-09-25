@@ -89,7 +89,7 @@ public class GroupStoreTest {
     String type = "testType";
     TestGroup group = new TestGroup(GROUP_ID, type, null, null, null);
     TestGroup group2 = new TestGroup("id2", "type2", null, null, null);
-    Collection<Group> groups = new ArrayList<Group>();
+    Collection<Group> groups = new ArrayList<>();
     groups.add(group);
     groups.add(group2);
 
@@ -100,7 +100,7 @@ public class GroupStoreTest {
 
   private class TestGroupStore implements GroupStore {
 
-    private Map<String, Group> groups;
+    private final Map<String, Group> groups;
 
     public TestGroupStore() {
       this(new ArrayList<>());
@@ -185,7 +185,7 @@ public class GroupStoreTest {
     }
 
     @Override
-    public Group save() throws IncompleteException {
+    public Group save() {
       return new TestGroup(id, type, properties, references, role);
     }
 

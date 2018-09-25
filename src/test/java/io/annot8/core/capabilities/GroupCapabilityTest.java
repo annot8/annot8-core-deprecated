@@ -3,6 +3,7 @@ package io.annot8.core.capabilities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doReturn;
 
@@ -54,8 +55,8 @@ public class GroupCapabilityTest {
     doReturn(GROUP_TYPE).when(createsGroup).value();
     GroupCapability capability = new GroupCapability(createsGroup);
     GroupCapability capability2 = new GroupCapability(createsGroup);
-    assertTrue(capability.equals(capability2));
-    assertTrue(capability.equals(capability));
+    assertEquals(capability, capability2);
+    assertEquals(capability, capability);
   }
 
   @Test
@@ -63,7 +64,7 @@ public class GroupCapabilityTest {
     doReturn(GROUP_TYPE).when(createsGroup).value();
     GroupCapability capability = new GroupCapability(createsGroup);
     GroupCapability capability2 = new GroupCapability(empty);
-    assertFalse(capability.equals(capability2));
-    assertFalse(capability.equals(null));
+    assertNotEquals(capability, capability2);
+    assertNotEquals(null, capability);
   }
 }

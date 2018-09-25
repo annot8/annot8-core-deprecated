@@ -257,16 +257,16 @@ public class CapabilitiesBuilderTest {
 
   class TestCapabilitiesBuilder implements Capabilities.Builder {
 
-    private Set<AnnotationCapability> processedAnnotations = new HashSet<>();
-    private Set<AnnotationCapability> createdAnnotations = new HashSet<>();
-    private Set<AnnotationCapability> deletedAnnotations = new HashSet<>();
-    private Set<GroupCapability> processedGroups = new HashSet<>();
-    private Set<GroupCapability> createdGroups = new HashSet<>();
-    private Set<GroupCapability> deletedGroups = new HashSet<>();
-    private Set<ContentCapability> processedContent = new HashSet<>();
-    private Set<ContentCapability> createdContent = new HashSet<>();
-    private Set<ContentCapability> deletedContent = new HashSet<>();
-    private Set<ResourceCapability> usedResources = new HashSet<>();
+    private final Set<AnnotationCapability> processedAnnotations = new HashSet<>();
+    private final Set<AnnotationCapability> createdAnnotations = new HashSet<>();
+    private final Set<AnnotationCapability> deletedAnnotations = new HashSet<>();
+    private final Set<GroupCapability> processedGroups = new HashSet<>();
+    private final Set<GroupCapability> createdGroups = new HashSet<>();
+    private final Set<GroupCapability> deletedGroups = new HashSet<>();
+    private final Set<ContentCapability> processedContent = new HashSet<>();
+    private final Set<ContentCapability> createdContent = new HashSet<>();
+    private final Set<ContentCapability> deletedContent = new HashSet<>();
+    private final Set<ResourceCapability> usedResources = new HashSet<>();
 
     @Override
     public Builder processesAnnotation(AnnotationCapability capability) {

@@ -71,7 +71,7 @@ public class AnnotationCapability {
   /**
    * Get the bounds created/deleted/processed
    *
-   * @return
+   * @return the class of bounds
    */
   public Class<? extends Bounds> getBounds() {
     return bounds;

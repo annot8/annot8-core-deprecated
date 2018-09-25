@@ -2,16 +2,15 @@
 package io.annot8.core.capabilities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doReturn;
 
+import io.annot8.core.bounds.Bounds;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import io.annot8.core.bounds.Bounds;
 
 @ExtendWith(MockitoExtension.class)
 public class AnnotationCapabilityTest {
@@ -64,8 +63,8 @@ public class AnnotationCapabilityTest {
 
     AnnotationCapability cap1 = new AnnotationCapability(createsAnnotation);
     AnnotationCapability cap2 = new AnnotationCapability(createsAnnotation);
-    assertTrue(cap1.equals(cap2));
-    assertTrue(cap1.equals(cap1));
+    assertEquals(cap1, cap2);
+    assertEquals(cap1, cap1);
   }
 
   @Test
@@ -76,8 +75,8 @@ public class AnnotationCapabilityTest {
     AnnotationCapability cap1 = new AnnotationCapability(createsAnnotation);
     AnnotationCapability cap2 = new AnnotationCapability(empty);
 
-    assertFalse(cap1.equals(cap2));
-    assertFalse(cap1.equals(null));
+    assertNotEquals(cap1, cap2);
+    assertNotEquals(null, cap1);
   }
 
   private abstract class TestBounds implements Bounds {}

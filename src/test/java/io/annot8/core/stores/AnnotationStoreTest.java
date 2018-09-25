@@ -102,7 +102,7 @@ public class AnnotationStoreTest {
     String id2 = "id2";
     Annotation annotation = new TestAnnotation(id1, "type", null, null, null);
     Annotation annotation2 = new TestAnnotation(id2, "type2", null, null, null);
-    List<Annotation> annotations = new ArrayList<Annotation>();
+    List<Annotation> annotations = new ArrayList<>();
     annotations.add(annotation);
     annotations.add(annotation2);
 
@@ -122,7 +122,7 @@ public class AnnotationStoreTest {
         new TestAnnotation(id1, null, null, Mockito.mock(TestBounds.class), null);
     Annotation annotation2 =
         new TestAnnotation(id2, null, null, Mockito.mock(TestBounds2.class), null);
-    List<Annotation> annotations = new ArrayList<Annotation>();
+    List<Annotation> annotations = new ArrayList<>();
     annotations.add(annotation);
     annotations.add(annotation2);
 
@@ -133,9 +133,9 @@ public class AnnotationStoreTest {
     assertEquals(id2, store.getByBounds(TestBounds2.class).findFirst().get().getId());
   }
 
-  public abstract class TestBounds implements Bounds {};
+  public abstract class TestBounds implements Bounds {}
 
-  public abstract class TestBounds2 implements Bounds {};
+  public abstract class TestBounds2 implements Bounds {}
 
   private class TestAnnotationStore implements AnnotationStore {
 
@@ -222,7 +222,7 @@ public class AnnotationStoreTest {
     }
 
     @Override
-    public Annotation save() throws IncompleteException {
+    public Annotation save() {
       return new TestAnnotation(
           id, type, Mockito.mock(ImmutableProperties.class), Mockito.mock(Bounds.class), null);
     }

@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class TestProperties implements MutableProperties {
 
-  private Map<String, Object> props;
+  private final Map<String, Object> props;
 
   public TestProperties(Map<String, Object> props) {
     this.props = new ConcurrentHashMap<>();

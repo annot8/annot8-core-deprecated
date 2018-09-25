@@ -55,7 +55,7 @@ public class ContextTest {
     doAnswer(
             new Answer<Stream<String>>() {
               @Override
-              public Stream<String> answer(InvocationOnMock invocation) throws Throwable {
+              public Stream<String> answer(InvocationOnMock invocation) {
                 return Stream.of(res1, res2);
               }
             })
@@ -84,7 +84,7 @@ public class ContextTest {
     doAnswer(
             new Answer<Stream<Resource>>() {
               @Override
-              public Stream<Resource> answer(InvocationOnMock invocation) throws Throwable {
+              public Stream<Resource> answer(InvocationOnMock invocation) {
                 return Stream.of(res1);
               }
             })
@@ -93,7 +93,7 @@ public class ContextTest {
     doAnswer(
             new Answer<Stream<Resource>>() {
               @Override
-              public Stream<Resource> answer(InvocationOnMock invocation) throws Throwable {
+              public Stream<Resource> answer(InvocationOnMock invocation) {
                 return Stream.empty();
               }
             })
