@@ -14,6 +14,7 @@
   <artifactId>annot8-core</artifactId>
   <name>Annot8 Core</name>
   <description>Core interfaces for the Annot8 project</description>
+  <version>0.1.0</version>
 
   <issueManagement>
     <url>https://github.com/annot8/core/issues</url>
