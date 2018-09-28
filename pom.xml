@@ -27,4 +27,22 @@
     <developerConnection>scm:git:git@github.com/annot8/core.git</developerConnection>
   </scm>
 
+  <profiles>
+    <profile>
+      <id>travis</id>
+      <repositories>
+        <repository>
+          <id>packagecloud-annot8</id>
+          <url>https://packagecloud.io/committed/annot8/maven2</url>
+          <releases>
+            <!-- Don't look for releases, use Central -->
+            <enabled>false</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
 </project>

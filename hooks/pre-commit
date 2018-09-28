@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+echo Running git pre-commit hook
+
+# Workaround for macOS Git clients that were not started from a shell
+# And thus do not have the same PATH / env vars (for security reasons)
+# https://community.atlassian.com/t5/Bitbucket-questions/SourceTree-Hook-failing-because-paths-don-t-seem-to-be-set/qaq-p/274792
+export PATH=/usr/local/bin:$PATH
+
+# Check to see if we are on master branch. Stop accidental commits
+branch=$(git symbolic-ref HEAD 2>/dev/null)
+if [[ $branch == "refs/heads/master" ]] || [[ $branch == "refs/heads/develop" ]]
+then
+  echo "Cannot commit to $branch branch"
+  exit 1
+fi
+
+repo_root=$(git rev-parse --show-toplevel)
+cd $repo_root
+
+javafiles=$(git diff --cached --name-only --diff-filter=ACM "*.java" | tr '\n' ' ')
+
+if [ -n "$javafiles" ]
+then
+  echo Formatting java files
+  mvn spotless:apply
+  echo "$javafiles" | xargs git add
+fi
+
+cd -
