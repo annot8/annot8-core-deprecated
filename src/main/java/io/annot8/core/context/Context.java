@@ -14,25 +14,37 @@ public interface Context {
   /** The settings for the component that this context is being passed to. */
   Stream<Settings> getSettings();
 
-  /**
-   * Return a settings object as the given class, attempting to create a new settings object of that
-   * class if the currently given settings are not of this class.
-   */
+  /** Return a settings object as the given class. */
   default <T extends Settings> Optional<T> getSettings(final Class<T> clazz) {
     final Stream<Settings> stream = getSettings();
 
-    Optional<T> optional = stream.filter(clazz::isInstance).map(clazz::cast).findFirst();
+    return stream.filter(clazz::isInstance).map(clazz::cast).findFirst();
+  }
 
-    if (optional.isPresent()) {
-      return optional;
-    }
+  /**
+   * Return a settings object as the given class, attempting to create a new settings object of that
+   * class if the currently given settings are not of this class.
+   *
+   * @param clazz the setting clazz to create
+   * @param defaultValue if non=null this will be returned if the settings are absensce. If null
+   *     then will try to create a new instances of the Settings class
+   * @return may be null (if defaultValue is null)
+   */
+  default <T extends Settings> T getSettings(final Class<T> clazz, T defaultValue) {
 
-    // If not, found then try to create new instance
-    try {
-      return Optional.of(clazz.getConstructor().newInstance());
-    } catch (final Exception e) {
-      return Optional.empty();
-    }
+    return getSettings(clazz)
+        .orElseGet(
+            () -> {
+              if (defaultValue != null) {
+                return defaultValue;
+              } else {
+                try {
+                  return clazz.getConstructor().newInstance();
+                } catch (final Exception e) {
+                  return null;
+                }
+              }
+            });
   }
 
   /**
