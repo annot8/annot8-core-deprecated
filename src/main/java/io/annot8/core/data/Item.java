@@ -89,13 +89,6 @@ public interface Item extends WithId, WithMutableProperties, WithGroups {
   void removeContent(final String id);
 
   /**
-   * Creates a new item, with the current item set as the parent.
-   *
-   * @return new item
-   */
-  Item createChildItem();
-
-  /**
    * Stop processing this item any further.
    *
    * <p>Note that it is up to the underlying implementation as to whether they delete existing
