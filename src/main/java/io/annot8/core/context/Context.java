@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import io.annot8.core.components.Resource;
+import io.annot8.core.data.ItemFactory;
 import io.annot8.core.settings.Settings;
 
 /** Base context interface from which all context implementations extend. */
@@ -58,4 +59,7 @@ public interface Context {
 
   /** Return all resources of the specified type */
   <T extends Resource> Stream<T> getResources(final Class<T> clazz);
+
+  /** Get the item factory */
+  ItemFactory getItemFactory();
 }
