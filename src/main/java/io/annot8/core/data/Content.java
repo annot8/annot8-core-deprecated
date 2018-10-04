@@ -4,6 +4,7 @@ package io.annot8.core.data;
 import java.util.function.Supplier;
 
 import io.annot8.core.helpers.WithId;
+import io.annot8.core.helpers.WithName;
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.builders.WithFromBuilder;
 import io.annot8.core.helpers.builders.WithIdBuilder;
@@ -16,7 +17,7 @@ import io.annot8.core.stores.AnnotationStore;
  *
  * @param <D> the type of data held
  */
-public interface Content<D> extends WithId, WithProperties {
+public interface Content<D> extends WithId, WithProperties, WithName {
 
   /**
    * The data associated with this content object
@@ -45,13 +46,6 @@ public interface Content<D> extends WithId, WithProperties {
    * @return annotation store
    */
   AnnotationStore getAnnotations();
-
-  /**
-   * The name of this content
-   *
-   * @return name
-   */
-  String getName();
 
   /** Builder interface to create (immutable) Content classes */
   interface Builder<A extends Content<D>, D>
