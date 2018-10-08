@@ -8,12 +8,22 @@ package io.annot8.core.data;
  * support linking with child items.
  */
 @FunctionalInterface
-public interface ItemFactory {
+public interface BaseItemFactory {
 
   /**
    * Create a new item
    *
    * @return non-null
    */
-  Item create();
+  BaseItem create();
+
+  /**
+   * Create a new item, linked to parent
+   *
+   * @param parent parent item
+   * @return new item
+   */
+  default BaseItem create(BaseItem parent) {
+    return create();
+  }
 }
