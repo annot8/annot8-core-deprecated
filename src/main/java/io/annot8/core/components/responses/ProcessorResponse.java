@@ -1,6 +1,8 @@
 /* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.components.responses;
 
+import java.util.Objects;
+
 /**
  * Class to hold the response from a processor.
  *
@@ -55,6 +57,28 @@ public interface ProcessorResponse {
     @Override
     public Status getStatus() {
       return status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) {
+        return true;
+      }
+      if (o == null || getClass() != o.getClass()) {
+        return false;
+      }
+      ProcessorResponseBuilder that = (ProcessorResponseBuilder) o;
+      return status == that.status;
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(status);
+    }
+
+    @Override
+    public String toString() {
+      return status.toString();
     }
   }
 }
