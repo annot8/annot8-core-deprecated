@@ -9,14 +9,14 @@ export PATH=/usr/local/bin:$PATH
 
 # Check to see if we are on master branch. Stop accidental commits
 branch=$(git symbolic-ref HEAD 2>/dev/null)
-if [[ $branch == "refs/heads/master" ]] || [[ $branch == "refs/heads/develop" ]]
+if [[ ${branch} == "refs/heads/master" ]] || [[ ${branch} == "refs/heads/develop" ]]
 then
   echo "Cannot commit to $branch branch"
   exit 1
 fi
 
 repo_root=$(git rev-parse --show-toplevel)
-cd $repo_root
+cd ${repo_root}
 
 javafiles=$(git diff --cached --name-only --diff-filter=ACM "*.java" | tr '\n' ' ')
 
