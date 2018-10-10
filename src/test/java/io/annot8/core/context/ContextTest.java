@@ -3,6 +3,7 @@ package io.annot8.core.context;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doCallRealMethod;
@@ -36,6 +37,26 @@ public class ContextTest {
 
     assertEquals(settings, context.getSettings(TestSettings.class).get());
     assertFalse(context2.getSettings(TestSettings.class).isPresent());
+  }
+
+  @Test
+  public void testGetSettingsWithDefault() {
+    Context context = Mockito.mock(Context.class);
+    TestSettings settings = new TestSettings();
+    doReturn(Optional.of(settings)).when(context).getSettings(TestSettings.class);
+    doReturn(Optional.empty()).when(context).getSettings(UnusedSettings.class);
+
+    doCallRealMethod().when(context).getSettings(Mockito.any(), Mockito.any());
+
+    // if it exists we get it (null or otherwise)
+    assertEquals(settings, context.getSettings(TestSettings.class, null));
+    assertEquals(settings, context.getSettings(TestSettings.class, new TestSettings()));
+
+    // If we don't have it, then if null we get a new instance
+    assertNotNull(context.getSettings(UnusedSettings.class, null));
+    // Or the default
+    UnusedSettings unusedSettings = new UnusedSettings();
+    assertEquals(unusedSettings, context.getSettings(UnusedSettings.class, unusedSettings));
   }
 
   @Test
@@ -109,7 +130,15 @@ public class ContextTest {
     assertFalse(resource2.isPresent());
   }
 
-  private class TestSettings implements Settings {
+  public static class TestSettings implements Settings {
+
+    @Override
+    public boolean validate() {
+      return true;
+    }
+  }
+
+  public static class UnusedSettings implements Settings {
 
     @Override
     public boolean validate() {

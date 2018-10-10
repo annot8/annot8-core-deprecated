@@ -34,4 +34,20 @@ public class SourceResponseTest {
 
     assertEquals(SourceResponse.Status.EMPTY, sr.getStatus());
   }
+
+  @Test
+  public void testEqualsAndHashCode() {
+
+    assertEquals(SourceResponse.ok(), SourceResponse.ok());
+    assertEquals(SourceResponse.ok().hashCode(), SourceResponse.ok().hashCode());
+
+    assertEquals(SourceResponse.sourceError(), SourceResponse.sourceError());
+    assertEquals(SourceResponse.sourceError().hashCode(), SourceResponse.sourceError().hashCode());
+
+    assertEquals(SourceResponse.done(), SourceResponse.done());
+    assertEquals(SourceResponse.done().hashCode(), SourceResponse.done().hashCode());
+
+    assertEquals(SourceResponse.empty(), SourceResponse.empty());
+    assertEquals(SourceResponse.empty().hashCode(), SourceResponse.empty().hashCode());
+  }
 }
