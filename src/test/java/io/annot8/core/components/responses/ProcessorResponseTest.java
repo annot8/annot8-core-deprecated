@@ -29,4 +29,20 @@ public class ProcessorResponseTest {
 
     assertEquals(Status.PROCESSOR_ERROR, sr.getStatus());
   }
+
+  @Test
+  public void testEqualsAndHashCode() {
+
+    assertEquals(ProcessorResponse.ok(), ProcessorResponse.ok());
+    assertEquals(ProcessorResponse.ok().hashCode(), ProcessorResponse.ok().hashCode());
+
+    assertEquals(ProcessorResponse.itemError(), ProcessorResponse.itemError());
+    assertEquals(
+        ProcessorResponse.itemError().hashCode(), ProcessorResponse.itemError().hashCode());
+
+    assertEquals(ProcessorResponse.processingError(), ProcessorResponse.processingError());
+    assertEquals(
+        ProcessorResponse.processingError().hashCode(),
+        ProcessorResponse.processingError().hashCode());
+  }
 }
