@@ -104,7 +104,8 @@ public interface AnnotationStore {
    * @param type the annotation type to find
    * @return annotations
    */
-  default <B extends Bounds> Stream<Annotation> getByBoundsAndType(final Class<B> boundsClass, final String type) {
+  default <B extends Bounds> Stream<Annotation> getByBoundsAndType(
+      final Class<B> boundsClass, final String type) {
     return getByBounds(boundsClass).filter(a -> type.equals(a.getType()));
   }
 
