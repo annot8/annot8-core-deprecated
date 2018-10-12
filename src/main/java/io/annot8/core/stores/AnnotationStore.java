@@ -98,6 +98,17 @@ public interface AnnotationStore {
   }
 
   /**
+   * Get all annotations of a given bounds and type currently held in this store
+   *
+   * @param boundsClass the bound to filter on
+   * @param type the annotation type to find
+   * @return annotations
+   */
+  default <B extends Bounds> Stream<Annotation> getByBoundsAndType(final Class<B> boundsClass, final String type) {
+    return getByBounds(boundsClass).filter(a -> type.equals(a.getType()));
+  }
+
+  /**
    * Get the annotation with the given ID, if it is currently held in this store
    *
    * @param annotationId the id
