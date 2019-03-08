@@ -2,7 +2,7 @@
 package io.annot8.core.exceptions;
 
 /** Exception indicating that the content type is not supported */
-public class UnsupportedContentException extends Annot8Exception {
+public class UnsupportedContentException extends Annot8RuntimeException {
 
   private static final long serialVersionUID = 1L;
 
