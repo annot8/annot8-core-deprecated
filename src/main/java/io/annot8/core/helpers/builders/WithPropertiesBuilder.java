@@ -1,6 +1,8 @@
 /* Annot8 (annot8.io) - Licensed under Apache-2.0. */
 package io.annot8.core.helpers.builders;
 
+import java.util.Optional;
+
 import io.annot8.core.properties.Properties;
 
 /**
@@ -18,6 +20,15 @@ public interface WithPropertiesBuilder<A> {
    * @return a builder with the key-value property pair added to it
    */
   A withProperty(final String key, final Object value);
+
+  /**
+   * Add a property, if it is present (don't add it otherwise)
+   *
+   * @param key the key
+   * @param value the value
+   * @return a builder with the key-value property pair added to it, if the value is present
+   */
+  A withPropertyIfPresent(final String key, final Optional<?> value);
 
   /**
    * Remove a property with matching key and value

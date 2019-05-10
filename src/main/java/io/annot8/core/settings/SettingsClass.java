@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
  * Specify which class is to be used for settings by a component.
  *
  * <p>Note that whilst from a configuration perspective the annotation is inherited (ie you can
- * configure the parent, from a Java perspective is it not - the settings class applues to the class
+ * configure the parent, from a Java perspective is it not - the settings class applies to the class
  * they are defined on)
  */
 @Documented
