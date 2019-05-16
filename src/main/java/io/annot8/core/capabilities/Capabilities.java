@@ -325,7 +325,8 @@ public interface Capabilities {
      * @param consumer applied to elements
      * @param <T> the type of element
      */
-    private <T> void applySafely(Stream<T> stream, Consumer<T> consumer) {
+    // TODO: Should be private
+    static <T> void applySafely(Stream<T> stream, Consumer<T> consumer) {
       if (stream == null || consumer == null) {
         return;
       }
